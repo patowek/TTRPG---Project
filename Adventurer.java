@@ -251,7 +251,29 @@ public class Adventurer {
          
     }
     ///&&&&&END OF SET Items&&&&&//
-     
+     public static String getItems()
+    {//Get the following
+        //-Slot 0-7
+        int i=0;
+        String items="";
+        for(i=0;i<inventory.length;i++)
+        {
+            if(i<inventory.length-1)
+            {
+           items+=inventory[i]+", ";
+            }
+            else
+            {
+             items+=inventory[i];   
+            }
+        }
+        //i=items.length()-1;
+       //items=items.substring(items.length(),i+1);
+        
+          return items;
+         
+    }
+    ///&&&&&END OF SET Items&&&&&//
       ///&&&&&END OF SET ITEMS&&&&&//
      public static void setItems(String name, String newItem)
     {//Get the following
