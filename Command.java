@@ -1,8 +1,13 @@
 public abstract class Command {
     protected String target;
+    protected Room currentRoom;
 
     public void setTarget(String target) {
         this.target = target;
+    }
+    
+    public void setCurrentRoom(Room room) {
+    	this.currentRoom = room;
     }
 
     public abstract void execute(Adventurer player, GameLogic game);
@@ -23,7 +28,7 @@ public class MoveCommand extends Command {
 
 public class TakeCommand extends Command {
     @Override
-    public void execute(Player player, Game game) {
+    public void execute(Adventurer player, GameLogic game) {
         Room currentRoom = player.getCurrentRoom();
         Item item = currentRoom.getItem(target);
         if (item != null) {
@@ -36,9 +41,41 @@ public class TakeCommand extends Command {
     }
 }
 
+public class LookCommmand extends Command {
+	
+	@Override
+	public void execute(Adventurer player, GameLogic game) {
+		Room 		
+	}
+}
+
+public class ExamineCommand extends Command {
+
+	@Override
+	public void execute(Adventurer player, GameLogic game) {
+		Room currentRoom = player.getCurrentRoom();
+		
+	}
+	
+}
+
+public class AttackCommand extends Command {
+
+	@Override
+	public void execute(Adventurer player, GameLogic game) {
+		Room currentRoom = player.getCurrentRoom();
+		Enemies enemy = currentRoom.getEnemies();
+		
+		
+	}
+
+}
+
 public class UnknownCommand extends Command {
     @Override
-    public void execute(Player player, Game game) {
+    public void execute(Adventurer player, GameLogic game) {
         System.out.println("I don't understand that command.");
     }
+		
+	}
 }

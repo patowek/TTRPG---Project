@@ -12,6 +12,7 @@ public class Parser {
         commands.put("take", new TakeCommand());
         commands.put("look", new LookCommand());
         commands.put("Examine", new ExamineCommand());
+        commands.put("attack", new AttackCommand());
     }
 
     public Command parseCommand(String input) {
