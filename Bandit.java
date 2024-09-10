@@ -1,5 +1,3 @@
-package project1;
-
 public class Bandit extends Enemies{
 	
 	Bandit(int multiplier){

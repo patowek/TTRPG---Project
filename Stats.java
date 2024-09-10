@@ -1,5 +1,3 @@
-package project1;
-
 public class Stats {
 	int strength;
 	int dexterity;

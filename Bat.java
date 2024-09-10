@@ -1,5 +1,3 @@
-package project1;
-
 public class Bat extends Enemies{
 	
 	Bat(int multiplier){

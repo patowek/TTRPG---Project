@@ -1,5 +1,3 @@
-package project1;
-
 public class AncientGoldDragon extends Enemies{
 	
 	AncientGoldDragon(int multiplier){
