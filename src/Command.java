@@ -1,3 +1,5 @@
+import Main.Java.Classes.Adventurer;
+
 public abstract class Command {
     protected String target;
     protected Room currentRoom;

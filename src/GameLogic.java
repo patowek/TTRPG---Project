@@ -1,6 +1,8 @@
 import java.util.Map;
 import java.util.Scanner;
 
+import Main.Java.Classes.Adventurer;
+
 public class GameLogic {
     private Adventurer player;
     private Map<String, Room> rooms;

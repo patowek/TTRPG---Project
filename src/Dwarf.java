@@ -22,6 +22,7 @@ import Adventuring.Rogue;
 //*******Recent Changes: Removed Variable.**********
 //**************************************************
 //**************************************************
+import Main.Java.Classes.Adventurer;
 
     /**
      * @param args the command line arguments

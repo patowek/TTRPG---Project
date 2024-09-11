@@ -2,12 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
-package com.mycompany.adventurer;
-//Imports//
-import com.mycompany.adventurer.Fighter;
-import com.mycompany.adventurer.Mage;
-import com.mycompany.adventurer.Rogue;
-//Imports//
+
 /***************************************************
  ***Name:Human.java****************************
  ***Author:Jorel Singer*****************************
@@ -17,32 +12,20 @@ import com.mycompany.adventurer.Rogue;
  *********** the main Program for a text adventure**
  * *************************************************
  */
+//**************************************************
+//*******Version: 1.1*******************************
+//*******Recent Changes: Removed Duplicate vars*****
+//**************************************************
+//**************************************************
+package Main;
 
+import Main.Java.Classes.Adventurer;
 
-    /**
+/**
      * @param args the command line arguments
      */
    public class Human extends Adventurer {
-    //Variables//
-    String name;
-    static int strength;
-    static int intelligence;
-    static int wisdom;
-    static int constitution;
-    static int dexterity;
-    static int charisma;
-    static int gold;
-    static int health;
-    static int mana;
-    static String[] spells;
-    static String[] inventory={"None","None","None","None","None","None","None"};
-    //Slot 0 - Head
-    //Slot 1 - Armor
-    //Slot 2 - Weapon
-    //Slot 3 - Shield
-    // Slot 4 - Accessory
-    static String[] gear={"None","None","None","None","None"};
-    //**Variables//
+   
     //**UNIQUE Variables//
     static String race;
     static int racialBoost;
@@ -52,13 +35,33 @@ import com.mycompany.adventurer.Rogue;
     //##Constructors##
     
     public Human()
-    {
-      //Basic already built non-customized object  
+    {//Human("Lizette",1,3,3,2,2,2,2,10,10)
+      //Basic already built non-customized object 
+        name="Lizette";
+        strength=1;
+        intelligence=3;
+        wisdom=3;
+        constitution=2;
+        dexterity=2;
+        charisma=2;
+        gold=10;
+        health=10;
+        mana=10; 
     }
     public Human(String inName,int inStrength,
-            int inIntelligence, int inWisdom, int inConstitution,int dexterity,
+            int inIntelligence, int inWisdom, int inConstitution,int inDexterity,
             int inCharisma, int inGold, int inHealth, int inMana)
-    {//Constructor for the Human object. Where you can allocate all stats
+     {//Constructor for the elf object. Where you can allocate HP
+        name=inName;
+        strength=inStrength;
+        intelligence=inIntelligence;
+        wisdom=inWisdom;
+        constitution=inConstitution;
+        dexterity=inDexterity;
+        charisma=inCharisma;
+        gold=inGold;
+        health=inHealth;
+        mana=inMana;
         
     }
     
@@ -69,7 +72,7 @@ import com.mycompany.adventurer.Rogue;
     ///&&&&&START OF GET Race&&&&&//
     public static String getRace()
     {
-        return race="Elf";
+        return race="Human";
     }
     ///&&&&&END OF GET Race&&&&&//
     ///&&&&&START OF GET RacialAbility&&&&&//
