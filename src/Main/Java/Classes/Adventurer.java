@@ -12,9 +12,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Main.Java.Classes;
 
-import Room;
+import Main.Java.Map.*;
 
 /***************************************************
  ***Name:Adventurer.java****************************
