@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.adventurer;
 
 /**
  *
@@ -25,6 +24,12 @@ package com.mycompany.adventurer;
  *********** Program for a text adventure***********
  * *************************************************
  */
+
+//**************************************************
+//*******Version: 1.3*******************************
+//*******Recent Changes: Added Room & Inventory*****
+//*******Empty Slot detecting method****************
+//********************** For Lists******************
 public class Adventurer {
     //Variables//
     String name;
@@ -37,6 +42,7 @@ public class Adventurer {
     static int gold;
     static int health;
     static int mana;
+    static int armorCount;//The character's difficulty to deal damage to them.
     static String[] spells;
     static String[] inventory={"None","None","None","None","None","None","None"};
     //Slot 0 - Head
@@ -45,11 +51,23 @@ public class Adventurer {
     //Slot 3 - Shield
     // Slot 4 - Accessory
     static String[] gear={"None","None","None","None","None"};
+    Room currentRoom;
     //**Variables//
     
     //^^^^^^^^^^^^^^^^^^^^^^^
     //^^^Methods^^^^^^^^^^^^^
     //^^^^^^^^^^^^^^^^^^^^^^^
+    public int findValue(String[] values,String query)
+    {//Return where the value is found if the query is found.
+     for (int i = 0; i < values.length; i++) {
+            if (values[i] == query ) {
+                System.out.println("Array contains"+query+"  at index " + i);
+                return i;
+            }
+        }
+        System.out.println("Value not Found.");
+        return -1;
+    }
     
     ///&&&&&START OF GET STAT&&&&&//
     public static int getStat(String name)
@@ -176,6 +194,28 @@ public class Adventurer {
            return d;
     }
     ///&&&&&END OF GET GEAR&&&&&//
+     public static String getGear()
+    {//Get the following
+        //-Slot 0-7
+        int i=0;
+        String totalGear="";
+        for(i=0;i<gear.length;i++)
+        {
+            if(i<gear.length-1)
+            {
+           totalGear+=gear[i]+", ";
+            }
+            else
+            {
+             totalGear+=gear[i];   
+            }
+        }
+        //i=items.length()-1;
+       //items=items.substring(items.length(),i+1);
+        
+          return totalGear;
+         
+    }
      ///&&&&&END OF SET GEAR&&&&&//
      public static void setGear(String name, String newGear)
     {//Get the following
@@ -251,12 +291,41 @@ public class Adventurer {
          
     }
     ///&&&&&END OF SET Items&&&&&//
-     
+     public static String getItems()
+    {//Get the following
+        //-Slot 0-7
+        int i=0;
+        String items="";
+        for(i=0;i<inventory.length;i++)
+        {
+            if(i<inventory.length-1)
+            {
+           items+=inventory[i]+", ";
+            }
+            else
+            {
+             items+=inventory[i];   
+            }
+        }
+        //i=items.length()-1;
+       //items=items.substring(items.length(),i+1);
+        
+          return items;
+         
+    }
+    ///&&&&&END OF SET Items&&&&&//
       ///&&&&&END OF SET ITEMS&&&&&//
-     public static void setItems(String name, String newItem)
+     public void setItems(String name, String newItem)
     {//Get the following
         //Slots 0-7
-        
+        int index;
+        index=findValue(inventory,"None");
+        //Search for a value that says 'none' if not return -1
+        //If you find a value it will set it at the first instance 'none' slot
+        if(index!=-1)
+        {
+        inventory[index]=newItem;
+        }
          if(name=="Slot 0")
         {
          inventory[0]=newItem;   
@@ -381,9 +450,31 @@ public class Adventurer {
          
     }
     ///&&&&&END OF GET Spells&&&&&//
-     
+      ///&&&&&END OF SET Items&&&&&//
+     public static String getSpells()
+    {//Get the following
+        //-Slot 0-7
+        int i=0;
+        String totalSpells="";
+        for(i=0;i<spells.length;i++)
+        {
+            if(i<spells.length-1)
+            {
+           totalSpells+=spells[i]+", ";
+            }
+            else
+            {
+             totalSpells+=spells[i];   
+            }
+        }
+        //i=items.length()-1;
+       //items=items.substring(items.length(),i+1);
+        
+          return totalSpells;
+         
+    }
       ///&&&&&END OF SET SPELLS&&&&&//
-     public static void setSpells(String name, String newItem)
+     public static void SetSpells(String name, String newItem)
     {//Get the following
         //Slots 0-7
         
@@ -465,11 +556,55 @@ public class Adventurer {
        //Put code for Hide Action here
    }
        ///&&&&&END OF ACTION HIDE&&&&&//
+   ///Start of Calculate Armor Count///
+   public static void calculateAC()
+   {//Calculate the armorcount of a character
+       //Base AC = 10, if Dex is 10 or higher then modifier 0, -1 at 9 or lower.
+       //If modifier is 12 or higher then modifier is +1
+       //Shield gives +2 AC
+       //Hide Armor turns base AC to 12
+       //Chain shirt armor gives 13
+       //Elven chain, scale or breastplate add 14
+       //Half plate is 15
+       //Ringmail is 14
+       //Chain mail is 15
+       //SPlint armor is 17
+       //Plate is 18
+       if("None"!=gear[1])
+       {//Slot 1 - Armor
+        //Slot 0 - Head
+    
+    //Slot 2 - Weapon
+    //Slot 3 - Shield
+    // Slot 4 - Accessory
+           
+       }
+       if("None"!=gear[3])
+       {//Slot 3 - Shield
+        armorCount=10+2;
+           
+       }
+       else
+       {
+        armorCount=armorCount-2;
+       }
+   }
+    ///End of Calculate Armor Count///
+   
+   ///Start of getCurrentRoom()///
+   public Room getCurrentRoom()
+   { 
+       return currentRoom;
+   }
+   ///End of getCurrentRoom()///
+   
+   ///Start of getCurrentRoom()///
+   public void setCurrentRoom(Room newRoom)
+   { 
+       currentRoom=newRoom;
+   }
+   ///End of getCurrentRoom()///
     //^^^^^^^^^^^^^^^^^^^^^^^
     //^^^Methods^^^^^^^^^^^^^
     //^^^^^^^^^^^^^^^^^^^^^^^
 }
-
-    
-    
-
