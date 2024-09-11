@@ -1,5 +1,10 @@
+package Main.Java.Logic;
+
 import java.util.Map;
 import java.util.Scanner;
+
+import Main.Java.Classes.*;
+import Main.Java.Map.*;
 
 public class GameLogic {
     private Adventurer player;
