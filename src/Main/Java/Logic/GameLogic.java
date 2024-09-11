@@ -137,5 +137,4 @@ public class GameLogic {
         player.setCurrentRoom(rooms.get("StartRoom"));
     }
     
-    
 }
