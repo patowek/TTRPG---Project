@@ -1,9 +1,17 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import Main.Java.Items.Item;
+import Main.Java.Enemies.*;
+
 public class Room {
     private String name;                   // Room name or description
     private String description;            // More detailed description of the room
     private Map<String, Room> exits;       // Available exits, mapping direction to Room
     private List<Item> items;              // Items present in the room
-    private List<Enemy> enemies;           // Enemies present in the room
+    private List<Enemies> enemies;           // Enemies present in the room
 
     // Constructor
     public Room(String name, String description) {
@@ -35,12 +43,12 @@ public class Room {
     }
 
     // Method to add an enemy to the room
-    public void addEnemy(Enemy enemy) {
+    public void addEnemy(Enemies enemy) {
         enemies.add(enemy);
     }
 
     // Method to remove an enemy from the room
-    public void removeEnemy(Enemy enemy) {
+    public void removeEnemy(Enemies enemy) {
         enemies.remove(enemy);
     }
 
@@ -57,7 +65,7 @@ public class Room {
         return items;
     }
 
-    public List<Enemy> getEnemies() {
+    public List<Enemies> getEnemies() {
         return enemies;
     }
 }
