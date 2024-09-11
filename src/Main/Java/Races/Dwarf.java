@@ -3,15 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
 package Main.Java.Races;
-import static Main.Java.Classes.Adventurer.charisma;
-import static Main.Java.Classes.Adventurer.constitution;
-import static Main.Java.Classes.Adventurer.dexterity;
-import static Main.Java.Classes.Adventurer.gold;
-import static Main.Java.Classes.Adventurer.health;
-import static Main.Java.Classes.Adventurer.intelligence;
-import static Main.Java.Classes.Adventurer.mana;
-import static Main.Java.Classes.Adventurer.strength;
-import static Main.Java.Classes.Adventurer.wisdom;
+
 
 //Imports//
 /***************************************************
@@ -46,7 +38,7 @@ import Main.Java.Classes.Adventurer;
 
     public Dwarf()
     {//Dwarf("Dundalk",1,3,3,2,2,2,2,10,10
-         name="Dundalk";
+        name="Dundalk";
         strength=1;
         intelligence=3;
         wisdom=3;

@@ -13,7 +13,6 @@
  * and open the template in the editor.
  */
 package Main.Java.Classes;
-
 import Main.Java.Map.Room;
 
 /***************************************************
@@ -33,26 +32,27 @@ import Main.Java.Map.Room;
 //********************** For Lists******************
 public class Adventurer {
     //Variables//
-    String name;
-    static int strength;
-    static int intelligence;
-    static int wisdom;
-    static int constitution;
-    static int dexterity;
-    static int charisma;
-    static int gold;
-    static int health;
-    static int mana;
-    static int armorCount;//The character's difficulty to deal damage to them.
-    static String[] spells;
-    static String[] inventory={"None","None","None","None","None","None","None"};
+  public  String name;
+   public static int strength;
+   public static int intelligence;
+   public static int wisdom;
+   public static int constitution;
+   public static int dexterity;
+   public static int charisma;
+   public static int gold;
+   public static int health;
+   public static int mana;
+   public static int armorCount;//The character's difficulty to deal damage to them.
+   public static String[] spells;
+ //  public static String[] inventory={"None","None","None","None","None","None","None"};
+    public static String[] inventory={"None","None","None","None","None","None","None"};
     //Slot 0 - Head
     //Slot 1 - Armor
     //Slot 2 - Weapon
     //Slot 3 - Shield
     // Slot 4 - Accessory
-    static String[] gear={"None","None","None","None","None"};
-    Room currentRoom;
+   public static String[] gear={"None","None","None","None","None"};
+    public Room currentRoom;
     //**Variables//
 
     //^^^^^^^^^^^^^^^^^^^^^^^
@@ -316,7 +316,7 @@ public class Adventurer {
     }
     ///&&&&&END OF SET Items&&&&&//
       ///&&&&&END OF SET ITEMS&&&&&//
-     public void setItems(String name, String newItem)
+     public void setItems(String slot,String newItem)
     {//Get the following
         //Slots 0-7
         int index;
@@ -363,7 +363,53 @@ public class Adventurer {
 
     }
     ///&&&&&END OF SET Items&&&&&//
+public void setItems(String newItem)
+    {//Get the following
+        //Slots 0-7
+        int index;
+        index=findValue(inventory,"None");
+        //Search for a value that says 'none' if not return -1
+        //If you find a value it will set it at the first instance 'none' slot
+        if(index!=-1)
+        {
+        inventory[index]=newItem;
+        }
+         if(name=="Slot 0")
+        {
+         inventory[0]=newItem;
+        }
+        if(name=="Slot 1")
+        {
+         inventory[1]=newItem;
+        }
+         if(name=="Slot 2")
+        {
+         inventory[2]=newItem;
+        }
+          if(name=="Slot 3")
+        {
+         inventory[3]=newItem;
+        }
+           if(name=="Slot 4")
+        {
+         inventory[4]=newItem;
+        }
+             if(name=="Slot 5")
+        {
+         inventory[5]=newItem;
+        }
+               if(name=="Slot 6")
+        {
+         inventory[6]=newItem;
+        }
+                 if(name=="Slot 7")
+        {
+         inventory[7]=newItem;
+        }
 
+
+    }
+    ///&&&&&END OF SET Items&&&&&//
        ///&&&&&END OF SET REMOVE ITEMS&&&&&//
      public static void setRemoveItems(String name, String newItem)
     {//Get the following

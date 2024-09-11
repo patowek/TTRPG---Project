@@ -1,3 +1,5 @@
+package Main.Java.Logic;
+
 public class Stats {
 	int strength;
 	int dexterity;

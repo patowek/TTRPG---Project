@@ -20,7 +20,7 @@
 //*******Recent Changes: Removed duplicate vars*****
 //**************************************************
 //**************************************************
-package Main;
+package Main.Java.Races;
 
 import static Main.Java.Classes.Adventurer.charisma;
 import static Main.Java.Classes.Adventurer.constitution;
