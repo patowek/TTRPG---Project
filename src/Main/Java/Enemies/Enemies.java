@@ -1,6 +1,6 @@
 import Main.Java.Logic.Stats;
 
-public class Enemies extends Stats{
+public class Enemies extends Stats {
 	String name = "";
 	int multiplier;
 	int challengeRating;

@@ -14,62 +14,57 @@ package com.mycompany.adventurer;
  * *************************************************
  */
 
+/**
+ * @param args the command line arguments
+ */
+public class Rogue {
+	// Variables//
 
-    /**
-     * @param args the command line arguments
-     */
-   public class Rogue {
-    //Variables//
+	// **Variables//
+	// **UNIQUE Variables//
+	static String job;
+	static int jobBoost;
+	static String jobAbility;
+	// **UNIQUE Variables//
 
-    //**Variables//
-    //**UNIQUE Variables//
-    static String job;
-    static int jobBoost;
-    static String jobAbility;
-    //**UNIQUE Variables//
+	// ##Constructors##
 
-    //##Constructors##
+	public Rogue() {
+		// Basic already built non-customized object
+	}
 
-    public Rogue()
-    {
-        //Basic already built non-customized object
-    }
-    public Rogue(String inName,int inStrength,
-            int inIntelligence, int inWisdom, int inConstitution,int dexterity,
-            int inCharisma, int inGold, int inHealth, int inMana)
-    {//Constructor for the elf object. Where you can allocate HP
+	public Rogue(String inName, int inStrength, int inIntelligence, int inWisdom, int inConstitution, int dexterity,
+			int inCharisma, int inGold, int inHealth, int inMana) {// Constructor for the elf object. Where you can
+																	// allocate HP
 
-    }
+	}
 
-     //^^^^^^^^^^^^^^^^^^^^^^^
-    //^^^Methods^^^^^^^^^^^^^
-    //^^^^^^^^^^^^^^^^^^^^^^^
+	// ^^^^^^^^^^^^^^^^^^^^^^^
+	// ^^^Methods^^^^^^^^^^^^^
+	// ^^^^^^^^^^^^^^^^^^^^^^^
 
-    ///&&&&&START OF GET Race&&&&&//
-    public static String getJob()
-    {
-        return job="Rogue";
-    }
-    ///&&&&&END OF GET Race&&&&&//
-    ///&&&&&START OF GET RacialAbility&&&&&//
-    public static String getJobAbility()
-    {
-        //Code for racial abilities or stat boosts.
-        return jobAbility;
-    }
-    ///&&&&&END OF GET RacialAbility&&&&&//
+	/// &&&&&START OF GET Race&&&&&//
+	public static String getJob() {
+		return job = "Rogue";
+	}
 
-     ///&&&&&START OF GET RacialBoost&&&&&//
-    public static String getjobBoost()
-    {
-        //Code for racial abilities or stat boosts.
-        return String.valueOf(jobBoost);
-    }
-    ///&&&&&END OF GET RacialBoost&&&&&//
+	/// &&&&&END OF GET Race&&&&&//
+	/// &&&&&START OF GET RacialAbility&&&&&//
+	public static String getJobAbility() {
+		// Code for racial abilities or stat boosts.
+		return jobAbility;
+	}
+	/// &&&&&END OF GET RacialAbility&&&&&//
 
-     //^^^^^^^^^^^^^^^^^^^^^^^
-    //^^^Methods^^^^^^^^^^^^^
-    //^^^^^^^^^^^^^^^^^^^^^^^
+	/// &&&&&START OF GET RacialBoost&&&&&//
+	public static String getjobBoost() {
+		// Code for racial abilities or stat boosts.
+		return String.valueOf(jobBoost);
+	}
+	/// &&&&&END OF GET RacialBoost&&&&&//
+
+	// ^^^^^^^^^^^^^^^^^^^^^^^
+	// ^^^Methods^^^^^^^^^^^^^
+	// ^^^^^^^^^^^^^^^^^^^^^^^
 
 }
-

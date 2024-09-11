@@ -4,7 +4,6 @@
  */
 package Main.Java.Races;
 
-
 //Imports//
 /***************************************************
  ***Name:Elf.java****************************
@@ -15,6 +14,7 @@ package Main.Java.Races;
  *********** the main Program for a text adventure**
  * *************************************************
  */
+
 //**************************************************
 //*******Version: 1.1*******************************
 //*******Recent Changes: Removed Variable.**********
@@ -22,79 +22,75 @@ package Main.Java.Races;
 //**************************************************
 import Main.Java.Classes.Adventurer;
 
-    /**
-     * @param args the command line arguments
-     */
-   public class Dwarf extends Adventurer {
-    //Variables//
+/**
+ * @param args the command line arguments
+ */
+public class Dwarf extends Adventurer {
+	// Variables//
 
-    //**UNIQUE Variables//
-    static String race;
-    static int racialBoost;
-    static String racialAbility;
-    //**UNIQUE Variables//
+	// **UNIQUE Variables//
+	static String race;
+	static int racialBoost;
+	static String racialAbility;
+	// **UNIQUE Variables//
 
-    //##Constructors##
+	// ##Constructors##
 
-    public Dwarf()
-    {//Dwarf("Dundalk",1,3,3,2,2,2,2,10,10
-        name="Dundalk";
-        strength=1;
-        intelligence=3;
-        wisdom=3;
-        constitution=2;
-        dexterity=2;
-        charisma=2;
-        gold=10;
-        health=10;
-        mana=10;
-    }
-    public Dwarf(String inName,int inStrength,
-            int inIntelligence, int inWisdom, int inConstitution,int inDexterity,
-            int inCharisma, int inGold, int inHealth, int inMana)
-    {//Constructor for the elf object. Where you can allocate HP
-        name=inName;
-        strength=inStrength;
-        intelligence=inIntelligence;
-        wisdom=inWisdom;
-        constitution=inConstitution;
-        dexterity=inDexterity;
-        charisma=inCharisma;
-        gold=inGold;
-        health=inHealth;
-        mana=inMana;
+	public Dwarf() {// Dwarf("Dundalk",1,3,3,2,2,2,2,10,10
+		name = "Dundalk";
+		strength = 1;
+		intelligence = 3;
+		wisdom = 3;
+		constitution = 2;
+		dexterity = 2;
+		charisma = 2;
+		gold = 10;
+		health = 10;
+		mana = 10;
+	}
 
-    }
+	public Dwarf(String inName, int inStrength, int inIntelligence, int inWisdom, int inConstitution, int inDexterity,
+			int inCharisma, int inGold, int inHealth, int inMana) {// Constructor for the elf object. Where you can
+																	// allocate HP
+		name = inName;
+		strength = inStrength;
+		intelligence = inIntelligence;
+		wisdom = inWisdom;
+		constitution = inConstitution;
+		dexterity = inDexterity;
+		charisma = inCharisma;
+		gold = inGold;
+		health = inHealth;
+		mana = inMana;
 
-     //^^^^^^^^^^^^^^^^^^^^^^^
-    //^^^Methods^^^^^^^^^^^^^
-    //^^^^^^^^^^^^^^^^^^^^^^^
+	}
 
-    ///&&&&&START OF GET Race&&&&&//
-    public static String getRace()
-    {
-        return race="Dwarf";
-    }
-    ///&&&&&END OF GET Race&&&&&//
-    ///&&&&&START OF GET RacialAbility&&&&&//
-    public static String getRacialAbility()
-    {
-        //Code for racial abilities or stat boosts.
-        return racialAbility;
-    }
-    ///&&&&&END OF GET RacialAbility&&&&&//
+	// ^^^^^^^^^^^^^^^^^^^^^^^
+	// ^^^Methods^^^^^^^^^^^^^
+	// ^^^^^^^^^^^^^^^^^^^^^^^
 
-     ///&&&&&START OF GET RacialBoost&&&&&//
-    public static String getRacialBoost()
-    {
-        //Code for racial abilities or stat boosts.
-        return String.valueOf(racialBoost);
-    }
-    ///&&&&&END OF GET RacialBoost&&&&&//
+	/// &&&&&START OF GET Race&&&&&//
+	public static String getRace() {
+		return race = "Dwarf";
+	}
 
-     //^^^^^^^^^^^^^^^^^^^^^^^
-    //^^^Methods^^^^^^^^^^^^^
-    //^^^^^^^^^^^^^^^^^^^^^^^
+	/// &&&&&END OF GET Race&&&&&//
+	/// &&&&&START OF GET RacialAbility&&&&&//
+	public static String getRacialAbility() {
+		// Code for racial abilities or stat boosts.
+		return racialAbility;
+	}
+	/// &&&&&END OF GET RacialAbility&&&&&//
+
+	/// &&&&&START OF GET RacialBoost&&&&&//
+	public static String getRacialBoost() {
+		// Code for racial abilities or stat boosts.
+		return String.valueOf(racialBoost);
+	}
+	/// &&&&&END OF GET RacialBoost&&&&&//
+
+	// ^^^^^^^^^^^^^^^^^^^^^^^
+	// ^^^Methods^^^^^^^^^^^^^
+	// ^^^^^^^^^^^^^^^^^^^^^^^
 
 }
-

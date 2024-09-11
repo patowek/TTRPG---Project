@@ -1,6 +1,6 @@
-public class Bandit extends Enemies{
+public class Bandit extends Enemies {
 
-	Bandit(int multiplier){
+	Bandit(int multiplier) {
 		this.setName("Bandit");
 		hitpoints = 11 * multiplier;
 		armor = 12 * multiplier;

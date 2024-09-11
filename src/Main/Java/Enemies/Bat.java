@@ -1,6 +1,6 @@
-public class Bat extends Enemies{
+public class Bat extends Enemies {
 
-	Bat(int multiplier){
+	Bat(int multiplier) {
 		this.setName("Bat");
 		hitpoints = 1 * multiplier;
 		armor = 12 * multiplier;
