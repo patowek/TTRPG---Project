@@ -1,3 +1,5 @@
+package Main.Java.Logic;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +12,6 @@ public class Parser {
         //List of supports Commands
         commands.put("move", new MoveCommand());
         commands.put("take", new TakeCommand());
-        commands.put("look", new LookCommand());
         commands.put("Examine", new ExamineCommand());
         commands.put("attack", new AttackCommand());
     }
