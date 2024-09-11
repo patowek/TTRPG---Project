@@ -1,7 +1,5 @@
 package Main.Java.Logic;
 
-import java.util.List;
-
 import Main.Java.Classes.Adventurer;
 import Main.Java.Enemies.Enemies;
 import Main.Java.Map.Room;

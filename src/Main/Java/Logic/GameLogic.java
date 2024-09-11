@@ -2,19 +2,14 @@ package Main.Java.Logic;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 import Main.Java.Classes.*;
-import Main.Java.Enemies.Enemies;
-import Main.Java.Items.Item;
 import Main.Java.Map.*;
 import Main.Java.Races.*;
 
