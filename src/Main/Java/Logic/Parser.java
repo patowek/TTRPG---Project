@@ -8,7 +8,7 @@ public class Parser {
 
     public Parser() {
         commands = new HashMap<>();
-        
+
         //List of supports Commands
         commands.put("move", new MoveCommand());
         commands.put("take", new TakeCommand());

@@ -1,5 +1,5 @@
 public class Bandit extends Enemies{
-	
+
 	Bandit(int multiplier){
 		this.setName("Bandit");
 		hitpoints = 11 * multiplier;

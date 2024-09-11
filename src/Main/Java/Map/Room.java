@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Main.Java.Enemies.Enemies;
 import Main.Java.Items.Item;
-import Main.Java.Enemies.*;
 
 public class Room {
     private String name;                   // Room name or description
@@ -28,7 +28,7 @@ public class Room {
     public void addExit(String direction, Room room) {
         exits.put(direction, room);
     }
-    
+
     // Method to get an exit based on direction
     public Room getExit(String direction) {
         return exits.get(direction);

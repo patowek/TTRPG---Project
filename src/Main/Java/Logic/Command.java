@@ -1,7 +1,7 @@
 package Main.Java.Logic;
 
-import Main.Java.Map.*;
-import Main.Java.Classes.*;
+import Main.Java.Classes.Adventurer;
+import Main.Java.Map.Room;
 
 public abstract class Command {
     protected String target;
@@ -10,7 +10,7 @@ public abstract class Command {
     public void setTarget(String target) {
         this.target = target;
     }
-    
+
     public void setCurrentRoom(Room room) {
     	this.currentRoom = room;
     }

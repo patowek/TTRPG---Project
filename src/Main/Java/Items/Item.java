@@ -1,12 +1,12 @@
 package Main.Java.Items;
 
-import Main.Java.Classes.*;
+import Main.Java.Classes.Adventurer;
 
 public class Item {
     private String name;
     private String description;
     private boolean isCollectible;
-    
+
     // Constructor
     public Item(String name, String description, boolean isCollectible) {
         this.name = name;

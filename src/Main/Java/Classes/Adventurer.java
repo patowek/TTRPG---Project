@@ -14,7 +14,7 @@
  */
 package Main.Java.Classes;
 
-import Main.Java.Map.*;
+import Main.Java.Map.Room;
 
 /***************************************************
  ***Name:Adventurer.java****************************
@@ -54,7 +54,7 @@ public class Adventurer {
     static String[] gear={"None","None","None","None","None"};
     Room currentRoom;
     //**Variables//
-    
+
     //^^^^^^^^^^^^^^^^^^^^^^^
     //^^^Methods^^^^^^^^^^^^^
     //^^^^^^^^^^^^^^^^^^^^^^^
@@ -69,7 +69,7 @@ public class Adventurer {
         System.out.println("Value not Found.");
         return -1;
     }
-    
+
     ///&&&&&START OF GET STAT&&&&&//
     public static int getStat(String name)
     {//Set the following
@@ -80,39 +80,39 @@ public class Adventurer {
         int d=0;//Stat to return
         if(name=="Strength")
         {
-         d=strength;   
+         d=strength;
         }
          if(name=="Intelligence")
         {
-         d=intelligence;   
+         d=intelligence;
         }
           if(name=="Wisdom")
         {
-         d=wisdom;   
+         d=wisdom;
         }
            if(name=="Constitution")
         {
-         d=constitution;   
+         d=constitution;
         }
             if(name=="Dexterity")
         {
-         d=dexterity;   
+         d=dexterity;
         }
              if(name=="Charisma")
         {
-         d=charisma;   
+         d=charisma;
         }
              if(name=="Health")
         {
-         d=health;   
+         d=health;
         }
              if(name=="Mana")
         {
-         d=mana;   
+         d=mana;
         }
              if(name=="Gold")
         {
-         d=gold;   
+         d=gold;
         }
         return d;
     }
@@ -127,39 +127,39 @@ public class Adventurer {
         int d=0;//Stat to change to
         if(name=="Strength")
         {
-         strength=value;   
+         strength=value;
         }
          if(name=="Intelligence")
         {
-         intelligence=value;   
+         intelligence=value;
         }
           if(name=="Wisdom")
         {
-         wisdom=value;   
+         wisdom=value;
         }
            if(name=="Constitution")
         {
-         constitution=value;   
+         constitution=value;
         }
             if(name=="Dexterity")
         {
-         dexterity=value;   
+         dexterity=value;
         }
              if(name=="Charisma")
         {
-         charisma=value;   
+         charisma=value;
         }
              if(name=="Health")
         {
-         health=value;   
+         health=value;
         }
              if(name=="Mana")
         {
-         mana=value;   
+         mana=value;
         }
              if(name=="Gold")
         {
-         gold=value;   
+         gold=value;
         }
     }
     ///&&&&&END OF SET STAT&&&&&//
@@ -174,23 +174,23 @@ public class Adventurer {
         String d="";//Gear to report back.
         if(name=="Armor")
         {
-         d=gear[1];   
+         d=gear[1];
         }
          if(name=="Weapon")
         {
-         d=gear[2];  
+         d=gear[2];
         }
           if(name=="Shield")
         {
-         d=gear[3];   
+         d=gear[3];
         }
            if(name=="Accessory")
         {
-         d=gear[4]; 
+         d=gear[4];
         }
             if(name=="Helmet")
         {
-         d=gear[0];   
+         d=gear[0];
         }
            return d;
     }
@@ -208,14 +208,14 @@ public class Adventurer {
             }
             else
             {
-             totalGear+=gear[i];   
+             totalGear+=gear[i];
             }
         }
         //i=items.length()-1;
        //items=items.substring(items.length(),i+1);
-        
+
           return totalGear;
-         
+
     }
      ///&&&&&END OF SET GEAR&&&&&//
      public static void setGear(String name, String newGear)
@@ -225,71 +225,71 @@ public class Adventurer {
         //-Weapon
         //-Shield
         //-Accessory
-       
+
         if(name=="Armor")
         {
-         gear[1]=newGear;   
+         gear[1]=newGear;
         }
          if(name=="Weapon")
         {
-         gear[2]=newGear;  
+         gear[2]=newGear;
         }
           if(name=="Shield")
         {
-         gear[3]=newGear;   
+         gear[3]=newGear;
         }
            if(name=="Accessory")
         {
-         gear[4]=newGear; 
+         gear[4]=newGear;
         }
             if(name=="Helmet")
         {
-         gear[0]=newGear;   
+         gear[0]=newGear;
         }
-         
+
     }
     ///&&&&&END OF SET GEAR&&&&&//
-     
+
        ///&&&&&END OF SET ITEMS&&&&&//
      public static String getItems(String name)
     {//Get the following
         //-Slot 0-7
-        
+
        String d="";//Returned item
          if(name=="Slot 0")
         {
-         d=inventory[0];   
+         d=inventory[0];
         }
         if(name=="Slot 1")
         {
-         d=inventory[1];   
+         d=inventory[1];
         }
          if(name=="Slot 2")
         {
-         d=inventory[2];  
+         d=inventory[2];
         }
           if(name=="Slot 3")
         {
-         d=inventory[3];   
+         d=inventory[3];
         }
            if(name=="Slot 4")
         {
-         d=inventory[4]; 
+         d=inventory[4];
         }
             if(name=="Slot 5")
         {
-         d=inventory[5]; 
+         d=inventory[5];
         }
              if(name=="Slot 6")
         {
-         d=inventory[6]; 
+         d=inventory[6];
         }
               if(name=="Slot 7")
         {
-         d=inventory[7]; 
+         d=inventory[7];
         }
           return d;
-         
+
     }
     ///&&&&&END OF SET Items&&&&&//
      public static String getItems()
@@ -305,14 +305,14 @@ public class Adventurer {
             }
             else
             {
-             items+=inventory[i];   
+             items+=inventory[i];
             }
         }
         //i=items.length()-1;
        //items=items.substring(items.length(),i+1);
-        
+
           return items;
-         
+
     }
     ///&&&&&END OF SET Items&&&&&//
       ///&&&&&END OF SET ITEMS&&&&&//
@@ -329,41 +329,41 @@ public class Adventurer {
         }
          if(name=="Slot 0")
         {
-         inventory[0]=newItem;   
+         inventory[0]=newItem;
         }
         if(name=="Slot 1")
         {
-         inventory[1]=newItem;   
+         inventory[1]=newItem;
         }
          if(name=="Slot 2")
         {
-         inventory[2]=newItem;  
+         inventory[2]=newItem;
         }
           if(name=="Slot 3")
         {
-         inventory[3]=newItem;   
+         inventory[3]=newItem;
         }
            if(name=="Slot 4")
         {
-         inventory[4]=newItem; 
+         inventory[4]=newItem;
         }
              if(name=="Slot 5")
         {
-         inventory[5]=newItem; 
+         inventory[5]=newItem;
         }
                if(name=="Slot 6")
         {
-         inventory[6]=newItem; 
+         inventory[6]=newItem;
         }
                  if(name=="Slot 7")
         {
-         inventory[7]=newItem; 
+         inventory[7]=newItem;
         }
-          
-         
+
+
     }
     ///&&&&&END OF SET Items&&&&&//
-     
+
        ///&&&&&END OF SET REMOVE ITEMS&&&&&//
      public static void setRemoveItems(String name, String newItem)
     {//Get the following
@@ -372,83 +372,83 @@ public class Adventurer {
         //-Weapon
         //-Shield
         //-Accessory
-       
+
          if(name=="Slot 0")
         {
-         inventory[0]="None";   
+         inventory[0]="None";
         }
         if(name=="Slot 1")
         {
-         inventory[1]="None";   
+         inventory[1]="None";
         }
          if(name=="Slot 2")
         {
-         inventory[2]="None";  
+         inventory[2]="None";
         }
           if(name=="Slot 3")
         {
-         inventory[3]="None";   
+         inventory[3]="None";
         }
            if(name=="Slot 4")
         {
-         inventory[4]="None"; 
+         inventory[4]="None";
         }
           if(name=="Slot 5")
         {
-         inventory[5]="None"; 
-        } 
+         inventory[5]="None";
+        }
            if(name=="Slot 6")
         {
-         inventory[6]="None"; 
-        } 
+         inventory[6]="None";
+        }
             if(name=="Slot 7")
         {
-         inventory[7]="None"; 
-        } 
-         
+         inventory[7]="None";
+        }
+
     }
     ///&&&&&END OF SET REMOVE Items&&&&&//
-    
+
       ///&&&&&END OF GET SPELLS&&&&&//
      public static String getSpells(String name)
     {//Get the following
         //-Slot 0-7
-        
+
        String d=" ";//Returned item
          if(name=="Slot 0")
         {
-         d=spells[0];   
+         d=spells[0];
         }
         if(name=="Slot 1")
         {
-         d=spells[1];   
+         d=spells[1];
         }
          if(name=="Slot 2")
         {
-         d=spells[2];  
+         d=spells[2];
         }
           if(name=="Slot 3")
         {
-         d=spells[3];   
+         d=spells[3];
         }
            if(name=="Slot 4")
         {
-         d=spells[4]; 
+         d=spells[4];
         }
             if(name=="Slot 5")
         {
-         d=spells[5]; 
+         d=spells[5];
         }
              if(name=="Slot 6")
         {
-         d=spells[6]; 
+         d=spells[6];
         }
               if(name=="Slot 7")
         {
-         d=spells[7]; 
+         d=spells[7];
         }
           return d;
-         
+
     }
     ///&&&&&END OF GET Spells&&&&&//
       ///&&&&&END OF SET Items&&&&&//
@@ -465,92 +465,92 @@ public class Adventurer {
             }
             else
             {
-             totalSpells+=spells[i];   
+             totalSpells+=spells[i];
             }
         }
         //i=items.length()-1;
        //items=items.substring(items.length(),i+1);
-        
+
           return totalSpells;
-         
+
     }
       ///&&&&&END OF SET SPELLS&&&&&//
      public static void SetSpells(String name, String newItem)
     {//Get the following
         //Slots 0-7
-        
+
          if(name=="Slot 0")
         {
-         spells[0]=newItem;   
+         spells[0]=newItem;
         }
         if(name=="Slot 1")
         {
-         spells[1]=newItem;   
+         spells[1]=newItem;
         }
          if(name=="Slot 2")
         {
-         spells[2]=newItem;  
+         spells[2]=newItem;
         }
           if(name=="Slot 3")
         {
-         spells[3]=newItem;   
+         spells[3]=newItem;
         }
            if(name=="Slot 4")
         {
-         spells[4]=newItem; 
+         spells[4]=newItem;
         }
              if(name=="Slot 5")
         {
-         spells[5]=newItem; 
+         spells[5]=newItem;
         }
                if(name=="Slot 6")
         {
-         spells[6]=newItem; 
+         spells[6]=newItem;
         }
                  if(name=="Slot 7")
         {
-         spells[7]=newItem; 
+         spells[7]=newItem;
         }
-          
-         
+
+
     }
     ///&&&&&END OF SET SPELLS&&&&&//
-     
+
      ///&&&&&END OF SAVING THROW&&&&&//
    public static void savingThrow()
    {
        //Put code for Saving Throw here
    }
        ///&&&&&END OF SAVING THROW&&&&&//
-   
+
    ///&&&&&END OF SKILL CHECK&&&&&//
    public static void skillCheck()
    {
        //Put code for Skill Check here
    }
        ///&&&&&END OF SKIL CHECK&&&&&//
-   
+
    ///&&&&&END OF ACTION ATTACK&&&&&//
    public static void actionAttack()
    {
        //Put code for Attack Action here
    }
        ///&&&&&END OF ACTION ATTACK&&&&&//
-   
+
    ///&&&&&END OF ACTION DEFEND&&&&&//
    public static void actionDefend()
    {
        //Put code for Defend Action here
    }
        ///&&&&&END OF ACTION DEFEND&&&&&//
-   
+
    ///&&&&&END OF ACTION SPELL&&&&&//
    public static void actionSpell()
    {
        //Put code for Spell Action here
    }
        ///&&&&&END OF ACTION SPELL&&&&&//
-   
+
    ///&&&&&END OF ACTION HIDE&&&&&//
    public static void actionHide()
    {
@@ -574,16 +574,16 @@ public class Adventurer {
        if("None"!=gear[1])
        {//Slot 1 - Armor
         //Slot 0 - Head
-    
+
     //Slot 2 - Weapon
     //Slot 3 - Shield
     // Slot 4 - Accessory
-           
+
        }
        if("None"!=gear[3])
        {//Slot 3 - Shield
         armorCount=10+2;
-           
+
        }
        else
        {
@@ -591,17 +591,17 @@ public class Adventurer {
        }
    }
     ///End of Calculate Armor Count///
-   
+
    ///Start of getCurrentRoom()///
    public Room getCurrentRoom()
-   { 
+   {
        return currentRoom;
    }
    ///End of getCurrentRoom()///
-   
+
    ///Start of getCurrentRoom()///
    public void setCurrentRoom(Room newRoom)
-   { 
+   {
        currentRoom=newRoom;
    }
    ///End of getCurrentRoom()///

@@ -1,5 +1,5 @@
 public class Bat extends Enemies{
-	
+
 	Bat(int multiplier){
 		this.setName("Bat");
 		hitpoints = 1 * multiplier;

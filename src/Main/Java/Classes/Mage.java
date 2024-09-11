@@ -20,16 +20,16 @@ package com.mycompany.adventurer;
      */
    public class Mage {
     //Variables//
-    
+
     //**Variables//
     //**UNIQUE Variables//
     static String job;
     static int jobBoost;
     static String jobAbility;
     //**UNIQUE Variables//
-    
+
     //##Constructors##
-    
+
     public Mage()
     {
         //Basic already built non-customized object
@@ -38,13 +38,13 @@ package com.mycompany.adventurer;
             int inIntelligence, int inWisdom, int inConstitution,int dexterity,
             int inCharisma, int inGold, int inHealth, int inMana)
     {//Constructor for the elf object. Where you can allocate HP
-        
+
     }
-    
+
      //^^^^^^^^^^^^^^^^^^^^^^^
     //^^^Methods^^^^^^^^^^^^^
     //^^^^^^^^^^^^^^^^^^^^^^^
-    
+
     ///&&&&&START OF GET Race&&&&&//
     public static String getJob()
     {
@@ -59,7 +59,7 @@ package com.mycompany.adventurer;
         return jobAbility;
     }
     ///&&&&&END OF GET RacialAbility&&&&&//
-    
+
      ///&&&&&START OF GET RacialBoost&&&&&//
     public static String getjobBoost()
     {
@@ -67,10 +67,10 @@ package com.mycompany.adventurer;
         return String.valueOf(jobBoost);
     }
     ///&&&&&END OF GET RacialBoost&&&&&//
-    
+
      //^^^^^^^^^^^^^^^^^^^^^^^
     //^^^Methods^^^^^^^^^^^^^
     //^^^^^^^^^^^^^^^^^^^^^^^
-    
+
 }
 

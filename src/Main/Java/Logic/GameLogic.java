@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import Main.Java.Classes.*;
-import Main.Java.Map.*;
-import Main.Java.Races.*;
+import Main.Java.Classes.Adventurer;
+import Main.Java.Map.Room;
+import Main.Java.Races.Dwarf;
+import Main.Java.Races.Elf;
+import Main.Java.Races.Human;
 
 public class GameLogic {
     private Adventurer player;
@@ -131,5 +133,5 @@ public class GameLogic {
         // Start game with the player in the initial room (e.g., "StartRoom")
         player.setCurrentRoom(rooms.get("StartRoom"));
     }
-    
+
 }

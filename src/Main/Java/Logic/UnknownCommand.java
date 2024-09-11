@@ -7,5 +7,5 @@ public class UnknownCommand extends Command {
     public void execute(Adventurer player, GameLogic game) {
         System.out.println("I don't understand that command.");
     }
-		
+
 }

@@ -9,7 +9,7 @@ public class Stats {
 	int armor;
 	int speed;
 	String name;
-	
+
 	//Getters
 	public int getStrength() {
 		return strength;

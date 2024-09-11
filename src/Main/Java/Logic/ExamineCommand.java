@@ -10,5 +10,5 @@ public class ExamineCommand extends Command {
 		Room currentRoom = player.getCurrentRoom();
 		System.out.println(currentRoom.getDescription());
 	}
-	
+
 }
