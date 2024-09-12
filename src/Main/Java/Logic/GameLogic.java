@@ -72,11 +72,25 @@ public class GameLogic {
 			String line;
 			List<Room> roomList = new ArrayList<>(); // List to store rooms in sequence
 
+			br.readLine();
+			
 			// Read rooms from the CSV and create Room objects
 			while ((line = br.readLine()) != null) {
-				String[] roomData = line.split(",");
-				String roomName = roomData[0];
-				String description = roomData[1];
+			    // Check if the line is not empty
+			    if (line.trim().isEmpty()) {
+			        continue;  // Skip empty lines
+			    }
+				
+			    // Split the line and check if there are enough parts
+			    String[] roomData = line.split(",");
+			    if (roomData.length < 2) {
+			        System.err.println("Skipping invalid line: " + line);
+			        continue;  // Skip lines that don't have enough data
+			    }
+			    
+				String roomName = roomData[0].trim();
+				String description = roomData[1].trim();
+				
 				// Create Room object
 				Room room = new Room(roomName, description);
 
