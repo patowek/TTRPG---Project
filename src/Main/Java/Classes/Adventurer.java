@@ -11,9 +11,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main.Java.Classes;
+package Classes;
 
-import Main.Java.Map.Room;
+import Map.Room;
 
 /***************************************************
  *** Name:Adventurer.java**************************** Author:Jorel

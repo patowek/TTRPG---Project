@@ -1,4 +1,4 @@
-package Main.Java.Enemies;
+package Enemies;
 
 public class Bat extends Enemies {
 

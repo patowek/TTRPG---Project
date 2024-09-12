@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
-package Main.Java.Races;
+package Races;
 
 //Imports//
 /***************************************************
@@ -20,7 +20,7 @@ package Main.Java.Races;
 //*******Recent Changes: Removed Variable.**********
 //**************************************************
 //**************************************************
-import Main.Java.Classes.Adventurer;
+import Classes.Adventurer;
 
 /**
  * @param args the command line arguments

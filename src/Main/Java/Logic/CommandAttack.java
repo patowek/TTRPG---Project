@@ -1,10 +1,10 @@
-package Main.Java.Logic;
+package Logic;
 
-import Main.Java.Classes.Adventurer;
-import Main.Java.Enemies.Enemies;
-import Main.Java.Map.Room;
+import Classes.Adventurer;
+import Enemies.Enemies;
+import Map.Room;
 
-public class AttackCommand extends Command {
+public class CommandAttack extends Command {
 
 	@Override
 	public void execute(Adventurer player, GameLogic game) {

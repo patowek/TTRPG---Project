@@ -20,19 +20,9 @@
 //*******Recent Changes: Removed duplicate vars*****
 //**************************************************
 //**************************************************
-package Main.Java.Races;
+package Races;
 
-import static Main.Java.Classes.Adventurer.charisma;
-import static Main.Java.Classes.Adventurer.constitution;
-import static Main.Java.Classes.Adventurer.dexterity;
-import static Main.Java.Classes.Adventurer.gold;
-import static Main.Java.Classes.Adventurer.health;
-import static Main.Java.Classes.Adventurer.intelligence;
-import static Main.Java.Classes.Adventurer.mana;
-import static Main.Java.Classes.Adventurer.strength;
-import static Main.Java.Classes.Adventurer.wisdom;
-
-import Main.Java.Classes.Adventurer;
+import Classes.Adventurer;
 
 /**
  * @param args the command line arguments

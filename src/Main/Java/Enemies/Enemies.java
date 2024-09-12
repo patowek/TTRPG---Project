@@ -1,6 +1,4 @@
-package Main.Java.Enemies;
-
-import Main.Java.Logic.Stats;
+package Enemies;
 
 public class Enemies extends Stats {
 	String name = "";

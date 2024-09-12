@@ -1,4 +1,4 @@
-package Main.Java.Logic;
+package Enemies;
 
 public class Stats {
 	int strength;

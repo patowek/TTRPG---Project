@@ -1,6 +1,6 @@
-package Main.Java.Items;
+package Items;
 
-import Main.Java.Classes.Adventurer;
+import Classes.Adventurer;
 
 public class Item {
 	private String name;

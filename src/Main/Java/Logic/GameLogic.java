@@ -1,4 +1,4 @@
-package Main.Java.Logic;
+package Logic;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,11 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import Main.Java.Classes.Adventurer;
-import Main.Java.Map.Room;
-import Main.Java.Races.Dwarf;
-import Main.Java.Races.Elf;
-import Main.Java.Races.Human;
+import Classes.Adventurer;
+import Map.Room;
+import Races.*;
 
 public class GameLogic {
 	private Adventurer player;

@@ -1,5 +1,5 @@
-import Main.Java.Logic.Stats;
+package Items;
 
-public class Equipment extends Stats {
+public class Equipment {
 
 }

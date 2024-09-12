@@ -1,8 +1,8 @@
-package Main.Java.Logic;
+package Logic;
 
-import Main.Java.Classes.Adventurer;
+import Classes.Adventurer;
 
-public class UnknownCommand extends Command {
+public class CommandUnknown extends Command {
 	@Override
 	public void execute(Adventurer player, GameLogic game) {
 		System.out.println("I don't understand that command.");

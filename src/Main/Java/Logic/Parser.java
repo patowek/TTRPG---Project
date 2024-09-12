@@ -1,4 +1,4 @@
-package Main.Java.Logic;
+package Logic;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,10 +10,10 @@ public class Parser {
 		commands = new HashMap<>();
 
 		// List of supports Commands
-		commands.put("move", new MoveCommand());
-		commands.put("take", new TakeCommand());
-		commands.put("Examine", new ExamineCommand());
-		commands.put("attack", new AttackCommand());
+		commands.put("move", new CommandMove());
+		commands.put("take", new CommandTake());
+		commands.put("Examine", new CommandExamine());
+		commands.put("attack", new CommandAttack());
 	}
 
 	public Command parseCommand(String input) {
@@ -26,7 +26,7 @@ public class Parser {
 			command.setTarget(target);
 			return command;
 		} else {
-			return new UnknownCommand();
+			return new CommandUnknown();
 		}
 	}
 

@@ -1,10 +1,10 @@
-package Main.Java.Logic;
+package Logic;
 
-import Main.Java.Classes.Adventurer;
-import Main.Java.Items.Item;
-import Main.Java.Map.Room;
+import Classes.Adventurer;
+import Items.Item;
+import Map.Room;
 
-public class TakeCommand extends Command {
+public class CommandTake extends Command {
 	@Override
 	public void execute(Adventurer player, GameLogic game) {
 		Room currentRoom = player.getCurrentRoom();

@@ -1,4 +1,4 @@
-package Main.Java.Enemies;
+package Enemies;
 
 public class Bandit extends Enemies {
 

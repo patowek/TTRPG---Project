@@ -1,9 +1,9 @@
-package Main.Java.Logic;
+package Logic;
 
-import Main.Java.Classes.Adventurer;
-import Main.Java.Map.Room;
+import Classes.Adventurer;
+import Map.Room;
 
-public class MoveCommand extends Command {
+public class CommandMove extends Command {
 	@Override
 	public void execute(Adventurer player, GameLogic game) {
 		Room nextRoom = player.getCurrentRoom().getExit(target);

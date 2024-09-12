@@ -1,12 +1,12 @@
-package Main.Java.Map;
+package Map;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Main.Java.Enemies.Enemies;
-import Main.Java.Items.Item;
+import Enemies.Enemies;
+import Items.Item;
 
 public class Room {
 	private String name; // Room name or description

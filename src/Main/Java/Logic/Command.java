@@ -1,7 +1,7 @@
-package Main.Java.Logic;
+package Logic;
 
-import Main.Java.Classes.Adventurer;
-import Main.Java.Map.Room;
+import Classes.Adventurer;
+import Map.Room;
 
 public abstract class Command {
 	protected String target;
