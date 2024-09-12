@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -24,6 +25,7 @@ public class GameLogic {
 	public GameLogic() {
 		this.isRunning = true;
 		this.parser = new Parser();
+		rooms = new HashMap<>();
 	}
 
 	public void startGame() throws FileNotFoundException {
@@ -60,7 +62,7 @@ public class GameLogic {
 	}
 
 	private void setupWorld() throws FileNotFoundException {
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Main/Resources/rooms.csv");
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Story_Test_V1.csv");
 
 		if (inputStream == null) {
 			throw new FileNotFoundException("Resource file not found in the resources folder.");
@@ -134,4 +136,8 @@ public class GameLogic {
 		player.setCurrentRoom(rooms.get("StartRoom"));
 	}
 
+	public static void main(String[] args) throws FileNotFoundException {
+		GameLogic game = new GameLogic();
+		game.startGame();
+	}
 }

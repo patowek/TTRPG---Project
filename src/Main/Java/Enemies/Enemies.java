@@ -1,3 +1,5 @@
+package Main.Java.Enemies;
+
 import Main.Java.Logic.Stats;
 
 public class Enemies extends Stats {

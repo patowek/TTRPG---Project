@@ -1,3 +1,5 @@
+package Main.Java.Enemies;
+
 public class AncientGoldDragon extends Enemies {
 
 	AncientGoldDragon(int multiplier) {

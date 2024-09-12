@@ -1,3 +1,5 @@
+package Main.Java.Enemies;
+
 public class Bat extends Enemies {
 
 	Bat(int multiplier) {

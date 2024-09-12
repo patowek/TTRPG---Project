@@ -1,3 +1,5 @@
+package Main.Java.Enemies;
+
 public class Bandit extends Enemies {
 
 	Bandit(int multiplier) {
