@@ -7,10 +7,11 @@ public class Stats {
 	int intelligence;
 	int wisdom;
 	int charisma;
-	int hitpoints;
-	int armor;
-	int speed;
+	String hitpoints ="";
+	String armor;
+	String speed;
 	String name;
+	String challengeRating;
 
 	// Getters
 	public int getStrength() {
@@ -37,15 +38,15 @@ public class Stats {
 		return charisma;
 	}
 
-	public int getHitpoints() {
+	public String getHitpoints() {
 		return hitpoints;
 	}
 
-	public int getArmorClass() {
+	public String getArmor() {
 		return armor;
 	}
 
-	public int getSpeed() {
+	public String getSpeed() {
 		return speed;
 	}
 
@@ -78,15 +79,15 @@ public class Stats {
 		this.charisma = newCharisma;
 	}
 
-	public void setHitpoints(int newHitpoints) {
+	public void setHitpoints(String newHitpoints) {
 		this.hitpoints = newHitpoints;
 	}
 
-	public void setArmorClass(int newArmor) {
+	public void setArmorClass(String newArmor) {
 		this.armor = newArmor;
 	}
 
-	public void setSpeed(int newSpeed) {
+	public void setSpeed(String newSpeed) {
 		this.speed = newSpeed;
 	}
 
