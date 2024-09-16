@@ -11,7 +11,9 @@ class AdventurerTest {
 	void valueShouldEqual0() {
 		var adv = new Adventurer();
 		String[] str = {"helmet", "boot"};
+		String[] str1 = {"nothing","something"};
 		assertTrue(adv.findValue(str, "helmet")==0);
+		assertTrue(adv.findValue(str1, "boot")==-1);
 	}
 
 }
