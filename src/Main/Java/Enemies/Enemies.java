@@ -15,8 +15,4 @@ public class Enemies extends Stats {
 		
 	}
 
-	public String getChallengeRating() {
-		return challengeRating;
-	}
-
 }
