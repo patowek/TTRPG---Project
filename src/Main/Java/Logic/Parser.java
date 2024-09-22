@@ -14,6 +14,10 @@ public class Parser {
 		commands.put("take", new CommandTake());
 		commands.put("examine", new CommandExamine());
 		commands.put("attack", new CommandAttack());
+		commands.put("help", new CommandHelp());
+		commands.put("skill", new CommandSkill());
+		commands.put("use", new CommandUseItem());
+		commands.put("exit", new CommandExit());
 	}
 
 	public Command parseCommand(String input) {
