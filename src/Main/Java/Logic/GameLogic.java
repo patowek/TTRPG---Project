@@ -11,12 +11,16 @@ import java.util.Map;
 import java.util.Scanner;
 
 import Classes.Adventurer;
+import Enemies.Enemies;
+import Items.Item;
 import Map.Room;
 import Races.*;
 
 public class GameLogic {
 	private Adventurer player;
 	private Map<String, Room> rooms;
+	private List<Enemies> enemiesList = new ArrayList<>();
+	private List<Item> itemList = new ArrayList<>();
 	private boolean isRunning;
 	private Parser parser;
 
@@ -111,6 +115,8 @@ public class GameLogic {
 			e.printStackTrace();
 		}
 
+		
+		
 		// Ask questions to create a character
 		Scanner scanner = new Scanner(System.in);
 
@@ -148,9 +154,86 @@ public class GameLogic {
 		player.setCurrentRoom(rooms.get("StartRoom"));
 		System.out.println(player.getCurrentRoom().getDescription());
 	}
+	
+	private void setupEnemies() throws FileNotFoundException{
+		String line;
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("enemies.csv");
+		
+		if(inputStream == null) {
+			throw new FileNotFoundException("Resource file not found in the resource folder.");
+		}
+
+		try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))){
+			// Skip header line
+			br.readLine();
+			
+			// Loop through each line
+			while((line = br.readLine())!=null){
+				if(line.trim().isEmpty()) {
+					continue;
+				}	
+				String[] enemyInfo = line.split(",");// Comma separator
+				// Parse stats and create enemy objects
+				String name = enemyInfo[0].trim();
+				String hitpoints = enemyInfo[1].trim();
+				String armor = enemyInfo[2].trim();
+				String speed = enemyInfo[3].trim();
+				String challengeRating = enemyInfo[4].trim();
+				
+				// Add enemy to list
+				Enemies enemy = new Enemies(name, hitpoints, armor, speed, challengeRating);
+				enemiesList.add(enemy);
+			}
+		}catch(Exception e) {
+				e.printStackTrace();
+			}
+			// Print all enemies
+			for(Enemies enemy : enemiesList) {
+				System.out.println(enemy.getArmor());
+			}
+		}
+	
+	private void setupItems() throws FileNotFoundException{
+		String line;
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("item.csv");
+		
+		if(inputStream == null) {
+			throw new FileNotFoundException("Resource file not found in the resource folder.");
+		}
+
+		try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))){
+			// Skip header line
+			br.readLine();
+			
+			// Loop through each line
+			while((line = br.readLine())!=null){
+				if(line.trim().isEmpty()) {
+					continue;
+				}	
+				String[] itemInfo = line.split(",");// Comma separator
+				// Parse stats and create enemy objects
+				String name = itemInfo[0].trim();
+				String stat = itemInfo[1].trim();
+
+				
+				// Add enemy to list
+				Item item = new Item(name, stat);
+				itemList.add(item);
+			}
+		}catch(Exception e) {
+				e.printStackTrace();
+			}
+			// Print all enemies
+			for(Item item : itemList) {
+				System.out.println(item);
+			}
+		}
 
 	public static void main(String[] args) throws FileNotFoundException {
 		GameLogic game = new GameLogic();
+		game.setupWorld();
 		game.startGame();
+//		game.setupEnemies();
+//		game.setupItems();
 	}
 }

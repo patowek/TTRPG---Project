@@ -1,12 +1,18 @@
 package Enemies;
 
 public class Enemies extends Stats {
-	String name = "";
+	String name;
+	String hitpoints;
+	String armor;
+	String speed;
+	String challengeRating;
 	int multiplier;
-	int challengeRating;
 
-	public int getChallengeRating() {
-		return challengeRating;
+	public Enemies(String name, String hitpoints, String armor, String speed, String challengeRating){
+		this.name = name;
+	}
+	public Enemies(){
+		
 	}
 
 }

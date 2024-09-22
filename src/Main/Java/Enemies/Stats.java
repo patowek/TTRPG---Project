@@ -1,51 +1,24 @@
 package Enemies;
 
 public class Stats {
-	int strength;
-	int dexterity;
-	int constitution;
-	int intelligence;
-	int wisdom;
-	int charisma;
-	int hitpoints;
-	int armor;
-	int speed;
+
+	String hitpoints ="";
+	String armor;
+	String speed;
 	String name;
+	String challengeRating;
 
 	// Getters
-	public int getStrength() {
-		return strength;
-	}
 
-	public int getDexterity() {
-		return dexterity;
-	}
-
-	public int getConstitution() {
-		return constitution;
-	}
-
-	public int getIntelligence() {
-		return intelligence;
-	}
-
-	public int getWisdom() {
-		return wisdom;
-	}
-
-	public int getCharisma() {
-		return charisma;
-	}
-
-	public int getHitpoints() {
+	public String getHitpoints() {
 		return hitpoints;
 	}
 
-	public int getArmorClass() {
+	public String getArmor() {
 		return armor;
 	}
 
-	public int getSpeed() {
+	public String getSpeed() {
 		return speed;
 	}
 
@@ -54,39 +27,15 @@ public class Stats {
 	}
 
 	// Setters
-	public void setStrength(int newStrength) {
-		this.strength = newStrength;
-	}
-
-	public void setDexterirty(int newDexterity) {
-		this.dexterity = newDexterity;
-	}
-
-	public void setConstitution(int newConstitution) {
-		this.constitution = newConstitution;
-	}
-
-	public void setIntelligence(int newIntelligence) {
-		this.intelligence = newIntelligence;
-	}
-
-	public void setWisdom(int newWisdom) {
-		this.wisdom = newWisdom;
-	}
-
-	public void setCharisma(int newCharisma) {
-		this.charisma = newCharisma;
-	}
-
-	public void setHitpoints(int newHitpoints) {
+	public void setHitpoints(String newHitpoints) {
 		this.hitpoints = newHitpoints;
 	}
 
-	public void setArmorClass(int newArmor) {
+	public void setArmorClass(String newArmor) {
 		this.armor = newArmor;
 	}
 
-	public void setSpeed(int newSpeed) {
+	public void setSpeed(String newSpeed) {
 		this.speed = newSpeed;
 	}
 
