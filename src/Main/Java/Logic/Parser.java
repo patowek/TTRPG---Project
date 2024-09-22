@@ -12,7 +12,7 @@ public class Parser {
 		// List of supports Commands
 		commands.put("move", new CommandMove());
 		commands.put("take", new CommandTake());
-		commands.put("Examine", new CommandExamine());
+		commands.put("examine", new CommandExamine());
 		commands.put("attack", new CommandAttack());
 	}
 

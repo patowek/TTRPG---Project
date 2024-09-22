@@ -146,6 +146,7 @@ public class GameLogic {
 
 		// Start game with the player in the initial room (e.g., "StartRoom")
 		player.setCurrentRoom(rooms.get("StartRoom"));
+		System.out.println(player.getCurrentRoom().getDescription());
 	}
 
 	public static void main(String[] args) throws FileNotFoundException {
