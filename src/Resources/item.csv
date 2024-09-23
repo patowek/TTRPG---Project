@@ -1,10 +1,10 @@
 ﻿UIN,Name,Stat
-I01,Sword,20
-I02,Shield,30
-I03,Staff,20
-I04,Dagger,15
-I05,Healing potion,50
-I06,Pouch of gold coins,100
+I01,Sword,ATK+20
+I02,Shield,DEF+30
+I03,Staff,MGC+20
+I04,Dagger,ATK+15
+I05,Healing potion,HP+50
+I06,Pouch of gold coins,GP+100
 I07,Scroll to learn a skill in your race,1
 I08,Glowing crystal,1
 I09,Potion of Avoidance,1

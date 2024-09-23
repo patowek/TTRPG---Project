@@ -39,7 +39,7 @@ public class GameLogic {
 			processInput(input);
 			update();
 		}
-		endGame();
+		System.out.println("Thanks for playing!");
 	}
 
 	private void processInput(String input) {
@@ -60,7 +60,7 @@ public class GameLogic {
 	}
 
 	public void endGame() {
-		System.out.println("Thanks for playing!");
+		isRunning = false;
 	}
 
 	private void setupWorld() throws FileNotFoundException {
