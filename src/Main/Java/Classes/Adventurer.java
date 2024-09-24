@@ -16,44 +16,124 @@ package Classes;
 import Map.Room;
 
 /***************************************************
- *** Name:Adventurer.java**************************** Author:Jorel
- * Singer***************************** Date:
- * 9-8-2024********************************** Purpose: To create an object that
- * holds stats*** That will be utilized by the main****** Program for a text
- * adventure*********** *************************************************
+ *** Name:Adventurer.java***************************
+ * Author:Jorel Singer***************************** 
+ *Date:9-24-2024********************************** 
+ *Purpose: To create an object that holds stats*** 
+ *That will be utilized by the main***************
+ * Program for a text adventure******************* 
+ *************************************************
  */
 
 //**************************************************
-//*******Version: 1.4*******************************
-//*******Recent Changes: Removed Statitc vars &*****
-//*******edited item and gear method****************
-//********************** For Lists******************
+//*******Version: 1.5*******************************
+//*******Recent Changes: Removed old methods********
+//*******Simplified stats & getter/setter***********
+//**********************Added race & class vars*****
 public class Adventurer {
 	// Variables//
 	public String name;
-	public   int strength;
-	public   int intelligence;
-	public   int wisdom;
-	public   int constitution;
-	public   int dexterity;
-	public   int charisma;
+	public   int atkPower;
+	public   int magPower;
+	public   int defense;
 	public   int gold;
 	public   int health;
-	public   int mana;
+	public  String jobClass;
+	public String race;
 	public   int armorCount;// The character's difficulty to deal damage to them.
-	public   String[] spells;
 	// public   String[]
 	// inventory={"None","None","None","None","None","None","None"};
-	public Item[] inventory = { "None", "None", "None", "None", "None", "None", "None" };
+	public Item[] inventory;//8 inv slots
 	// Slot 0 - Head
 	// Slot 1 - Armor
 	// Slot 2 - Weapon
 	// Slot 3 - Shield
 	// Slot 4 - Accessory
-	public Item[] gear = { "None", "None", "None", "None", "None" };
+	public Item[] gear;//five gear slots
 	public Room currentRoom;
 	// **Variables//
 
+
+	//Constructors///
+        public Adventurer()
+	{
+	 name="Janice";
+	 jobClass="Fighter";
+         race="Human";
+	 atkPower=5;
+	 magPower=0;
+	 defense=3;
+	 gold=10;
+	 health=10;
+	 armorCount=10;// The character's difficulty to deal damage to them.
+	 if(race.toLowerCase()=="human")
+	 {
+		 //Racial Bonuses +1 to all physical stats
+                 atkPower=atkPower+1;
+		 magPower=magPower+1;
+		 defense=defense+1;
+		 health=health+1;
+		 armorCount=armorCount+1;
+	 }
+	 if(race.toLowerCase()=="dwarf")
+	 {
+		 //Racial Bonuses +2 to all physical stats except magic power & AC
+                 atkPower=atkPower+2;
+		 magPower=magPower+0;
+		 defense=defense+2;
+		 health=health+2;
+		 armorCount=armorCount+0;
+	 }
+		 if(race.toLowerCase()=="elf")
+	 {
+		 //Racial Bonuses +2 to magic power, and +1 to armor count from added dex
+                 atkPower=atkPower+0;
+		 magPower=magPower+2;
+		 defense=defense+0;
+		 health=health+0;
+		 armorCount=armorCount+1;
+	 }
+	}//end of constructor
+	 public Adventurer(String inName, String inJob,String inRace, int inAtk, int inMag, int inDef,int inGold,int inHealth, int inCount)
+	{
+	 name=inName;
+	 jobClass=inJob;
+         race=inRace;
+	 atkPower=inAtk;
+	 magPower=inMag;
+	 defense=inDef;
+	 gold=inGold;
+	 health=inHealth;
+	 armorCount=inCount;// The character's difficulty to deal damage to them.
+		 if(race.toLowerCase()=="human")
+	 {
+		 //Racial Bonuses +1 to all physical stats
+                 atkPower=atkPower+1;
+		 magPower=magPower+1;
+		 defense=defense+1;
+		 health=health+1;
+		 armorCount=armorCount+1;
+	 }
+	 if(race.toLowerCase()=="dwarf")
+	 {
+		 //Racial Bonuses +2 to all physical stats except magic power & AC
+                 atkPower=atkPower+2;
+		 magPower=magPower+0;
+		 defense=defense+2;
+		 health=health+2;
+		 armorCount=armorCount+0;
+	 }
+		 if(race.toLowerCase()=="elf")
+	 {
+		 //Racial Bonuses +2 to magic power, and +1 to armor count from added dex
+                 atkPower=atkPower+0;
+		 magPower=magPower+2;
+		 defense=defense+0;
+		 health=health+0;
+		 armorCount=armorCount+1;
+	 }
+	}//End of constructor
+	//Constructors///
 	// ^^^^^^^^^^^^^^^^^^^^^^^
 	// ^^^Methods^^^^^^^^^^^^^
 	// ^^^^^^^^^^^^^^^^^^^^^^^
@@ -75,29 +155,18 @@ public class Adventurer {
 											// -Health
 											// -Gold
 		int d = 0;// Stat to return
-		if (name == "Strength") {
+		if (name == "atkPower") {
 			d = strength;
 		}
-		if (name == "Intelligence") {
+		if (name == "magPower") {
 			d = intelligence;
 		}
-		if (name == "Wisdom") {
-			d = wisdom;
-		}
-		if (name == "Constitution") {
+		if (name == "Defense") {
 			d = constitution;
 		}
-		if (name == "Dexterity") {
-			d = dexterity;
-		}
-		if (name == "Charisma") {
-			d = charisma;
-		}
+		
 		if (name == "Health") {
 			d = health;
-		}
-		if (name == "Mana") {
-			d = mana;
 		}
 		if (name == "Gold") {
 			d = gold;
@@ -113,32 +182,21 @@ public class Adventurer {
 														// -Health
 														// -Gold
 		int d = 0;// Stat to change to
-		if (name == "Strength") {
-			strength = value;
+		if (name == "atkPower") {
+			strength=value;
 		}
-		if (name == "Intelligence") {
-			intelligence = value;
+		if (name == "magPower") {
+			intelligence=value;
 		}
-		if (name == "Wisdom") {
-			wisdom = value;
+		if (name == "Defense") {
+			constitution=value;
 		}
-		if (name == "Constitution") {
-			constitution = value;
-		}
-		if (name == "Dexterity") {
-			dexterity = value;
-		}
-		if (name == "Charisma") {
-			charisma = value;
-		}
+		
 		if (name == "Health") {
-			health = value;
-		}
-		if (name == "Mana") {
-			mana = value;
+			health=value;
 		}
 		if (name == "Gold") {
-			gold = value;
+			gold=value;
 		}
 	}
 
@@ -254,37 +312,37 @@ public class Adventurer {
 
 	/// &&&&&END OF SET Items&&&&&//
 	/// &&&&&END OF SET ITEMS&&&&&//
-	public void setItems(String slot, String newItem) {// Get the following
+	public void setItems(String slot, Item newItem) {// Get the following
 														// Slots 0-7
 		int index;
 		index = findValue(inventory, "None");
 		// Search for a value that says 'none' if not return -1
 		// If you find a value it will set it at the first instance 'none' slot
-		if (index != -1) {
+		if (index != -1) {//If item is not found in the inventory add it
 			inventory[index] = newItem;
 		}
-		if (name == "Slot 0") {
+		if (slot == "Slot 0") {
 			inventory[0] = newItem;
 		}
-		if (name == "Slot 1") {
+		if (slot == "Slot 1") {
 			inventory[1] = newItem;
 		}
-		if (name == "Slot 2") {
+		if (slot == "Slot 2") {
 			inventory[2] = newItem;
 		}
-		if (name == "Slot 3") {
+		if (slot == "Slot 3") {
 			inventory[3] = newItem;
 		}
-		if (name == "Slot 4") {
+		if (slot == "Slot 4") {
 			inventory[4] = newItem;
 		}
-		if (name == "Slot 5") {
+		if (slot == "Slot 5") {
 			inventory[5] = newItem;
 		}
-		if (name == "Slot 6") {
+		if (slot == "Slot 6") {
 			inventory[6] = newItem;
 		}
-		if (name == "Slot 7") {
+		if (slot == "Slot 7") {
 			inventory[7] = newItem;
 		}
 
@@ -308,91 +366,6 @@ public class Adventurer {
 
 	/// &&&&&END OF SET Items&&&&&//
 	
-
-	/// &&&&&END OF GET SPELLS&&&&&//
-	public  String getSpells(String name) {// Get the following
-													// -Slot 0-7
-
-		String d = " ";// Returned item
-		if (name == "Slot 0") {
-			d = spells[0];
-		}
-		if (name == "Slot 1") {
-			d = spells[1];
-		}
-		if (name == "Slot 2") {
-			d = spells[2];
-		}
-		if (name == "Slot 3") {
-			d = spells[3];
-		}
-		if (name == "Slot 4") {
-			d = spells[4];
-		}
-		if (name == "Slot 5") {
-			d = spells[5];
-		}
-		if (name == "Slot 6") {
-			d = spells[6];
-		}
-		if (name == "Slot 7") {
-			d = spells[7];
-		}
-		return d;
-
-	}
-
-	/// &&&&&END OF GET Spells&&&&&//
-	/// &&&&&END OF SET Items&&&&&//
-	public String getSpells() {// Get the following
-										// -Slot 0-7
-		int i = 0;
-		String totalSpells = "";
-		for (i = 0; i < spells.length; i++) {
-			if (i < spells.length - 1) {
-				totalSpells += spells[i] + ", ";
-			} else {
-				totalSpells += spells[i];
-			}
-		}
-		// i=items.length()-1;
-		// items=items.substring(items.length(),i+1);
-
-		return totalSpells;
-
-	}
-
-	/// &&&&&END OF SET SPELLS&&&&&//
-	public  void SetSpells(String name, String newItem) {// Get the following
-																// Slots 0-7
-
-		if (name == "Slot 0") {
-			spells[0] = newItem;
-		}
-		if (name == "Slot 1") {
-			spells[1] = newItem;
-		}
-		if (name == "Slot 2") {
-			spells[2] = newItem;
-		}
-		if (name == "Slot 3") {
-			spells[3] = newItem;
-		}
-		if (name == "Slot 4") {
-			spells[4] = newItem;
-		}
-		if (name == "Slot 5") {
-			spells[5] = newItem;
-		}
-		if (name == "Slot 6") {
-			spells[6] = newItem;
-		}
-		if (name == "Slot 7") {
-			spells[7] = newItem;
-		}
-
-	}
-	/// &&&&&END OF SET SPELLS&&&&&//
 
 	
 	
