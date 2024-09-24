@@ -210,12 +210,12 @@ public class gui implements ActionListener {
 		//attack roll; currently placeholder
 		if(e.getActionCommand().equals("Atk")) {
 			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
-			outputTxt.setText("Rolled Strength! A "+result+"!");
+			outputTxt.setText("Rolled ATK! A "+result+"!");
 			
 		//magic roll; currently placeholder
 		} else if (e.getActionCommand().equals("Mag")) {
 			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
-			outputTxt.setText("Rolled Dexterity! A "+result+"!");
+			outputTxt.setText("Rolled MAG! A "+result+"!");
 	
 		//text response; currently placeholder
 		} else if (e.getActionCommand().equals("Sub")){
