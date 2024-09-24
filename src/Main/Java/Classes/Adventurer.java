@@ -35,7 +35,7 @@ public class Adventurer {
 	public String name;
 	public   int atkPower;
 	public   int magPower;
-	public   int defense;
+	public   int maxHealth;
 	public   int gold;
 	public   int health;
 	public  String jobClass;
@@ -62,7 +62,7 @@ public class Adventurer {
          race="Human";
 	 atkPower=5;
 	 magPower=0;
-	 defense=3;
+	 maxHealth=11;
 	 gold=10;
 	 health=10;
 	 armorCount=10;// The character's difficulty to deal damage to them.
@@ -71,7 +71,7 @@ public class Adventurer {
 		 //Racial Bonuses +1 to all physical stats
                  atkPower=atkPower+1;
 		 magPower=magPower+1;
-		 defense=defense+1;
+		 maxHealth=maxHealth+1;
 		 health=health+1;
 		 armorCount=armorCount+1;
 	 }
@@ -80,7 +80,7 @@ public class Adventurer {
 		 //Racial Bonuses +2 to all physical stats except magic power & AC
                  atkPower=atkPower+2;
 		 magPower=magPower+0;
-		 defense=defense+2;
+		 maxHealth=maxHealth+2;
 		 health=health+2;
 		 armorCount=armorCount+0;
 	 }
@@ -89,7 +89,7 @@ public class Adventurer {
 		 //Racial Bonuses +2 to magic power, and +1 to armor count from added dex
                  atkPower=atkPower+0;
 		 magPower=magPower+2;
-		 defense=defense+0;
+		 maxHealth=maxHealth+0;
 		 health=health+0;
 		 armorCount=armorCount+1;
 	 }
@@ -101,7 +101,7 @@ public class Adventurer {
          race=inRace;
 	 atkPower=inAtk;
 	 magPower=inMag;
-	 defense=inDef;
+	 maxHealth=inDef;
 	 gold=inGold;
 	 health=inHealth;
 	 armorCount=inCount;// The character's difficulty to deal damage to them.
@@ -110,7 +110,7 @@ public class Adventurer {
 		 //Racial Bonuses +1 to all physical stats
                  atkPower=atkPower+1;
 		 magPower=magPower+1;
-		 defense=defense+1;
+		 maxHealth=maxHealth+1;
 		 health=health+1;
 		 armorCount=armorCount+1;
 	 }
@@ -119,7 +119,7 @@ public class Adventurer {
 		 //Racial Bonuses +2 to all physical stats except magic power & AC
                  atkPower=atkPower+2;
 		 magPower=magPower+0;
-		 defense=defense+2;
+		 maxHealth=maxHealth+2;
 		 health=health+2;
 		 armorCount=armorCount+0;
 	 }
@@ -128,7 +128,7 @@ public class Adventurer {
 		 //Racial Bonuses +2 to magic power, and +1 to armor count from added dex
                  atkPower=atkPower+0;
 		 magPower=magPower+2;
-		 defense=defense+0;
+		 maxHealth=maxHealth+0;
 		 health=health+0;
 		 armorCount=armorCount+1;
 	 }
@@ -161,7 +161,7 @@ public class Adventurer {
 		if (name == "magPower") {
 			d = intelligence;
 		}
-		if (name == "Defense") {
+		if (name == "maxHealth") {
 			d = constitution;
 		}
 		
@@ -188,7 +188,7 @@ public class Adventurer {
 		if (name == "magPower") {
 			intelligence=value;
 		}
-		if (name == "Defense") {
+		if (name == "maxHealth") {
 			constitution=value;
 		}
 		
