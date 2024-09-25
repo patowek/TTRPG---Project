@@ -112,7 +112,16 @@ public class Adventurer {
 		System.out.println("Value not Found.");
 		return -1;
 	}
-
+	/// &&&&&START OF GET RACE&&&&&//
+	public String getRace(){
+	return race;
+	}
+	/// &&&&&START OF GET RACE&&&&&//
+	/// &&&&&START OF GET JOBCLASS&&&&&//
+	public String getJobClass(){
+	return jobClass;
+	}
+	/// &&&&&START OF GET JOBCLASS&&&&&//
 	/// &&&&&START OF GET STAT&&&&&//
 	public   int getStat(Attributes name) {// Set the following
 											// -Stats
