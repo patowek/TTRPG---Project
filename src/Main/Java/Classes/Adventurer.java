@@ -14,7 +14,7 @@
 package Classes;
 
 import Map.Room;
-
+import Attributes.*;
 /***************************************************
  *** Name:Adventurer.java***************************
  * Author:Jorel Singer***************************** 
@@ -33,23 +33,23 @@ import Map.Room;
 public class Adventurer {
 	// Variables//
 	public String name;
-	public   int atkPower;
-	public   int magPower;
-	public   int maxHealth;
-	public   int gold;
-	public   int health;
+	 Attributes atkPower = Attributes.ATK;
+	 Attributes magPower = Attributes.MAG;
+	 Attributes defense = Attributes.DEF;
+         Attributes gold = Attributes.GP;
+	 Attributes health = Attributes.HP;
 	public  String jobClass;
 	public String race;
 	public   int armorCount;// The character's difficulty to deal damage to them.
 	// public   String[]
 	// inventory={"None","None","None","None","None","None","None"};
-	public Item[] inventory;//8 inv slots
+	public Item[] inventory = new Item[7];//8 inv slots
 	// Slot 0 - Head
 	// Slot 1 - Armor
 	// Slot 2 - Weapon
 	// Slot 3 - Shield
 	// Slot 4 - Accessory
-	public Item[] gear;//five gear slots
+	public Item[] gear= new Item[4];//five gear slots
 	public Room currentRoom;
 	// **Variables//
 
@@ -60,84 +60,49 @@ public class Adventurer {
 	 name="Janice";
 	 jobClass="Fighter";
          race="Human";
-	 atkPower=5;
-	 magPower=0;
-	 maxHealth=11;
-	 gold=10;
-	 health=10;
-	 armorCount=10;// The character's difficulty to deal damage to them.
-	 if(race.toLowerCase()=="human")
-	 {
-		 //Racial Bonuses +1 to all physical stats
-                 atkPower=atkPower+1;
-		 magPower=magPower+1;
-		 maxHealth=maxHealth+1;
-		 health=health+1;
-		 armorCount=armorCount+1;
-	 }
-	 if(race.toLowerCase()=="dwarf")
-	 {
-		 //Racial Bonuses +2 to all physical stats except magic power & AC
-                 atkPower=atkPower+2;
-		 magPower=magPower+0;
-		 maxHealth=maxHealth+2;
-		 health=health+2;
-		 armorCount=armorCount+0;
-	 }
-		 if(race.toLowerCase()=="elf")
-	 {
-		 //Racial Bonuses +2 to magic power, and +1 to armor count from added dex
-                 atkPower=atkPower+0;
-		 magPower=magPower+2;
-		 maxHealth=maxHealth+0;
-		 health=health+0;
-		 armorCount=armorCount+1;
-	 }
+	
+	
 	}//end of constructor
 	 public Adventurer(String inName, String inJob,String inRace, int inAtk, int inMag, int inDef,int inGold,int inHealth, int inCount)
 	{
 	 name=inName;
 	 jobClass=inJob;
          race=inRace;
-	 atkPower=inAtk;
-	 magPower=inMag;
-	 maxHealth=inDef;
-	 gold=inGold;
-	 health=inHealth;
-	 armorCount=inCount;// The character's difficulty to deal damage to them.
+	
 		 if(race.toLowerCase()=="human")
 	 {
 		 //Racial Bonuses +1 to all physical stats
-                 atkPower=atkPower+1;
-		 magPower=magPower+1;
-		 maxHealth=maxHealth+1;
-		 health=health+1;
-		 armorCount=armorCount+1;
+                atkPower.setValue(inAtk+1);
+	 	magPower.setValue(inMag+1);
+	 	defense.setValue(inDef+1);
+	 	gold.setValue(inGold+1);
+	 	health.setValue(inHealth+1);
+		
 	 }
 	 if(race.toLowerCase()=="dwarf")
 	 {
 		 //Racial Bonuses +2 to all physical stats except magic power & AC
-                 atkPower=atkPower+2;
-		 magPower=magPower+0;
-		 maxHealth=maxHealth+2;
-		 health=health+2;
-		 armorCount=armorCount+0;
+                 atkPower.setValue(inAtk+2);
+	 	magPower.setValue(inMag);
+	 	defense.setValue(inDef+2);
+	 	gold.setValue(inGold);
+	 	health.setValue(inHealth+2);
 	 }
 		 if(race.toLowerCase()=="elf")
 	 {
 		 //Racial Bonuses +2 to magic power, and +1 to armor count from added dex
-                 atkPower=atkPower+0;
-		 magPower=magPower+2;
-		 maxHealth=maxHealth+0;
-		 health=health+0;
-		 armorCount=armorCount+1;
+                atkPower.setValue(inAtk);
+	 	magPower.setValue(inMag+2);
+	 	defense.setValue(inDef+1);
+	 	gold.setValue(inGold);
+	 	health.setValue(inHealth);
 	 }
 	}//End of constructor
 	//Constructors///
 	// ^^^^^^^^^^^^^^^^^^^^^^^
 	// ^^^Methods^^^^^^^^^^^^^
 	// ^^^^^^^^^^^^^^^^^^^^^^^
-	public int findValue(String[] values, String query) {// Return where the value is found if the query is found.
+	public int findValue(Item[] values, Item query) {// Return where the value is found if the query is found.
 		for (int i = 0; i < values.length; i++) {
 			if (values[i] == query) {
 				System.out.println("Array contains" + query + "  at index " + i);
@@ -149,127 +114,86 @@ public class Adventurer {
 	}
 
 	/// &&&&&START OF GET STAT&&&&&//
-	public   int getStat(String name) {// Set the following
+	public   int getStat(Attributes name) {// Set the following
 											// -Stats
 											// -Mana
 											// -Health
 											// -Gold
 		int d = 0;// Stat to return
-		if (name == "atkPower") {
-			d = strength;
+		if (name == ATK) {
+			d = atkPower.getValue();
 		}
-		if (name == "magPower") {
-			d = intelligence;
+		if (name == MAG) {
+			d = magPower.getValue();
 		}
-		if (name == "maxHealth") {
-			d = constitution;
+		if (name == DEF) {
+			d = defense.getValue();
 		}
 		
-		if (name == "Health") {
-			d = health;
+		if (name == HP) {
+			d = health.getValue();
 		}
-		if (name == "Gold") {
-			d = gold;
+		if (name == GP) {
+			d = gold.getValue();
 		}
 		return d;
 	}
 
 	/// &&&&&END OF GET STAT&&&&&//
 	/// &&&&&Start OF SET STAT&&&&&//
-	public   void setStat(String name, int value) {// Set the following
+	public   void setStat(Attributes name, int value) {// Set the following
 														// -Stats
 														// -Mana
 														// -Health
 														// -Gold
 		int d = 0;// Stat to change to
-		if (name == "atkPower") {
-			strength=value;
+		if (name == ATK) {
+			atkPower.setValue(value);
 		}
-		if (name == "magPower") {
-			intelligence=value;
+		if (name == MAG) {
+			magPower.setValue(value);
 		}
-		if (name == "maxHealth") {
-			constitution=value;
+		if (name == DEF) {
+			defense.setValue(value);
 		}
 		
-		if (name == "Health") {
-			health=value;
+		if (name == HP) {
+			health.setValue(value);
 		}
-		if (name == "Gold") {
-			gold=value;
+		if (name == GP) {
+			gold.setValue(value);
 		}
 	}
 
 	/// &&&&&END OF SET STAT&&&&&//
 	/// &&&&&END OF GET STAT&&&&&//
-	public  Item getGear(Item name) {// Get the following
+	public  Item getGear(integer slot) {// Get the following
 												// -Helmet
 												// -Armor
 												// -Weapon
 												// -Shield
 												// -Accessory
-		String d = name.getName();// Gear to report back.
-		if (name == "Armor") {
-			d = gear[1];
-		}
-		if (name == "Weapon") {
-			d = gear[2];
-		}
-		if (name == "Shield") {
-			d = gear[3];
-		}
-		if (name == "Accessory") {
-			d = gear[4];
-		}
-		if (name == "Helmet") {
-			d = gear[0];
-		}
-		return d;
+		return gear[slot];// Gear to report back.
+	
 	}
 
 	/// &&&&&END OF GET GEAR&&&&&//
 	public Item getGear() {// Get the following
 									// -Slot 0-7
-		int i = 0;
-		String totalGear = "";
-		for (i = 0; i < gear.length; i++) {
-			if (i < gear.length - 1) {
-				totalGear += gear[i] + ", ";
-			} else {
-				totalGear += gear[i];
-			}
-		}
-		// i=items.length()-1;
-		// items=items.substring(items.length(),i+1);
+		
 
-		return totalGear;
+		return gear;
 
 	}
 
 	/// &&&&&END OF SET GEAR&&&&&//
-	public  void setGear(String slot, Item newGear) {// Get the following
+	public  void setGear(integer slot, Item newGear) {// Get the following
 																// -Helmet
 																// -Armor
 																// -Weapon
 																// -Shield
 																// -Accessory
-
-		if (name == "Armor") {
-			gear[1] = newGear;
-		}
-		if (name == "Weapon") {
-			gear[2] = newGear;
-		}
-		if (name == "Shield") {
-			gear[3] = newGear;
-		}
-		if (name == "Accessory") {
-			gear[4] = newGear;
-		}
-		if (name == "Helmet") {
-			gear[0] = newGear;
-		}
-
+			gear[slot] = newGear;
 	}
 	/// &&&&&END OF SET GEAR&&&&&//
 
@@ -277,99 +201,33 @@ public class Adventurer {
 	public Item getItems(Item name) {// Get the following
 												// -Slot 0-7
 
-		String d = name.getName();// Returned item
-		index = findValue(inventory, newItem);
+		int index = findValue(inventory, name);
 		// Search for a value that says 'none' if not return -1
 		// If you find a value it will set it at the first instance 'none' slot
-                for(int i=0;i<inventory.length;i++)
-                {
-		if (index!=-1) {//If it finds it then it'll give you the name of the item.
-			d=inventory[index].getName();//Return name
-		}
-                }
-		return d;//Return name of item.
+              
+                
+		return inventory[index];//Return name of item.
 
 	}
 
 	/// &&&&&END OF SET Items&&&&&//
 	public Item getItems() {// Get the following
 										// -Slot 0-7
-		int i = 0;
-		String items = "";
-		for (i = 0; i < inventory.length; i++) {
-			if (i < inventory.length - 1) {
-				items += inventory[i].getName() + ", ";
-			} else {
-				items += inventory[i].getName();
-			}
-		}
-		// i=items.length()-1;
-		// items=items.substring(items.length(),i+1);
-
-		return items;//Return list of items.
+		
+		return inventory;//Return list of items.
 
 	}
 
 	/// &&&&&END OF SET Items&&&&&//
 	/// &&&&&END OF SET ITEMS&&&&&//
-	public void setItems(String slot, Item newItem) {// Get the following
+	public void setItems(int slot, Item newItem) {// Get the following
 														// Slots 0-7
-		int index;
-		index = findValue(inventory, "None");
-		// Search for a value that says 'none' if not return -1
-		// If you find a value it will set it at the first instance 'none' slot
-		if (index != -1) {//If item is not found in the inventory add it
-			inventory[index] = newItem;
-		}
-		if (slot == "Slot 0") {
-			inventory[0] = newItem;
-		}
-		if (slot == "Slot 1") {
-			inventory[1] = newItem;
-		}
-		if (slot == "Slot 2") {
-			inventory[2] = newItem;
-		}
-		if (slot == "Slot 3") {
-			inventory[3] = newItem;
-		}
-		if (slot == "Slot 4") {
-			inventory[4] = newItem;
-		}
-		if (slot == "Slot 5") {
-			inventory[5] = newItem;
-		}
-		if (slot == "Slot 6") {
-			inventory[6] = newItem;
-		}
-		if (slot == "Slot 7") {
-			inventory[7] = newItem;
-		}
-
-	}
-
-	/// &&&&&END OF SET Items&&&&&//
-	public void setItems(Item newItem) {// Get the following
-											// Slots 0-7
-		int index;
-		index = findValue(inventory, newItem);
-		// Search for a value that says 'none' if not return -1
-		// If you find a value it will set it at the first instance 'none' slot
-                for(int i=0;i<inventory.length;i++)
-                {
-		if (index==-1) {//If it does not return a value AKA not in your inventory
-			inventory[index] = newItem;//Add item to inventory in null location
-		}
+			inventory[slot] = newItem;
 		
-                }
+
 	}
 
 	/// &&&&&END OF SET Items&&&&&//
-	
-
-	
-	
-
 	/// Start of getCurrentRoom()///
 	public Room getCurrentRoom() {
 		return currentRoom;
