@@ -1,6 +1,10 @@
 package GUI;
 
 import java.awt.Color;
+import Classes.Adventurer;
+import Classes.Attributes;
+import Map.Room;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.ThreadLocalRandom;
@@ -28,12 +32,12 @@ public class gui implements ActionListener {
 	private static JLabel roomBackground;
 	private static JLabel outputTxt;
 	
+	Adventurer adventurer = new Adventurer();
 	
-	
-	public static String backgrounds(String myRoom) {
+	public String backgrounds(String myRoom) {
 		//placeholder values to be replaced with proper variables from other classes
-		String hero = "human";
-		int room = 1;
+		String hero = adventurer.getRace();
+		Room room = adventurer.getCurrentRoom();
 		
 		//decides background visual based on race & current room number
 		//test to be sure image will change when room changes
@@ -41,19 +45,19 @@ public class gui implements ActionListener {
 		try {
 			//elf rooms
 			if (hero.equals("elf")) {
-				if (room == 1) {
+				if (room.equals("StartRoom")) {
 					myRoom = "src/Resources/images/room1_elf.png";
 					return myRoom;
-				} else if (room == 2) {
+				} else if (room.equals("1")) {
 					myRoom = "src/Resources/images/room2_elf.png";
 					return myRoom;
-				} else if (room == 3) {
+				} else if (room.equals("2")) {
 					myRoom = "src/Resources/images/room3_elf.png";
 					return myRoom;
-				} else if (room == 4) {
+				} else if (room.equals("3")) {
 					myRoom = "src/Resources/images/room4_elf.png";
 					return myRoom;
-				} else if (room == 5) {
+				} else if (room.equals("4")) {
 					myRoom = "src/Resources/images/room5_elf.png";
 					return myRoom;
 				} else {
@@ -63,19 +67,19 @@ public class gui implements ActionListener {
 				
 			//human rooms
 			} else if (hero.equals("human")) {
-				if (room == 1) {
+				if (room.equals("StartRoom")) {
 					myRoom = "src/Resources/images/room1_human.png";
 					return myRoom;
-				} else if (room == 2) {
+				} else if (room.equals("1")) {
 					myRoom = "src/Resources/images/room2_human.png";
 					return myRoom;
-				} else if (room == 3) {
+				} else if (room.equals("2")) {
 					myRoom = "src/Resources/images/room3_human.png";
 					return myRoom;
-				} else if (room == 4) {
+				} else if (room.equals("3")) {
 					myRoom = "src/Resources/images/room4_human.png";
 					return myRoom;
-				} else if (room == 5) {
+				} else if (room.equals("4")) {
 					myRoom = "src/Resources/images/room5_human.png";
 					return myRoom;
 				} else {
@@ -85,19 +89,19 @@ public class gui implements ActionListener {
 				
 			//dwarf rooms
 			} else if (hero.equals("dwarf")) {
-				if (room == 1) {
+				if (room.equals("StartRoom")) {
 					myRoom = "src/Resources/images/room1_dwarf.png";
 					return myRoom;
-				} else if (room == 2) {
+				} else if (room.equals("1")) {
 					myRoom = "src/Resources/images/room2_dwarf.png";
 					return myRoom;
-				} else if (room == 3) {
+				} else if (room.equals("2")) {
 					myRoom = "src/Resources/images/room3_dwarf.png";
 					return myRoom;
-				} else if (room == 4) {
+				} else if (room.equals("3")) {
 					myRoom = "src/Resources/images/room4_dwarf.png";
 					return myRoom;
-				} else if (room == 5) {
+				} else if (room.equals("4")) {
 					myRoom = "src/Resources/images/room5_dwarf.png";
 					return myRoom;
 				} else {
@@ -124,29 +128,30 @@ public class gui implements ActionListener {
 		textBox.setBounds(20,460,575,25);
 		panel.add(textBox);
 		
+		Adventurer attri = new Adventurer();
 		//Atk button
-		rollAtk = new JButton("ATK: 0");
+		rollAtk = new JButton("ATK: "+attri.atkPower.getValue());
 		rollAtk.setBounds(20,10,80,25);
 		rollAtk.addActionListener(new gui());
 		rollAtk.setActionCommand("Atk");
 		panel.add(rollAtk);
 		
 		//Mag button
-		rollMag = new JButton("MAG: 0");
+		rollMag = new JButton("MAG: "+attri.magPower.getValue());
 		rollMag.setBounds(115,10,80,25);
 		rollMag.addActionListener(new gui());
 		rollMag.setActionCommand("Mag");
 		panel.add(rollMag);
 		
 		//armor class; read amount is placeholder
-		readArmorClass = new JLabel("AC: 0");
+		readArmorClass = new JLabel("AC: "+attri.defense.getValue());
 		readArmorClass.setBounds(622,20,80,25);
 		readArmorClass.setHorizontalAlignment(JLabel.CENTER);
 		readArmorClass.setForeground(Color.white);
 		panel.add(readArmorClass);
 		
 		//gold; read amount is placeholder
-		readGold = new JLabel("G: 0");
+		readGold = new JLabel("G: "+attri.gold.getValue());
 		readGold.setBounds(622,73,80,25);
 		readGold.setHorizontalAlignment(JLabel.CENTER);
 		readGold.setForeground(Color.white);
@@ -154,8 +159,8 @@ public class gui implements ActionListener {
 		
 		//health bar; progress values are placeholders
 		//want to fix HP text colors, but not priority
-		healthBar = new JProgressBar(0,10);
-		healthBar.setValue(10);
+		healthBar = new JProgressBar(0,attri.health.getValue());
+		healthBar.setValue(attri.health.getValue());
 		healthBar.setString("HP");
 		healthBar.setStringPainted(true);
 		BasicProgressBarUI ui = new BasicProgressBarUI() {
@@ -185,8 +190,9 @@ public class gui implements ActionListener {
 		outputTxt.setForeground(Color.white);
 		panel.add(outputTxt);
 		
+		gui obj = new gui();
 		//background image set
-		roomBackground = new JLabel("",new ImageIcon(backgrounds(null)), JLabel.CENTER);
+		roomBackground = new JLabel("",new ImageIcon(obj.backgrounds(null)), JLabel.CENTER);
 				
 		//set image
 		roomBackground.setBounds(0,0,700,500);
