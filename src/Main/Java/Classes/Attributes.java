@@ -20,7 +20,7 @@ public enum Attributes {
 		return name;
 	}
 	
-	public int getBaseValue() {
+	public int getValue() {
 		return value;
 	}
 	

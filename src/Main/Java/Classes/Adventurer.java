@@ -14,7 +14,7 @@
 package Classes;
 
 import Map.Room;
-import Attributes.*;
+import Items.Item;
 /***************************************************
  *** Name:Adventurer.java***************************
  * Author:Jorel Singer***************************** 
@@ -128,21 +128,21 @@ public class Adventurer {
 											// -Mana
 											// -Health
 											// -Gold
-		int d = 0;// Stat to return
-		if (name == ATK) {
+		int d = 0; // Stat to return
+		if (name == Attributes.ATK) {
 			d = atkPower.getValue();
 		}
-		if (name == MAG) {
+		if (name == Attributes.MAG) {
 			d = magPower.getValue();
 		}
-		if (name == DEF) {
+		if (name == Attributes.DEF) {
 			d = defense.getValue();
 		}
 		
-		if (name == HP) {
+		if (name == Attributes.HP) {
 			d = health.getValue();
 		}
-		if (name == GP) {
+		if (name == Attributes.GP) {
 			d = gold.getValue();
 		}
 		return d;
@@ -156,27 +156,27 @@ public class Adventurer {
 														// -Health
 														// -Gold
 		int d = 0;// Stat to change to
-		if (name == ATK) {
+		if (name == Attributes.ATK) {
 			atkPower.setValue(value);
 		}
-		if (name == MAG) {
+		if (name == Attributes.MAG) {
 			magPower.setValue(value);
 		}
-		if (name == DEF) {
+		if (name == Attributes.DEF) {
 			defense.setValue(value);
 		}
 		
-		if (name == HP) {
+		if (name == Attributes.HP) {
 			health.setValue(value);
 		}
-		if (name == GP) {
+		if (name == Attributes.GP) {
 			gold.setValue(value);
 		}
 	}
 
 	/// &&&&&END OF SET STAT&&&&&//
 	/// &&&&&END OF GET STAT&&&&&//
-	public  Item getGear(integer slot) {// Get the following
+	public Item getGear(int slot) {// Get the following
 												// -Helmet
 												// -Armor
 												// -Weapon
@@ -187,7 +187,7 @@ public class Adventurer {
 	}
 
 	/// &&&&&END OF GET GEAR&&&&&//
-	public Item getGear() {// Get the following
+	public Item[] getGear() {// Get the following
 									// -Slot 0-7
 		
 
@@ -196,7 +196,7 @@ public class Adventurer {
 	}
 
 	/// &&&&&END OF SET GEAR&&&&&//
-	public  void setGear(integer slot, Item newGear) {// Get the following
+	public void setGear(int slot, Item newGear) {// Get the following
 																// -Helmet
 																// -Armor
 																// -Weapon
@@ -220,7 +220,7 @@ public class Adventurer {
 	}
 
 	/// &&&&&END OF SET Items&&&&&//
-	public Item getItems() {// Get the following
+	public Item[] getItems() {// Get the following
 										// -Slot 0-7
 		
 		return inventory;//Return list of items.
