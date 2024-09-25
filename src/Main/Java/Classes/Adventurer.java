@@ -33,11 +33,11 @@ import Items.Item;
 public class Adventurer {
 	// Variables//
 	public String name;
-	 Attributes atkPower = Attributes.ATK;
-	 Attributes magPower = Attributes.MAG;
-	 Attributes defense = Attributes.DEF;
-         Attributes gold = Attributes.GP;
-	 Attributes health = Attributes.HP;
+	public Attributes atkPower = Attributes.ATK;
+	public Attributes magPower = Attributes.MAG;
+	public Attributes defense = Attributes.DEF;
+        public Attributes gold = Attributes.GP;
+	public Attributes health = Attributes.HP;
 	public  String jobClass;
 	public String race;
 	public   int armorCount;// The character's difficulty to deal damage to them.
