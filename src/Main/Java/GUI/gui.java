@@ -46,18 +46,21 @@ public class gui implements ActionListener {
 			//elf rooms
 			if (hero.equals("elf")) {
 				if (room.equals("StartRoom")) {
-					myRoom = "src/Resources/images/room1_elf.png";
+					myRoom = "src/Resources/images/StartRoom.png";
 					return myRoom;
 				} else if (room.equals("1")) {
-					myRoom = "src/Resources/images/room2_elf.png";
+					myRoom = "src/Resources/images/room1_elf.png";
 					return myRoom;
 				} else if (room.equals("2")) {
-					myRoom = "src/Resources/images/room3_elf.png";
+					myRoom = "src/Resources/images/room2_elf.png";
 					return myRoom;
 				} else if (room.equals("3")) {
-					myRoom = "src/Resources/images/room4_elf.png";
+					myRoom = "src/Resources/images/room3_elf.png";
 					return myRoom;
 				} else if (room.equals("4")) {
+					myRoom = "src/Resources/images/room4_elf.png";
+					return myRoom;
+				} else if(room.equals("5")) {
 					myRoom = "src/Resources/images/room5_elf.png";
 					return myRoom;
 				} else {
@@ -68,44 +71,50 @@ public class gui implements ActionListener {
 			//human rooms
 			} else if (hero.equals("human")) {
 				if (room.equals("StartRoom")) {
-					myRoom = "src/Resources/images/room1_human.png";
+					myRoom = "src/Resources/images/StartRoom.png";
 					return myRoom;
 				} else if (room.equals("1")) {
-					myRoom = "src/Resources/images/room2_human.png";
+					myRoom = "src/Resources/images/room1_human.png";
 					return myRoom;
 				} else if (room.equals("2")) {
-					myRoom = "src/Resources/images/room3_human.png";
+					myRoom = "src/Resources/images/room2_human.png";
 					return myRoom;
 				} else if (room.equals("3")) {
-					myRoom = "src/Resources/images/room4_human.png";
+					myRoom = "src/Resources/images/room3_human.png";
 					return myRoom;
 				} else if (room.equals("4")) {
+					myRoom = "src/Resources/images/room4_human.png";
+					return myRoom;
+				} else if(room.equals("5")) {
 					myRoom = "src/Resources/images/room5_human.png";
 					return myRoom;
 				} else {
-					myRoom = "src/Resources/images/room5_elf.png";
+					myRoom = "src/Resources/images/room5_human.png";
 					return myRoom;
 				}
 				
 			//dwarf rooms
 			} else if (hero.equals("dwarf")) {
 				if (room.equals("StartRoom")) {
-					myRoom = "src/Resources/images/room1_dwarf.png";
+					myRoom = "src/Resources/images/StartRoom.png";
 					return myRoom;
 				} else if (room.equals("1")) {
-					myRoom = "src/Resources/images/room2_dwarf.png";
+					myRoom = "src/Resources/images/room1_dwarf.png";
 					return myRoom;
 				} else if (room.equals("2")) {
-					myRoom = "src/Resources/images/room3_dwarf.png";
+					myRoom = "src/Resources/images/room2_dwarf.png";
 					return myRoom;
 				} else if (room.equals("3")) {
-					myRoom = "src/Resources/images/room4_dwarf.png";
+					myRoom = "src/Resources/images/room3_dwarf.png";
 					return myRoom;
 				} else if (room.equals("4")) {
+					myRoom = "src/Resources/images/room4_dwarf.png";
+					return myRoom;
+				} else if(room.equals("5")) {
 					myRoom = "src/Resources/images/room5_dwarf.png";
 					return myRoom;
 				} else {
-					myRoom = "src/Resources/images/room5_elf.png";
+					myRoom = "src/Resources/images/room5_dwarf.png";
 					return myRoom;
 				}
 			} else {
