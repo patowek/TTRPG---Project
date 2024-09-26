@@ -19,8 +19,8 @@ import Races.*;
 public class GameLogic {
 	private Adventurer player;
 	private Map<String, Room> rooms;
-	private List<Enemies> enemiesList = new ArrayList<>();
-	private List<Item> itemList = new ArrayList<>();
+	private Map<String, Enemies> enemiesList = new HashMap<>();
+	private Map<String, Item> itemList = new HashMap<>();
 	private boolean isRunning;
 	private Parser parser;
 
@@ -64,7 +64,7 @@ public class GameLogic {
 	}
 
 	private void setupWorld() throws FileNotFoundException {
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Story_Test_V1.csv");
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Story_Test_V5.csv");
 
 		if (inputStream == null) {
 			throw new FileNotFoundException("Resource file not found in the resources folder.");
@@ -182,7 +182,7 @@ public class GameLogic {
 				
 				// Add enemy to list
 				Enemies enemy = new Enemies(name, hitpoints, armor, speed, challengeRating);
-				enemiesList.add(enemy);
+				enemiesList.put(enemy.getName(), enemy);
 			}
 		}catch(Exception e) {
 				e.printStackTrace();
@@ -210,15 +210,9 @@ public class GameLogic {
 				if(line.trim().isEmpty()) {
 					continue;
 				}	
-				String[] itemInfo = line.split(",");// Comma separator
-				// Parse stats and create enemy objects
-				String name = itemInfo[0].trim();
-				String stat = itemInfo[1].trim();
-				int type = Integer.parseInt(itemInfo[2].trim());
-
 				
 				// Add enemy to list
-				Item item = new Item(name, stat, type);
+				Item item = new Item(line.split(","));
 				itemList.add(item);
 			}
 		}catch(Exception e) {

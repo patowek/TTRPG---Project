@@ -63,10 +63,10 @@ public class Combat {
     }
     public void buildEnemy(Enemies enemy)
     {//Assemble Enemy stats
-	enemyHP=convStat(enemy.getHitpoints());//Enemy hitpoints
-	enemyDefense=convStat(enemy.getArmor());//Enemy defense rating
-    enemyATK=convStat(enemy.getChallengeRating());//Based on their challenge rating
-    enemySpeed=convStat(enemy.getSpeed());//Their ability to catch you
+	enemyHP=enemy.getHitpoints();//Enemy hitpoints
+	enemyDefense=enemy.getArmor();//Enemy defense rating
+    enemyATK=enemy.getChallengeRating();//Based on their challenge rating
+    enemySpeed=enemy.getSpeed();//Their ability to catch you
         
     }
 	public void rollInitiative(Adventurer player)
@@ -106,7 +106,7 @@ public class Combat {
         int wpnStat= Integer.parseInt(equippedWeapon.getStat()[2]);
         int atkRoll=rollDice(1,20)+atkStat+wpnStat;
         //Player's rolls//
-        enemyDefense=convStat(enemy.getArmor());//Parse their armor in.
+        enemyDefense=enemy.getArmor();//Parse their armor in.
          
         if(atkRoll > enemyDefense)
         {//Attack lands
@@ -137,7 +137,7 @@ public class Combat {
 	public void fleeAction(Adventurer player,Enemies enemy)
 	{//Action to flee from battle
 		int playerFlee=rollDice(1,20)+player.getStat(HP);
-		int enemyCatch=rollDice(1,20)+convStat(enemy.getSpeed());
+		int enemyCatch=rollDice(1,20)+enemy.getSpeed();
 		if(playerFlee > enemyCatch)
 		{//Player succeeds
 			System.out.println("Player fled from Combat!");
