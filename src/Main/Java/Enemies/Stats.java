@@ -25,6 +25,9 @@ public class Stats {
 	public String getName() {
 		return name;
 	}
+        public String getChallengeRating() {
+		return challengeRating;
+	}
 
 	// Setters
 	public void setHitpoints(String newHitpoints) {
@@ -42,4 +45,6 @@ public class Stats {
 	public void setName(String newName) {
 		this.name = newName;
 	}
+	public void setChallengeRating(String newChallenge){
+		this.challengeRating = newChallenge;
 }
