@@ -224,10 +224,8 @@ public class gui implements ActionListener {
 		panel.add(outputTxt);
 		
 		TextAreaOutputStream textAreaOutputStream = new TextAreaOutputStream(outputTxt);
-        PrintStream printStream = new PrintStream(textAreaOutputStream);
-        System.setOut(printStream);
-        
-        System.out.println("A test of your reflexes");
+        	PrintStream printStream = new PrintStream(textAreaOutputStream);
+        	System.setOut(printStream);
 		
 		scroll = new JScrollPane(outputTxt);
 		scroll.setBounds(20, 310, 660, 135);
