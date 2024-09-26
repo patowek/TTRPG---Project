@@ -12,7 +12,6 @@ import Classes.Adventurer;
 import Enemies.Enemies;
 import Items.Item;
 import Map.Room;
-import Races.*;
 
 public class GameLogic {
 	private Adventurer player;
@@ -125,26 +124,49 @@ public class GameLogic {
 		String name = scanner.nextLine();
 
 		while (true) {
-			System.out.print("Choose a race (e.g., Dwarf, Elf, Human): ");
-			String characterClass = scanner.nextLine().toLowerCase();
-
-			System.out.println("Allocating stats for your character...");
-
-			// Initialize player based on the race choice
-			switch (characterClass) {
-			case "dwarf":
-				player = new Dwarf(name, 10, 10, 10, 10, 10, 10, 1, 10, 10);
-				break;
-			case "elf":
-				player = new Elf(name, 10, 10, 10, 10, 10, 10, 1, 10, 10);
-				break;
-			case "human":
-				player = new Human(name, 10, 10, 10, 10, 10, 10, 1, 10, 10);
-				break;
-			default:
-				System.out.println("Invalid race. Please choose again.");
-				continue; // Loop again if invalid choice
+			System.out.println("Choose a race:\n1. Dwarf\n2. Elf\n3. Human");
+			int characterRace = scanner.nextInt();
+			String race;
+			switch(characterRace) {
+				case 1:
+					race = "dwarf";
+					break;
+				case 2:
+					race = "elf";
+					break;
+				case 3:
+					race = "human";
+					break;
+				default:
+					continue;
 			}
+			
+			System.out.println("Choose a Class:\\n1. Fighter\\n2. Mage\\n3. Rogue");
+			int characterClass = scanner.nextInt();
+			String job;
+			switch(characterClass) {
+				case 1:
+					job = "fighter";
+					break;
+				case 2:
+					job = "mage";
+					break;
+				case 3:
+					job = "rogue";
+					break;
+				default:
+					continue;
+			}
+
+			System.out.println("Allocate stats for your character...5 available points.");
+			System.out.print("How much Atk: ");
+			int characterAtk = scanner.nextInt();
+			System.out.print("How much Def: ");
+			int characterDef = scanner.nextInt();
+			System.out.print("How much Spd: ");
+			int characterSpd = scanner.nextInt();
+			
+			player = new Adventurer(name, job, race, characterAtk, characterSpd, characterDef, 10, 50, 0);
 			break; // Exit loop after valid choice
 		}
 
