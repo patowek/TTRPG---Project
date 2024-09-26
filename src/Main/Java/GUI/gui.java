@@ -8,6 +8,8 @@ import Map.Room;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.*;
@@ -31,7 +33,8 @@ public class gui implements ActionListener {
 	private static JLabel readGold;
 	private static JProgressBar healthBar;
 	private static JLabel roomBackground;
-	private static JLabel outputTxt;
+	private static JTextArea outputTxt;
+	private static JScrollPane scroll;
 	public String userInput;
 	
 	public String backgrounds(String myRoom) {
@@ -212,11 +215,23 @@ public class gui implements ActionListener {
 		panel.add(submit);
 		
 		//output text to box above text field
-		outputTxt = new JLabel("");
-		outputTxt.setVerticalAlignment(JLabel.BOTTOM);
-		outputTxt.setBounds(25, 310, 650, 135);
+		outputTxt = new JTextArea("");
+		outputTxt.setLineWrap(true);
+		outputTxt.setWrapStyleWord(true);
+		outputTxt.setBounds(20, 310, 660, 135);
+		outputTxt.setBackground(Color.black);
 		outputTxt.setForeground(Color.white);
 		panel.add(outputTxt);
+		
+		TextAreaOutputStream textAreaOutputStream = new TextAreaOutputStream(outputTxt);
+        PrintStream printStream = new PrintStream(textAreaOutputStream);
+        System.setOut(printStream);
+        
+        System.out.println("A test of your reflexes");
+		
+		scroll = new JScrollPane(outputTxt);
+		scroll.setBounds(20, 310, 660, 135);
+		panel.add(scroll);
 		
 		gui obj = new gui();
 		//background image set
