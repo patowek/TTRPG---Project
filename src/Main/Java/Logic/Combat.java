@@ -65,7 +65,7 @@ public class Combat {
 	{//Roll initial initiative for player & enemy
         
 
-		enemyInitiative=rollDice(1,20)+convStat(enemy.getSpeed());//Enemy rolls their speed
+		enemyInitiative=rollDice(1,20)+enemy.getSpeed();//Enemy rolls their speed
 		playerInitiative=rollDice(1,20)+player.getStat(HP);//Player rolls theirs
         
 		if(playerInitiative>enemyInitiative)
@@ -103,13 +103,13 @@ public class Combat {
         int wpnStat= convStat(equippedWeapon.getStat()[2]);
         int atkRoll=rollDice(1,20)+atkStat+wpnStat;
         //Player's rolls//
-        int enemyDefense=convStat(enemy.getArmor());//Parse their armor in.
+        int enemyDefense=enemy.getArmor();//Parse their armor in.
          
         if(atkRoll > enemyDefense)
         {//Attack lands
         	int inDam=rollDice(1,6);//Damage Rolled
-        	int curHP=convStat(enemy.getHitpoints())-inDam;//Damage removed from HP
-        	enemy.setHitpoints(Integer.toString(curHP));//Sustained Damage
+        	int curHP=enemy.getHitpoints()-inDam;//Damage removed from HP
+        	enemy.setHitpoints(curHP);//Sustained Damage
                 playerTurn=false;
         }
         else
@@ -117,7 +117,7 @@ public class Combat {
              System.out.println("You missed!");
             playerTurn=false; 
          }
-         if(convStat(enemy.getHitpoints())<=0)
+         if(enemy.getHitpoints()<=0)
          {//If the enemy's HP drops to 0
              hasWon=true;
              System.out.println("You have won against "+enemy.getName()+".");
@@ -132,7 +132,7 @@ public class Combat {
     	 Item equippedArmor = player.getGear(1);
     	 int equippedArmorValue = convStat(equippedArmor.getStat()[2]);
     	 int totalDefense= equippedShieldValue + equippedHelmValue + equippedArmorValue;
-    	 int enemyRoll=rollDice(1,20)+convStat(enemy.getChallengeRating());//Enemy attempt
+    	 int enemyRoll=rollDice(1,20)+enemy.getChallengeRating();//Enemy attempt
     	 int defRoll=rollDice(1,20)+totalDefense;
     	 if(defRoll < enemyRoll)
     	 {//Attack lands
@@ -156,7 +156,7 @@ public class Combat {
 	public void fleeAction(Adventurer player,Enemies enemy)
 	{//Action to flee from battle
 		int playerFlee=rollDice(1,20)+player.getStat(HP);
-		int enemyCatch=rollDice(1,20)+convStat(enemy.getSpeed());
+		int enemyCatch=rollDice(1,20)+enemy.getSpeed();
 		if(playerFlee > enemyCatch)
 		{//Player succeeds
 			System.out.println("Player fled from Combat!");

@@ -54,6 +54,10 @@ public class Enemies {
 	public int getMultiplier() {
 		return multiplier;
 	}
+
+	public void setHitpoints(int hitpoints) {
+		this.hitpoints = hitpoints;
+	}
 	
 	
 
