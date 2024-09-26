@@ -66,7 +66,7 @@ public class gui implements ActionListener {
 					myRoom = "src/Resources/images/room5_elf.png";
 					return myRoom;
 				} else {
-					myRoom = "src/Resources/images/room5_elf.png";
+					myRoom = "src/Resources/images/StartRoom.png";
 					return myRoom;
 				}
 				
@@ -91,7 +91,7 @@ public class gui implements ActionListener {
 					myRoom = "src/Resources/images/room5_human.png";
 					return myRoom;
 				} else {
-					myRoom = "src/Resources/images/room5_human.png";
+					myRoom = "src/Resources/images/StartRoom.png";
 					return myRoom;
 				}
 				
@@ -116,7 +116,7 @@ public class gui implements ActionListener {
 					myRoom = "src/Resources/images/room5_dwarf.png";
 					return myRoom;
 				} else {
-					myRoom = "src/Resources/images/room5_dwarf.png";
+					myRoom = "src/Resources/images/StartRoom.png";
 					return myRoom;
 				}
 			} else {
@@ -243,4 +243,3 @@ public class gui implements ActionListener {
 		
 	}
 }
-
