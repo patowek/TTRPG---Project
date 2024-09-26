@@ -33,10 +33,10 @@ public class gui implements ActionListener {
 	private static JLabel roomBackground;
 	private static JLabel outputTxt;
 	public String userInput;
-
-	Adventurer adventurer = new Adventurer();
 	
 	public String backgrounds(String myRoom) {
+		Adventurer adventurer = new Adventurer();
+		
 		//placeholder values to be replaced with proper variables from other classes
 		String hero = adventurer.getRace();
 		Room room = adventurer.getCurrentRoom();
@@ -130,6 +130,9 @@ public class gui implements ActionListener {
 	
 	
 	public static void main(String [ ] args) {
+		//static adventurer
+		Adventurer attri = new Adventurer();
+		
 		// add frame and panel
 		JFrame frame = new JFrame("Tabletop Role-Playing Game");
 		JPanel panel = new JPanel();
@@ -139,7 +142,6 @@ public class gui implements ActionListener {
 		textBox.setBounds(20,460,575,25);
 		panel.add(textBox);
 		
-		Adventurer attri = new Adventurer();
 		//Atk button
 		rollAtk = new JButton("ATK: "+attri.atkPower.getValue());
 		rollAtk.setBounds(20,10,80,25);
@@ -154,23 +156,34 @@ public class gui implements ActionListener {
 		rollMag.setActionCommand("Mag");
 		panel.add(rollMag);
 		
-		//armor class; read amount is placeholder
+		//armor class
 		readArmorClass = new JLabel("AC: "+attri.defense.getValue());
 		readArmorClass.setBounds(622,20,80,25);
 		readArmorClass.setHorizontalAlignment(JLabel.CENTER);
 		readArmorClass.setForeground(Color.white);
 		panel.add(readArmorClass);
 		
-		//gold; read amount is placeholder
+		//gold
 		readGold = new JLabel("G: "+attri.gold.getValue());
 		readGold.setBounds(622,73,80,25);
 		readGold.setHorizontalAlignment(JLabel.CENTER);
 		readGold.setForeground(Color.white);
 		panel.add(readGold);
 		
-		//health bar; progress values are placeholders
+		//health bar
 		//want to fix HP text colors, but not priority
-		healthBar = new JProgressBar(0,attri.health.getValue());
+		String hero = attri.getRace();
+		
+		if (hero.equals("human")) {
+			healthBar = new JProgressBar(0, 51);
+		} else if (hero.equals("elf")) {
+			healthBar = new JProgressBar(0, 50);
+		} else if (hero.equals("dwarf")) {
+			healthBar = new JProgressBar(0, 52);
+		} else {
+			healthBar = new JProgressBar(0, 50);
+		}
+		
 		healthBar.setValue(attri.health.getValue());
 		healthBar.setString("HP");
 		healthBar.setStringPainted(true);
