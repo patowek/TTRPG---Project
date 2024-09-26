@@ -72,7 +72,6 @@ public class GameLogic {
 
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
 			String line;
-			List<Room> roomList = new ArrayList<>(); // List to store rooms in sequence
 
 			br.readLine();
 			
@@ -92,23 +91,25 @@ public class GameLogic {
 			    
 				String roomName = roomData[0].trim();
 				String description = roomData[1].trim();
+				char[] roomExits = roomData[2].trim().toCharArray();
+				String[] roomItems = roomData[3].trim().split(";");
+				String[] roomEnemies = roomData[4].trim().split(";");
+
 				
 				// Create Room object
-				Room room = new Room(roomName, description);
-
-				// Add room to the list
-				roomList.add(room);
+				Room room = new Room(roomName, description, roomExits);
+				for (String id: roomItems) {
+					room.addItem(itemList.get(id));
+				}
+				
+				for (String id: roomEnemies) {
+					room.addEnemy(enemiesList.get(id));
+				}
 
 				// Add room to the map by name (if you need quick access by name)
 				rooms.put(roomName, room);
 			}
 
-			// Now link each room to the next one using the list
-			for (int i = 0; i < roomList.size() - 1; i++) {
-				Room currentRoom = roomList.get(i);
-				Room nextRoom = roomList.get(i + 1);
-				currentRoom.addExit("Next Room", nextRoom); // Only one exit leading to the next room
-			}
 
 			// The last room doesn't have any further exits, so no need to link it
 		} catch (Exception e) {
@@ -172,24 +173,13 @@ public class GameLogic {
 				if(line.trim().isEmpty()) {
 					continue;
 				}	
-				String[] enemyInfo = line.split(",");// Comma separator
-				// Parse stats and create enemy objects
-				String name = enemyInfo[0].trim();
-				String hitpoints = enemyInfo[1].trim();
-				String armor = enemyInfo[2].trim();
-				String speed = enemyInfo[3].trim();
-				String challengeRating = enemyInfo[4].trim();
 				
 				// Add enemy to list
-				Enemies enemy = new Enemies(name, hitpoints, armor, speed, challengeRating);
-				enemiesList.put(enemy.getName(), enemy);
+				Enemies enemy = new Enemies(line.split(","));
+				enemiesList.put(enemy.getUid(), enemy);
 			}
 		}catch(Exception e) {
 				e.printStackTrace();
-			}
-			// Print all enemies
-			for(Enemies enemy : enemiesList) {
-				System.out.println(enemy.getArmor());
 			}
 		}
 	
@@ -213,22 +203,22 @@ public class GameLogic {
 				
 				// Add enemy to list
 				Item item = new Item(line.split(","));
-				itemList.add(item);
+				itemList.put(item.getUid(), item);
 			}
 		}catch(Exception e) {
 				e.printStackTrace();
 			}
-			// Print all enemies
-			for(Item item : itemList) {
-				System.out.println(item);
-			}
 		}
+
+	public Map<String, Room> getRooms() {
+		return rooms;
+	}
 
 	public static void main(String[] args) throws FileNotFoundException {
 		GameLogic game = new GameLogic();
+		game.setupEnemies();
+		game.setupItems();
 		game.setupWorld();
 		game.startGame();
-//		game.setupEnemies();
-//		game.setupItems();
 	}
 }

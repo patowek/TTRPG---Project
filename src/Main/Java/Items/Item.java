@@ -21,7 +21,7 @@ public class Item {
 	}
 
 	// Getters
-	public String getUID() {
+	public String getUid() {
 		return uid;
 	}
 	
