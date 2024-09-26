@@ -7,6 +7,7 @@ import Map.Room;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.ByteArrayOutputStream;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.*;
@@ -31,7 +32,8 @@ public class gui implements ActionListener {
 	private static JProgressBar healthBar;
 	private static JLabel roomBackground;
 	private static JLabel outputTxt;
-	
+	public String userInput;
+
 	Adventurer adventurer = new Adventurer();
 	
 	public String backgrounds(String myRoom) {
@@ -182,7 +184,11 @@ public class gui implements ActionListener {
 		};
 		healthBar.setUI(ui);
 		healthBar.setBounds(475,10,150,25);
-		healthBar.setForeground(Color.green);
+		if (healthBar.getValue()>(attri.health.getValue()/2)) {
+			healthBar.setForeground(Color.green);
+		} else {
+			healthBar.setForeground(Color.red);
+		}
 		panel.add(healthBar);
 		
 		//submit button for text field
@@ -224,19 +230,17 @@ public class gui implements ActionListener {
 		
 		//attack roll; currently placeholder
 		if(e.getActionCommand().equals("Atk")) {
-			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
-			outputTxt.setText("Rolled ATK! A "+result+"!");
+			userInput = "attack";
 			
 		//magic roll; currently placeholder
 		} else if (e.getActionCommand().equals("Mag")) {
-			int result = ThreadLocalRandom.current().nextInt(1, 20+1);
-			outputTxt.setText("Rolled MAG! A "+result+"!");
+			userInput = "attack";
 	
 		//text response; currently placeholder
 		} else if (e.getActionCommand().equals("Sub")){
-			String userInput = textBox.getText();
-			outputTxt.setText("<html>"+userInput+"<html>");
+			userInput = textBox.getText();
 		}
 		
 	}
 }
+
