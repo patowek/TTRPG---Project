@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -55,8 +53,9 @@ public class GameLogic {
 	}
 
 	private String getUserInput() {
-		Scanner scanner = new Scanner(System.in);
-		return scanner.nextLine();
+		try (Scanner scanner = new Scanner(System.in)) {
+			return scanner.nextLine();
+		}
 	}
 
 	public void endGame() {
@@ -152,8 +151,9 @@ public class GameLogic {
 		System.out.println("Character created! Welcome, " + name + " the " + player.getClass().getSimpleName() + ".");
 
 		// Start game with the player in the initial room (e.g., "StartRoom")
-		player.setCurrentRoom(rooms.get("StartRoom"));
+		player.setCurrentRoom(rooms.get("1"));
 		System.out.println(player.getCurrentRoom().getDescription());
+		scanner.close();
 	}
 	
 	private void setupEnemies() throws FileNotFoundException{
