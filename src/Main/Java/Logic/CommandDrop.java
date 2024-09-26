@@ -1,13 +1,14 @@
 package Logic;
 
 import Classes.Adventurer;
-import Classes.Attributes;
 import Items.Item;
+import Map.Room;
 
-public class CommandUseItem extends Command {
+public class CommandDrop extends Command {
 
 	@Override
 	public void execute(Adventurer player, GameLogic game) {
+		Room currentRoom = player.getCurrentRoom();
 		Item targetItem = null;
 		Item[] inventory = player.getItems();
 		int itemSlot = 0;
@@ -21,10 +22,8 @@ public class CommandUseItem extends Command {
 		
 		if (targetItem != null) {
 			player.setItems(itemSlot, null);
-			String[] stat = targetItem.getStat();
-			int value = player.getStat(Attributes.valueOf(stat[0]));
-			player.setStat(Attributes.valueOf(stat[0]), value + Integer.parseInt(stat[2]));
-			System.out.println("You use the " + target);
+			currentRoom.addItem(targetItem);
+			System.out.println("You drop the " + target);
 		} else {
 			System.out.println("There's no " + target + " in your inventory.");
 		}

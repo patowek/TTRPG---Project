@@ -32,7 +32,7 @@ public class CommandExamine extends Command {
 			}
 		}
 		
-		List<Item> playerList = player.getItems();
+		Item[] playerList = player.getItems();
 		
 		for (Item item: playerList) {
 			if (item.getName().equals(target)) {

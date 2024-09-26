@@ -214,10 +214,11 @@ public class GameLogic {
 				// Parse stats and create enemy objects
 				String name = itemInfo[0].trim();
 				String stat = itemInfo[1].trim();
+				int type = Integer.parseInt(itemInfo[2].trim());
 
 				
 				// Add enemy to list
-				Item item = new Item(name, stat);
+				Item item = new Item(name, stat, type);
 				itemList.add(item);
 			}
 		}catch(Exception e) {

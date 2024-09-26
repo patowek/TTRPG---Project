@@ -47,4 +47,5 @@ public class Stats {
 	}
 	public void setChallengeRating(String newChallenge){
 		this.challengeRating = newChallenge;
+	}
 }

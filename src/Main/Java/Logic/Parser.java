@@ -18,6 +18,9 @@ public class Parser {
 		commands.put("skill", new CommandSkill());
 		commands.put("use", new CommandUseItem());
 		commands.put("exit", new CommandExit());
+		commands.put("drop", new CommandDrop());
+		commands.put("equip", new CommandEquip());
+		commands.put("unequip", new CommandUnequip());
 	}
 
 	public Command parseCommand(String input) {

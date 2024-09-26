@@ -1,25 +1,19 @@
 package Items;
 
-import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.List;
-
-import Classes.Adventurer;
-
 public class Item {
 	private String name;
-	private String stat;
+	private String[] stat;
+	private int type;
 
 	// Constructor
 	public Item() {
 		
 	}
 	
-	public Item(String name, String stat) {
+	public Item(String name, String stat, int type) {
 		this.name = name;
-		this.stat = stat;
+		this.stat = stat.split("(?=[+-])|(?<=[+-])");;
+		this.type = type;
 	}
 
 	// Getters
@@ -27,21 +21,11 @@ public class Item {
 		return name;
 	}
 
-	public String getStat() {
+	public String[] getStat() {
 		return stat;
 	}
 	
-	// Setters
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public void setStat(String stat) {
-		this.stat = stat;
-	}
-	
-	// Method to use the item
-	public void use(Adventurer player) {
-		System.out.println("You use " + name);
+	public int getType() {
+		return type;
 	}
 }
