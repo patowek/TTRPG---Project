@@ -4,5 +4,3 @@ Name,Description,Exits,Items,Enemy
 3,"You step into a cave with barely enough room to walk upright. The air smells stale, and the ground is slippery with moisture. Strange symbols are etched on the cave walls, glowing faintly in the darkness. After walking the arrow passage you come to a blocked passage with tons of heavy rock, you could turn left or right.  ",4502,I06;I07,E03
 4,"As you enter the temple ruins, you see the remnants of an ancient civilization. Crumbling stone walls and broken statues loom around you. You feel the presence of magic in the air, and you sense this place has not been disturbed for centuries. ",30,I09;I05;I02,E02
 5,"You reach the final chamber, a massive volcanic crater. The ground is cracked, with molten lava flowing in channels all around. The air is thick with smoke, and the heat burns your skin. At the center of the crater, a massive creature sleeps, surrounded by the treasures of fallen adventurers who never made it past this point",3,I03,E01
-,,,,
-,,,                   ,
