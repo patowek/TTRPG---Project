@@ -52,6 +52,8 @@ public class Adventurer {
 	public Item[] gear= new Item[4];//five gear slots
 	public Room currentRoom;
 	// **Variables//
+	private boolean hasWon;
+	private boolean isDead;
 
 
 	//Constructors///
@@ -96,6 +98,34 @@ public class Adventurer {
 	 	defense.setValue(inDef+1);
 	 	gold.setValue(inGold);
 	 	health.setValue(inHealth);
+	 }
+		 if(jobClass.toLowerCase()=="mage")
+	 {
+		 //Racial Bonuses +1 to all physical stats
+        atkPower.setValue(atkPower.getValue()+2);
+	 	magPower.setValue(magPower.getValue()+2);
+	 	defense.setValue(defense.getValue());
+	 	gold.setValue(gold.getValue());
+	 	health.setValue(health.getValue());
+		
+	 }
+	 if(jobClass.toLowerCase()=="rogue")
+	 {
+		 //Starts with balanced HP, defense and some attack power
+        atkPower.setValue(atkPower.getValue()+1);
+	 	magPower.setValue(magPower.getValue());
+	 	defense.setValue(defense.getValue()+1);
+	 	gold.setValue(gold.getValue());
+	 	health.setValue(health.getValue()+1);
+	 }
+		 if(jobClass.toLowerCase()=="fighter")
+	 {
+		 //Starts with more defense and health.
+               atkPower.setValue(atkPower.getValue());
+	 	magPower.setValue(magPower.getValue());
+	 	defense.setValue(defense.getValue()+2);
+	 	gold.setValue(gold.getValue());
+	 	health.setValue(health.getValue()+2);
 	 }
 	}//End of constructor
 	//Constructors///
@@ -251,4 +281,10 @@ public class Adventurer {
 	// ^^^^^^^^^^^^^^^^^^^^^^^
 	// ^^^Methods^^^^^^^^^^^^^
 	// ^^^^^^^^^^^^^^^^^^^^^^^
+	public boolean hasWon() {
+		return hasWon;
+	}
+	public boolean isDead() {
+		return isDead;
+	}
 }
