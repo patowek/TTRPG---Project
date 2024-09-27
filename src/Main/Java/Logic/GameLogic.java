@@ -62,7 +62,7 @@ public class GameLogic {
 	}
 
 	private void setupWorld() throws FileNotFoundException {
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Story_Test_V5.csv");
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Story_Test_V6.csv");
 
 		if (inputStream == null) {
 			throw new FileNotFoundException("Resource file not found in the resources folder.");
