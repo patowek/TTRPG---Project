@@ -141,7 +141,7 @@ public class GameLogic {
 					continue;
 			}
 			
-			System.out.println("Choose a Class:\\n1. Fighter\\n2. Mage\\n3. Rogue");
+			System.out.println("Choose a Class:\n1. Fighter\n2. Mage\n3. Rogue");
 			int characterClass = scanner.nextInt();
 			String job;
 			switch(characterClass) {
