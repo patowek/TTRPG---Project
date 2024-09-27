@@ -27,28 +27,25 @@ public class GameLogic {
 		rooms = new HashMap<>();
 	}
 
-	public void startGame() throws FileNotFoundException {
+	public void startGame(GameLogic game) throws FileNotFoundException {
+	
 		// Initialize player, rooms, items, etc.
-		setupWorld();
-		while (isRunning) {
-			System.out.println("What would you like to do?");
-			String input = getUserInput();
-			processInput(input);
-			update();
-		}
-		System.out.println("Thanks for playing!");
+		game.setupEnemies();
+		game.setupItems();
+		game.setupWorld();
 	}
 
-	private void processInput(String input) {
+	public void processInput(String input) {
 		Command command = parser.parseCommand(input);
 		command.execute(player, this);
+		update();
 	}
 
 	private void update() {
 		// Handle game updates like checking win/lose conditions
-//        if (player.hasWon() || player.isDead()) {
-//            isRunning = false;
-//        }
+		if (player.hasWon() || player.isDead()) {
+			isRunning = false;
+		}
 	}
 
 	private String getUserInput() {
@@ -62,7 +59,7 @@ public class GameLogic {
 	}
 
 	private void setupWorld() throws FileNotFoundException {
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Story_Test_V5.csv");
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Story_Test_V6.csv");
 
 		if (inputStream == null) {
 			throw new FileNotFoundException("Resource file not found in the resources folder.");
@@ -141,7 +138,7 @@ public class GameLogic {
 					continue;
 			}
 			
-			System.out.println("Choose a Class:\\n1. Fighter\\n2. Mage\\n3. Rogue");
+			System.out.println("Choose a Class:\n1. Fighter\n2. Mag\n3. Rogue");
 			int characterClass = scanner.nextInt();
 			String job;
 			switch(characterClass) {
@@ -236,11 +233,14 @@ public class GameLogic {
 		return rooms;
 	}
 
+	public Adventurer getPlayer() {
+		return player;
+	}
+
 	public static void main(String[] args) throws FileNotFoundException {
 		GameLogic game = new GameLogic();
 		game.setupEnemies();
 		game.setupItems();
 		game.setupWorld();
-		game.startGame();
 	}
 }
