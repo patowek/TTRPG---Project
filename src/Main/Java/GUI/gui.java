@@ -43,7 +43,8 @@ public class gui implements ActionListener {
 	public gui() {
 		// Initialize GameLogic object
         game = new GameLogic();
-        try {
+        
+ 		try {
 			game.startGame(game);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

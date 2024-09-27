@@ -15,7 +15,7 @@ import Map.Room;
 
 public class GameLogic {
 	private Adventurer player;
-	private Map<String, Room> rooms;
+	private Map<Integer, Room> rooms;
 	private Map<String, Enemies> enemiesList = new HashMap<>();
 	private Map<String, Item> itemList = new HashMap<>();
 	private boolean isRunning;
@@ -84,7 +84,7 @@ public class GameLogic {
 			        continue;  // Skip lines that don't have enough data
 			    }
 			    
-				String roomName = roomData[0].trim();
+				int roomName = Integer.parseInt(roomData[0].trim());
 				String description = roomData[1].trim();
 				char[] roomExits = roomData[2].trim().toCharArray();
 				String[] roomItems = roomData[3].trim().split(";");
@@ -172,7 +172,7 @@ public class GameLogic {
 		System.out.println("Character created! Welcome, " + name + " the " + player.getClass().getSimpleName() + ".");
 
 		// Start game with the player in the initial room (e.g., "StartRoom")
-		player.setCurrentRoom(rooms.get("1"));
+		player.setCurrentRoom(rooms.get(1));
 		System.out.println(player.getCurrentRoom().getDescription());
 		scanner.close();
 	}
@@ -231,7 +231,7 @@ public class GameLogic {
 			}
 		}
 
-	public Map<String, Room> getRooms() {
+	public Map<Integer, Room> getRooms() {
 		return rooms;
 	}
 

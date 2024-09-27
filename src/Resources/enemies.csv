@@ -1,6 +1,6 @@
-﻿UIN,Name,Hitpoints,Armor,Speed
-E01,Ancient Golden Dragon,546,45,40
-E02,Stone Golem,350,30,2
-E03,Cave Troll,175,15,2
-E04,Bandit,11,4,30
-E05,Bat,1,1,5
+﻿UIN,Name,Hitpoints,Armor,Speed,ChallengeRating
+E01,Ancient Golden Dragon,546,45,40,1
+E02,Stone Golem,350,30,2,1
+E03,Cave Troll,175,15,2,1
+E04,Bandit,11,4,30,1
+E05,Bat,1,1,5,1
