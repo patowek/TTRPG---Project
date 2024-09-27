@@ -1,0 +1,10 @@
+﻿UIN,Name,Stat,Type
+I01,Sword,ATK+20,2
+I02,Shield,DEF+30,3
+I03,Staff,MGC+20,2
+I04,Dagger,ATK+15,2
+I05,Chestplate,DEF+45,3
+I06,Glasses,DEF+15,3
+I07,Healing potion,HP+50,5
+I08,Pouch of gold coins,GP+100,5
+I09,Potion of Avoidance,DEF+50,5
