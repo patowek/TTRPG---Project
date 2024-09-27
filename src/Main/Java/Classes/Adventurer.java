@@ -97,6 +97,34 @@ public class Adventurer {
 	 	gold.setValue(inGold);
 	 	health.setValue(inHealth);
 	 }
+		 if(class.toLowerCase()=="mage")
+	 {
+		 //Racial Bonuses +1 to all physical stats
+                atkPower.setValue(atkPower+2);
+	 	magPower.setValue(magPower+2);
+	 	defense.setValue(defense);
+	 	gold.setValue(gold);
+	 	health.setValue(health);
+		
+	 }
+	 if(race.toLowerCase()=="rogue")
+	 {
+		 //Starts with balanced HP, defense and some attack power
+                atkPower.setValue(atkPower+1);
+	 	magPower.setValue(magPower);
+	 	defense.setValue(defense+1);
+	 	gold.setValue(gold);
+	 	health.setValue(health+1);
+	 }
+		 if(race.toLowerCase()=="fighter")
+	 {
+		 //Starts with more defense and health.
+               atkPower.setValue(atkPower);
+	 	magPower.setValue(magPower);
+	 	defense.setValue(defense+2);
+	 	gold.setValue(gold);
+	 	health.setValue(health+2;
+	 }
 	}//End of constructor
 	//Constructors///
 	// ^^^^^^^^^^^^^^^^^^^^^^^
