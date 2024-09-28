@@ -64,14 +64,14 @@ public class gui implements ActionListener {
  		//Atk button
  		rollAtk = new JButton("ATK: "+player.atkPower.getValue());
  		rollAtk.setBounds(20,10,80,25);
- 		rollAtk.addActionListener(new gui());
+ 		rollAtk.addActionListener(this);
  		rollAtk.setActionCommand("Atk");
  		panel.add(rollAtk);
      		
  		//Mag button
  		rollMag = new JButton("MAG: "+player.magPower.getValue());
  		rollMag.setBounds(115,10,80,25);
- 		rollMag.addActionListener(new gui());
+ 		rollMag.addActionListener(this);
  		rollMag.setActionCommand("Mag");
  		panel.add(rollMag);
      		
@@ -147,9 +147,8 @@ public class gui implements ActionListener {
  		scroll.setBounds(20, 310, 660, 135);
  		panel.add(scroll);
      		
- 		gui obj = new gui();
  		//background image set
- 		roomBackground = new JLabel("",new ImageIcon(obj.backgrounds(null)), JLabel.CENTER);
+ 		roomBackground = new JLabel("",new ImageIcon(this.backgrounds(null)), JLabel.CENTER);
      				
  		//set image
  		roomBackground.setBounds(0,0,700,500);
