@@ -36,7 +36,7 @@ public class Room {
 	}
 
 	// Method to get an exit based on direction
-	public Room getExit(String direction, Map<String, Room> roomList) {
+	public Room getExit(String direction, Map<Integer, Room> roomList) {
 		return roomList.get(exits.get(direction));
 	}
 
