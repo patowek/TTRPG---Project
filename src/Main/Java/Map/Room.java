@@ -36,8 +36,8 @@ public class Room {
 	}
 
 	// Method to get an exit based on direction
-	public Room getExit(String direction, Map<Integer, Room> roomList) {
-		return roomList.get(exits.get(direction));
+	public Room getExit(String direction, Map<Integer, Room> map) {
+		return map.get(exits.get(direction));
 	}
 
 	// Method to add an item to the room
