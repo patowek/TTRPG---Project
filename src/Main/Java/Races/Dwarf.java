@@ -38,30 +38,14 @@ public class Dwarf extends Adventurer {
 
 	public Dwarf() {// Dwarf("Dundalk",1,3,3,2,2,2,2,10,10
 		name = "Dundalk";
-		strength = 1;
-		intelligence = 3;
-		wisdom = 3;
-		constitution = 2;
-		dexterity = 2;
-		charisma = 2;
-		gold = 10;
-		health = 10;
-		mana = 10;
 	}
 
 	public Dwarf(String inName, int inStrength, int inIntelligence, int inWisdom, int inConstitution, int inDexterity,
 			int inCharisma, int inGold, int inHealth, int inMana) {// Constructor for the elf object. Where you can
 																	// allocate HP
 		name = inName;
-		strength = inStrength;
-		intelligence = inIntelligence;
-		wisdom = inWisdom;
-		constitution = inConstitution;
-		dexterity = inDexterity;
-		charisma = inCharisma;
 		gold = inGold;
 		health = inHealth;
-		mana = inMana;
 
 	}
 
@@ -70,7 +54,7 @@ public class Dwarf extends Adventurer {
 	// ^^^^^^^^^^^^^^^^^^^^^^^
 
 	/// &&&&&START OF GET Race&&&&&//
-	public static String getRace() {
+	public String getRace() {
 		return race = "Dwarf";
 	}
 
