@@ -174,7 +174,7 @@ public class gui implements ActionListener {
 		
 		//placeholder values to be replaced with proper variables from other classes
 		String hero = adventurer.getRace();
-		Room room = adventurer.getCurrentRoom();
+		int room = adventurer.getCurrentRoom().getName();
 		
 		//decides background visual based on race & current room number
 		//test to be sure image will change when room changes
@@ -210,10 +210,16 @@ public class gui implements ActionListener {
 		//attack roll; currently placeholder
 		if(e.getActionCommand().equals("Atk")) {
 			userInput = "attack";
+			textBox.setText("");
+			game.processInput(userInput);
+			update(game.getPlayer());
 			
 		//magic roll; currently placeholder
 		} else if (e.getActionCommand().equals("Mag")) {
 			userInput = "attack";
+			textBox.setText("");
+			game.processInput(userInput);
+			update(game.getPlayer());
 	
 		//text response; currently placeholder
 		} else if (e.getActionCommand().equals("Sub")){
