@@ -126,7 +126,7 @@ public class gui implements ActionListener {
  		//submit button for text field
  		submit = new JButton("SUBMIT");
  		submit.setBounds(600, 460, 80, 25);
- 		submit.addActionListener(new gui());
+ 		submit.addActionListener(this);
  		submit.setActionCommand("Sub");
  		panel.add(submit);
      		
