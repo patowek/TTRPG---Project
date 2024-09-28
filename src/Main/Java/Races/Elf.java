@@ -43,7 +43,7 @@ public class Elf extends Adventurer {
 	}
 
 	public Elf(String inName, int inStrength, int inIntelligence, int inWisdom, int inConstitution, int inDexterity,
-			int inCharisma, int inGold, int inHealth, int inMana) {// Constructor for the elf object. Where you can
+			int inCharisma, Attributes inGold, Attributes inHealth, int inMana) {// Constructor for the elf object. Where you can
 																	// allocate HP
 		name = inName;
 		gold = inGold;
