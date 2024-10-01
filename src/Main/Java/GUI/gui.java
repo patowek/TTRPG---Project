@@ -28,9 +28,10 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 public class gui implements ActionListener {
 	
 	private static JTextField textBox;
-	private static JButton rollAtk;
-	private static JButton rollMag;
 	private static JButton submit;
+	private static JLabel readAtk;
+	private static JLabel readSpd;
+	private static JLabel readDef;
 	private static JLabel readArmorClass;
 	private static JLabel readGold;
 	private static JProgressBar healthBar;
@@ -39,97 +40,26 @@ public class gui implements ActionListener {
 	private static JScrollPane scroll;
 	public String userInput;
 	private GameLogic game;
+	private Attributes atk;
+	private Attributes def;
+	private Attributes spd;
+	private int armor;
+	private Attributes gold;
+	private Attributes health;
 	
 	public gui() {
-		// Initialize GameLogic object
-        game = new GameLogic();
-        
- 		try {
-			game.startGame(game);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}	
-
-        Adventurer player = game.getPlayer();
-        
-        // add frame and panel
- 		JFrame frame = new JFrame("Tabletop Role-Playing Game");
+ 		
+ 		//Add Panel
  		JPanel panel = new JPanel();
-     		
+ 		panel.setLayout(null);
+
  		//Text field for actions
  		textBox = new JTextField(50);
  		textBox.setBounds(20,460,575,25);
+ 		textBox.addActionListener(this);
+ 		textBox.setActionCommand("Sub");
  		panel.add(textBox);
-     		
- 		//Atk button
- 		rollAtk = new JButton("ATK: "+player.atkPower.getValue());
- 		rollAtk.setBounds(20,10,80,25);
- 		rollAtk.addActionListener(this);
- 		rollAtk.setActionCommand("Atk");
- 		panel.add(rollAtk);
-     		
- 		//Mag button
- 		rollMag = new JButton("MAG: "+player.magPower.getValue());
- 		rollMag.setBounds(115,10,80,25);
- 		rollMag.addActionListener(this);
- 		rollMag.setActionCommand("Mag");
- 		panel.add(rollMag);
-     		
- 		//armor class
- 		readArmorClass = new JLabel("AC: "+player.defense.getValue());
- 		readArmorClass.setBounds(622,20,80,25);
- 		readArmorClass.setHorizontalAlignment(JLabel.CENTER);
- 		readArmorClass.setForeground(Color.white);
- 		panel.add(readArmorClass);
-     		
- 		//gold
- 		readGold = new JLabel("G: "+player.gold.getValue());
- 		readGold.setBounds(622,73,80,25);
- 		readGold.setHorizontalAlignment(JLabel.CENTER);
- 		readGold.setForeground(Color.white);
- 		panel.add(readGold);
-     		
- 		//health bar
- 		//want to fix HP text colors, but not priority
- 		String hero = player.getRace();
-     		
- 		if (hero.equals("human")) {
- 			healthBar = new JProgressBar(0, 51);
- 		} else if (hero.equals("elf")) {
- 			healthBar = new JProgressBar(0, 50);
- 		} else if (hero.equals("dwarf")) {
- 			healthBar = new JProgressBar(0, 52);
- 		} else {
- 			healthBar = new JProgressBar(0, 50);
- 		}
-     		
- 		healthBar.setValue(player.health.getValue());
- 		healthBar.setString("HP");
- 		healthBar.setStringPainted(true);
- 		BasicProgressBarUI ui = new BasicProgressBarUI() {
- 		    protected Color getSelectionBackground() {
- 		        return Color.BLACK; // string color over the background
- 		    }
- 		    protected Color getSelectionForeground() {
- 		        return Color.BLACK; // string color over the foreground
- 		    }
- 		};
- 		healthBar.setUI(ui);
- 		healthBar.setBounds(475,10,150,25);
- 		if (healthBar.getValue()>(player.health.getValue()/2)) {
- 			healthBar.setForeground(Color.green);
- 		} else {
- 			healthBar.setForeground(Color.red);
- 		}
- 		panel.add(healthBar);
-     		
- 		//submit button for text field
- 		submit = new JButton("SUBMIT");
- 		submit.setBounds(600, 460, 80, 25);
- 		submit.addActionListener(this);
- 		submit.setActionCommand("Sub");
- 		panel.add(submit);
-     		
+ 		
  		//output text to box above text field
  		outputTxt = new JTextArea("");
  		outputTxt.setLineWrap(true);
@@ -146,87 +76,135 @@ public class gui implements ActionListener {
  		scroll = new JScrollPane(outputTxt);
  		scroll.setBounds(20, 310, 660, 135);
  		panel.add(scroll);
+ 		
+ 		//submit button for text field
+ 		submit = new JButton("SUBMIT");
+ 		submit.setBounds(600, 460, 80, 25);
+ 		submit.addActionListener(this);
+ 		submit.setActionCommand("Sub");
+ 		panel.add(submit);
+     		
+ 		//Attack label
+ 		readAtk = new JLabel("Attack: ");
+ 		readAtk.setBounds(20,10,80,25);
+ 		readAtk.setHorizontalAlignment(JLabel.CENTER);
+ 		readAtk.setForeground(Color.white);
+ 		panel.add(readAtk);
+ 		
+ 		//Speed label
+ 		readSpd = new JLabel("Speed: ");
+ 		readSpd.setBounds(120,10,80,25);
+ 		readSpd.setHorizontalAlignment(JLabel.CENTER);
+ 		readSpd.setForeground(Color.white);
+ 		panel.add(readSpd);
+ 		
+ 		//Defense label
+ 		readDef = new JLabel("Defense: ");
+ 		readDef.setBounds(220,10,80,25);
+ 		readDef.setHorizontalAlignment(JLabel.CENTER);
+ 		readDef.setForeground(Color.white);
+ 		panel.add(readDef);
+     		
+ 		//armor class
+ 		readArmorClass = new JLabel("AC: ");
+ 		readArmorClass.setBounds(622,20,80,25);
+ 		readArmorClass.setHorizontalAlignment(JLabel.CENTER);
+ 		readArmorClass.setForeground(Color.white);
+ 		panel.add(readArmorClass);
+     		
+ 		//gold
+ 		readGold = new JLabel("G: ");
+ 		readGold.setBounds(622,73,80,25);
+ 		readGold.setHorizontalAlignment(JLabel.CENTER);
+ 		readGold.setForeground(Color.white);
+ 		panel.add(readGold);
+     		
+ 		//health bar  	
+ 		healthBar = new JProgressBar(0, 100);
+     		
+ 		healthBar.setValue(100);
+ 		healthBar.setString("HP: ");
+ 		healthBar.setStringPainted(true);
+ 		BasicProgressBarUI ui = new BasicProgressBarUI() {
+ 		    protected Color getSelectionBackground() {
+ 		        return Color.BLACK; // string color over the background
+ 		    }
+ 		    protected Color getSelectionForeground() {
+ 		        return Color.BLACK; // string color over the foreground
+ 		    }
+ 		};
+ 		healthBar.setUI(ui);
+ 		healthBar.setBounds(475,10,150,25);
+ 		if (healthBar.getValue() < 20) {
+ 			healthBar.setForeground(Color.red);
+ 		} else if (healthBar.getValue() < 60) {
+ 			healthBar.setForeground(Color.yellow);
+ 		} else {
+ 			healthBar.setForeground(Color.green);
+ 		}
+ 		panel.add(healthBar);
      		
  		//background image set
- 		roomBackground = new JLabel("",new ImageIcon(this.backgrounds(null)), JLabel.CENTER);
-     				
- 		//set image
+ 		roomBackground = new JLabel("", null , JLabel.CENTER);
  		roomBackground.setBounds(0,0,700,500);
  		panel.add(roomBackground);
      		
- 		// change frame size and set it to exit on close
+        // add Frame
+ 		JFrame frame = new JFrame("Tabletop Role-Playing Game");
  		frame.setSize(710, 535);
  		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     		
- 		// add panel... again!
- 		frame.add(panel);
- 		panel.setLayout(null);
-     		
- 		//centers frame
  		frame.setLocationRelativeTo(null);
  		frame.setVisible(true);
- 		
- 		update(player);
+ 		frame.add(panel);
 }
 
-	public String backgrounds(String myRoom) {
-		Adventurer adventurer = game.getPlayer();
-		
-		//placeholder values to be replaced with proper variables from other classes
-		String hero = adventurer.getRace();
-		int room = adventurer.getCurrentRoom().getName();
+	public String backgrounds(String hero, int room) {
 		
 		//decides background visual based on race & current room number
 		//test to be sure image will change when room changes
 		return "src/Resources/images/room" + room + "_" + hero + ".png";
 	}
 	
-	private void update(Adventurer player) {
+	private void update(GameLogic game) {
+		Adventurer player = game.getPlayer();
+		
 		// Update health bar
-        healthBar.setValue(player.health.getValue());
-        healthBar.setString("HP: " + player.health.getValue());
+		health = player.getStat(Attributes.HP);
+        healthBar.setValue(health.getValue()/player.getMaxHP());
+        healthBar.setString(health.toString() + "/" + player.getMaxHP());
 
-        // Update Armor Class and Gold
-        readArmorClass.setText("AC: " + player.defense.getValue());
-        readGold.setText("Gold: " + player.gold.getValue());
+        // Update statistics
+        atk = player.getStat(Attributes.ATK);
+        spd = player.getStat(Attributes.SPD);
+        def = player.getStat(Attributes.DEF);
+        armor = player.getArmor();
+        gold = player.getStat(Attributes.GP);
+        
+        // Update UI elements
+        readAtk = new JLabel(atk.toString());
+        readSpd = new JLabel(spd.toString());
+        readDef = new JLabel(def.toString());
+        readArmorClass.setText("AC: " + armor);
+        readGold.setText(gold.toString());
 
         // Update background image based on current room
         Room currentRoom = player.getCurrentRoom();
         if (currentRoom != null) {
-        	roomBackground = new JLabel("",new ImageIcon(this.backgrounds(null)), JLabel.CENTER);
+        	roomBackground = new JLabel("",new ImageIcon(this.backgrounds(player.getRace(), currentRoom.getName())), JLabel.CENTER);
         }
 
         // Show room description
         outputTxt.append(currentRoom.getDescription() + "\n");
 	}
 	
-	
-	public static void main(String [ ] args) {
-		new gui();
-	}
-	
 	public void actionPerformed(ActionEvent e) {
 		
-		//attack roll; currently placeholder
-		if(e.getActionCommand().equals("Atk")) {
-			userInput = "attack";
-			textBox.setText("");
-			game.processInput(userInput);
-			update(game.getPlayer());
-			
-		//magic roll; currently placeholder
-		} else if (e.getActionCommand().equals("Mag")) {
-			userInput = "attack";
-			textBox.setText("");
-			game.processInput(userInput);
-			update(game.getPlayer());
-	
 		//text response; currently placeholder
-		} else if (e.getActionCommand().equals("Sub")){
+		if (e.getActionCommand().equals("Sub")){
 			userInput = textBox.getText();
 			textBox.setText("");
 			game.processInput(userInput);
-			update(game.getPlayer());
+			update(game);
 		}
 		
 	}

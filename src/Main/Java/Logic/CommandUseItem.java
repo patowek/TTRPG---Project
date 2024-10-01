@@ -24,8 +24,9 @@ public class CommandUseItem extends Command {
 		if (targetItem != null && itemType == 5) {
 			player.setItems(itemSlot, null);
 			String[] stat = targetItem.getStat();
-			int value = player.getStat(Attributes.valueOf(stat[0]));
-			player.setStat(Attributes.valueOf(stat[0]), value + Integer.parseInt(stat[2]));
+			int value = Integer.parseInt(stat[2]);
+			value = stat[1].equals("-") ? -value : value;
+			player.modifyStat(Attributes.valueOf(stat[0]), value);
 			System.out.println("You use the " + target);
 		} else if (itemType != 5) {
 			System.out.println("You are trying to use the wrong type of item. Try command 'Equip' or try a different item.");

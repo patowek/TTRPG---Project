@@ -4,10 +4,9 @@
  */
 package Logic;
 import Classes.Adventurer;
-import static Classes.Attributes.*;
+import Classes.Attributes;
 import Enemies.Enemies;
 import java.util.Random;
-import Items.Item;
 /**
  *
  * @author jorel
@@ -16,9 +15,8 @@ public class Combat {
     //Variables//
     int enemyInitiative=0;//Enemy's initiative vs your own
     int playerInitiative=0;//Player initiative
-    boolean playerFirst=false;  
+    boolean playerFirst=false;
     boolean playerTurn=false;
-    int playerDefense=0;
   
     boolean activeCombat=false;//Whether you are still fighting
     boolean hasWon=false;//Won in battle
@@ -27,11 +25,9 @@ public class Combat {
     
     //Constructor
     public Combat(Adventurer player, Enemies Target) {
-    	enemy=Target;
+    	enemy = Target;
     	rollInitiative(player);
     	turnOrder();
-    	
-    	
     }
     
     //Methods//
@@ -61,134 +57,111 @@ public class Combat {
         return stat;
     }
    
-	public void rollInitiative(Adventurer player)
-	{//Roll initial initiative for player & enemy
+	public void rollInitiative(Adventurer player) {
+		
+		//Roll initial initiative for player & enemy
+		enemyInitiative=rollDice(1,20)+enemy.getSpeed();
+		playerInitiative=rollDice(1,20) + player.getStatValue(Attributes.SPD);
         
-
-		enemyInitiative=rollDice(1,20)+enemy.getSpeed();//Enemy rolls their speed
-		playerInitiative=rollDice(1,20)+player.getStat(HP);//Player rolls theirs
-        
-		if(playerInitiative>enemyInitiative)
-		{//Designate player as first hitter.
+		//Designate player as first hitter.
+		if(playerInitiative>enemyInitiative) {
 			playerFirst=true;
-                         playerTurn=true;
+			playerTurn=true;
         }
-         if(playerInitiative<enemyInitiative)
-        {//Designate player as first hitter.
+		
+		//Designate player as first hitter.
+		if(playerInitiative<enemyInitiative) {
             playerFirst=false;
-             playerTurn=false;
-           
+            playerTurn=false;
         }
-        activeCombat=true; 
+		
+        activeCombat=true;
     }
-	public void turnOrder()
-		{//Perform turn order action
-		if(playerFirst==true)
-		{
+	
+	public void turnOrder() {
+		
+		//Perform turn order action
+		if(playerFirst==true) {
 			System.out.println("Choose your move");
-                        playerTurn=true;
+			playerTurn=true;
 		}
-		if(playerFirst==false)
-		{
+		if(playerFirst==false) {
 			System.out.println("Enemy rallies an attack!");
-		}
-                
+		}       
 	}
-	public void atkAction(Adventurer player, Enemies enemy)
-	{//Roll attempt to attack
+	
+	public void atkAction(Adventurer player, Enemies enemy) {
+		//Roll attempt to attack
 
-		//Player's rolls//
-        Item equippedWeapon = player.getGear(2);
-        int atkStat=player.getStat(ATK);
-        int wpnStat= convStat(equippedWeapon.getStat()[2]);
-        int atkRoll=rollDice(1,20)+atkStat+wpnStat;
-        //Player's rolls//
-        int enemyDefense=enemy.getArmor();//Parse their armor in.
-         
-        if(atkRoll > enemyDefense)
-        {//Attack lands
-        	int inDam=rollDice(1,6);//Damage Rolled
-        	int curHP=enemy.getHitpoints()-inDam;//Damage removed from HP
+		//Player's rolls
+        int atkStat=player.getStatValue(Attributes.ATK);
+        int playerRoll=rollDice(1,20)+atkStat;
+        
+        //Enemy's rolls
+        int enemyDefense=enemy.getArmor();
+        
+        //Attack lands
+        if(playerRoll > enemyDefense) {
+        	int inDam = rollDice(1,6);//Damage Rolled
+        	int curHP = enemy.getHitpoints()-inDam;//Damage removed from HP
         	enemy.setHitpoints(curHP);//Sustained Damage
-                playerTurn=false;
+        	playerTurn = false;
+        } else {
+        	System.out.println("You missed!");
+        	playerTurn = false;
         }
-        else
-         {
-             System.out.println("You missed!");
-            playerTurn=false; 
-         }
-         if(enemy.getHitpoints()<=0)
-         {//If the enemy's HP drops to 0
-             hasWon=true;
-             System.out.println("You have won against "+enemy.getName()+".");
-         }
+        
+        //If the enemy's HP drops to 0
+        if(enemy.getHitpoints()<=0) {
+        	hasWon = true;
+        }
      }
-     public void defAction(Adventurer player, Enemies enemy)
-     {//Roll attempt to defend from enemy
-    	 Item equippedShield = player.getGear(3);
-    	 int equippedShieldValue = convStat(equippedShield.getStat()[2]);
-    	 Item equippedHelm = player.getGear(0);
-    	 int equippedHelmValue = convStat(equippedHelm.getStat()[2]);
-    	 Item equippedArmor = player.getGear(1);
-    	 int equippedArmorValue = convStat(equippedArmor.getStat()[2]);
-    	 int totalDefense= equippedShieldValue + equippedHelmValue + equippedArmorValue;
-    	 int enemyRoll=rollDice(1,20)+enemy.getChallengeRating();//Enemy attempt
-    	 int defRoll=rollDice(1,20)+totalDefense;
-    	 if(defRoll < enemyRoll)
-    	 {//Attack lands
+	
+     public void defAction(Adventurer player, Enemies enemy) {
+    	 //Roll attempt to defend from enemy
+    	 int playerDefense = player.getArmor();
+    	 int enemyRoll = rollDice(1,20)+enemy.getChallengeRating();//Enemy attempt
+    	 int playerRoll = rollDice(1,20)+ playerDefense;
+    	 
+    	 //Attack lands
+    	 if(playerRoll < enemyRoll) {
     		 int inDam=rollDice(1,6);//Damage Rolled
-    		 int curHP=player.getStat(HP)-inDam;//Damage removed from HP
-    		 player.setStat(HP,curHP);//Sustained Damage
-                 playerTurn=true; 
+    		 player.modifyStat(Attributes.HP,-inDam);//Sustained Damage
+    		 playerTurn=true;
+    	 } else {
+    		 System.out.println("Enemy misses!");
+    		 playerTurn=true;
+         }
+         
+    	 //If the player's HP drops to 0
+    	 if(player.getStatValue(Attributes.HP) <= 0) {
+    		 System.out.println("You have lost against "+enemy.getName()+".");
+    		 player.setDead(true);
     	 }
-         else
-         {
-             System.out.println("Enemy misses!");
-            playerTurn=true; 
-         }
-         if(player.getStat(HP)<=0)
-         {//If the player's HP drops to 0
-             hasWon=false;
-              System.out.println("You have lost against "+enemy.getName()+".");
-         }
 	}
-     
-	public void fleeAction(Adventurer player,Enemies enemy)
-	{//Action to flee from battle
-		int playerFlee=rollDice(1,20)+player.getStat(HP);
+    
+   //Action to flee from battle
+	public void fleeAction(Adventurer player,Enemies enemy) {
+		int playerFlee=rollDice(1,20)+player.getStatValue(Attributes.SPD);
 		int enemyCatch=rollDice(1,20)+enemy.getSpeed();
-		if(playerFlee > enemyCatch)
-		{//Player succeeds
+		
+		//Player succeeds
+		if(playerFlee > enemyCatch) {
 			System.out.println("Player fled from Combat!");
-			activeCombat=false;
-		}
-		else
-		{
+			activeCombat = false;
+		} else {
 			System.out.println("Enemy caught up to you!");
-			activeCombat=true;
-		}
-          
+			playerTurn = false;
+		} 
 	}
-	public void useItem(Adventurer player)
-	{//Use an item from your inventory
-       
-          
-	}
-	public boolean isCombatActive()
-	{//Returns whether the battle is still ongoing or not
+	
+	//Getter Methods for boolean values
+	public boolean isCombatActive() {
 		return activeCombat;
 	}
-	//Methods//
-        //Getter Methods//
+
 	public boolean hasWon() {
-            
 		return hasWon;
                 
 	}
-        public boolean getPlayerTurn() {
-            
-		return playerTurn;
-                
-	}
-        //Getter Methods// 
 }

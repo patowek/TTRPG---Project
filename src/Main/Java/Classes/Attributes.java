@@ -1,11 +1,11 @@
 package Classes;
 
 public enum Attributes {
-	ATK("Attack Power", 0),
-	MAG("Magic Power", 0),
+	ATK("Attack", 0),
+	SPD("Speed", 0),
 	DEF("Defense", 0),
 	HP("Health", 50),
-	MP("Mana", 20),
+	MHP("Max Health", 50),
 	GP("Gold", 0);
 
 	private final String name;
@@ -30,5 +30,9 @@ public enum Attributes {
 	
 	public void modifyValue(int value) {
 		this.value += value;
+	}
+	
+	public String toString() {
+		return name + ": " + value;
 	}
 }

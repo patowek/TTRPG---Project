@@ -33,6 +33,7 @@ public class GameLogic {
 		game.setupEnemies();
 		game.setupItems();
 		game.setupWorld();
+		game.setupPlayer();
 	}
 
 	public void processInput(String input) {
@@ -110,9 +111,9 @@ public class GameLogic {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		
-		
+	}
+	
+	private void setupPlayer() {
 		// Ask questions to create a character
 		Scanner scanner = new Scanner(System.in);
 
@@ -175,7 +176,7 @@ public class GameLogic {
 		player.setCurrentRoom(rooms.get(1));
 		System.out.println(player.getCurrentRoom().getDescription());
 		scanner.close();
-	}
+}
 	
 	private void setupEnemies() throws FileNotFoundException{
 		String line;

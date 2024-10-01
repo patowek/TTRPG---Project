@@ -32,103 +32,95 @@ import Items.Item;
 //**********************Added race & class vars*****
 public class Adventurer {
 	// Variables//
-	public String name;
-	public Attributes atkPower = Attributes.ATK;
-	public Attributes magPower = Attributes.MAG;
-	public Attributes defense = Attributes.DEF;
-        public Attributes gold = Attributes.GP;
-	public Attributes health = Attributes.HP;
-	public  String jobClass;
-	public String race;
-	public   int armorCount;// The character's difficulty to deal damage to them.
-	// public   String[]
-	// inventory={"None","None","None","None","None","None","None"};
-	public Item[] inventory = new Item[7];//8 inv slots
+	private String name;
+	private Attributes attack = Attributes.ATK;
+	private Attributes speed = Attributes.SPD;
+	private Attributes defense = Attributes.DEF;
+	private Attributes gold = Attributes.GP;
+	private Attributes health = Attributes.HP;
+	private String job;
+	private String race;
+	private Item[] inventory = new Item[7];//8 inv slots
 	// Slot 0 - Head
 	// Slot 1 - Armor
 	// Slot 2 - Weapon
 	// Slot 3 - Shield
 	// Slot 4 - Accessory
-	public Item[] gear= new Item[4];//five gear slots
-	public Room currentRoom;
-	// **Variables//
+	private Item[] gear= new Item[4];//five gear slots
+	private Room currentRoom;
+	
 	private boolean hasWon;
 	private boolean isDead;
+	private int maxHP;
 
 
 	//Constructors///
-        public Adventurer()
-	{
-	 name="Janice";
-	 jobClass="Fighter";
-         race="Human";
-	
-	
-	}//end of constructor
-	 public Adventurer(String inName, String inJob,String inRace, int inAtk, int inMag, int inDef,int inGold,int inHealth, int inCount)
-	{
-	 name=inName;
-	 jobClass=inJob;
-         race=inRace;
-	
-		 if(race.toLowerCase()=="human")
-	 {
-		 //Racial Bonuses +1 to all physical stats
-                atkPower.setValue(inAtk+1);
-	 	magPower.setValue(inMag+1);
-	 	defense.setValue(inDef+1);
-	 	gold.setValue(inGold+1);
-	 	health.setValue(inHealth+1);
+    public Adventurer() {
+    	name="Janice";
+    	job="fighter";
+    	race="human";
+	}
+    
+    
+	public Adventurer(String inName, String inJob,String inRace, int inAtk, int inSpd, int inDef,int inGold,int inHealth, int inCount) {
+		name=inName;
+		job=inJob.toLowerCase();
+		race=inRace.toLowerCase();
+		attack.setValue(inAtk);
+		speed.setValue(inSpd);
+		defense.setValue(inDef);
+		gold.setValue(inGold);
+		health.setValue(inHealth);
 		
-	 }
-	 if(race.toLowerCase()=="dwarf")
-	 {
-		 //Racial Bonuses +2 to all physical stats except magic power & AC
-                 atkPower.setValue(inAtk+2);
-	 	magPower.setValue(inMag);
-	 	defense.setValue(inDef+2);
-	 	gold.setValue(inGold);
-	 	health.setValue(inHealth+2);
-	 }
-		 if(race.toLowerCase()=="elf")
-	 {
-		 //Racial Bonuses +2 to magic power, and +1 to armor count from added dex
-                atkPower.setValue(inAtk);
-	 	magPower.setValue(inMag+2);
-	 	defense.setValue(inDef+1);
-	 	gold.setValue(inGold);
-	 	health.setValue(inHealth);
-	 }
-		 if(jobClass.toLowerCase()=="mage")
-	 {
-		 //Racial Bonuses +1 to all physical stats
-        atkPower.setValue(atkPower.getValue()+2);
-	 	magPower.setValue(magPower.getValue()+2);
-	 	defense.setValue(defense.getValue());
-	 	gold.setValue(gold.getValue());
-	 	health.setValue(health.getValue());
+		switch (race) {
+			case "human":
+				//Racial Bonuses +1 to all physical stats
+				speed.modifyValue(1);
+				defense.modifyValue(1);
+				gold.modifyValue(1);
+				health.modifyValue(1);
+				break;
+			case "dwarf":
+				//Racial Bonuses +2 to all physical stats except magic power & AC
+				attack.modifyValue(2);
+				defense.modifyValue(2);
+				health.modifyValue(2);
+				break;
+			case "elf":
+				//Racial Bonuses +2 to magic power, and +1 to armor count from added dex
+				speed.modifyValue(2);
+				defense.modifyValue(1);
+				break;
+			default:
+				throw new IllegalArgumentException("Invalid race: " + race);
+		}
 		
-	 }
-	 if(jobClass.toLowerCase()=="rogue")
-	 {
-		 //Starts with balanced HP, defense and some attack power
-        atkPower.setValue(atkPower.getValue()+1);
-	 	magPower.setValue(magPower.getValue());
-	 	defense.setValue(defense.getValue()+1);
-	 	gold.setValue(gold.getValue());
-	 	health.setValue(health.getValue()+1);
-	 }
-		 if(jobClass.toLowerCase()=="fighter")
-	 {
-		 //Starts with more defense and health.
-               atkPower.setValue(atkPower.getValue());
-	 	magPower.setValue(magPower.getValue());
-	 	defense.setValue(defense.getValue()+2);
-	 	gold.setValue(gold.getValue());
-	 	health.setValue(health.getValue()+2);
-	 }
-	}//End of constructor
-	//Constructors///
+		switch (job) {
+			case "mage":
+				attack.modifyValue(2);
+				speed.modifyValue(2);
+				break;
+			case "rogue":
+				attack.modifyValue(1);
+				speed.modifyValue(2);
+				defense.modifyValue(1);
+				health.modifyValue(1);
+				break;
+			case "fighter":
+				//Starts with more defense and health.
+			 	defense.modifyValue(2);
+			 	health.modifyValue(2);
+			 	break;
+			default:
+				throw new IllegalArgumentException("Invalid job: " + job);
+		}
+	
+		maxHP = health.getValue();
+	}
+	//End of constructor
+
+
+	
 	// ^^^^^^^^^^^^^^^^^^^^^^^
 	// ^^^Methods^^^^^^^^^^^^^
 	// ^^^^^^^^^^^^^^^^^^^^^^^
@@ -142,65 +134,117 @@ public class Adventurer {
 		System.out.println("Value not Found.");
 		return -1;
 	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 	/// &&&&&START OF GET RACE&&&&&//
 	public String getRace(){
-	return race;
+		return race;
 	}
 	/// &&&&&START OF GET RACE&&&&&//
 	/// &&&&&START OF GET JOBCLASS&&&&&//
-	public String getJobClass(){
-	return jobClass;
+	public String getJob(){
+		return job;
 	}
+	/**
+	 * @return the armorCount
+	 */
+	public int getArmor() {
+		return defense.getValue() + (speed.getValue()/2);
+	}
+
 	/// &&&&&START OF GET JOBCLASS&&&&&//
 	/// &&&&&START OF GET STAT&&&&&//
-	public   int getStat(Attributes name) {// Set the following
-											// -Stats
-											// -Mana
-											// -Health
-											// -Gold
-		int d = 0; // Stat to return
-		if (name == Attributes.ATK) {
-			d = atkPower.getValue();
-		}
-		if (name == Attributes.MAG) {
-			d = magPower.getValue();
-		}
-		if (name == Attributes.DEF) {
-			d = defense.getValue();
-		}
-		
-		if (name == Attributes.HP) {
-			d = health.getValue();
-		}
-		if (name == Attributes.GP) {
-			d = gold.getValue();
-		}
-		return d;
+	public int getStatValue(Attributes name) {
+	    switch (name) {
+        case ATK:
+            return attack.getValue();
+        case SPD:
+            return speed.getValue();
+        case DEF:
+            return defense.getValue();
+        case HP:
+            return health.getValue();
+        case GP:
+            return gold.getValue();
+        default:
+            throw new IllegalArgumentException("Invalid attribute: " + name);
+	    }
+	}
+	
+	public Attributes getStat(Attributes name) {
+	    switch (name) {
+        case ATK:
+            return attack;
+        case SPD:
+            return speed;
+        case DEF:
+            return defense;
+        case HP:
+            return health;
+        case GP:
+            return gold;
+        default:
+            throw new IllegalArgumentException("Invalid attribute: " + name);
+	    }
 	}
 
 	/// &&&&&END OF GET STAT&&&&&//
 	/// &&&&&Start OF SET STAT&&&&&//
-	public   void setStat(Attributes name, int value) {// Set the following
+	public void setStat(Attributes name, int value) {// Set the following
 														// -Stats
 														// -Mana
 														// -Health
 														// -Gold
-		int d = 0;// Stat to change to
-		if (name == Attributes.ATK) {
-			atkPower.setValue(value);
+		switch (name) {
+			case ATK:
+				attack.setValue(value);
+				break;
+			case SPD:
+				speed.setValue(value);
+				break;
+			case DEF:
+				defense.setValue(value);
+				break;
+			case HP:
+				health.setValue(value);
+				break;
+			case GP:
+				gold.setValue(value);
+				break;
+			default:
+				throw new IllegalArgumentException("Invalid attribute: " + name);
 		}
-		if (name == Attributes.MAG) {
-			magPower.setValue(value);
-		}
-		if (name == Attributes.DEF) {
-			defense.setValue(value);
-		}
+	}
+	
+	public void modifyStat(Attributes name, int value) {
 		
-		if (name == Attributes.HP) {
-			health.setValue(value);
-		}
-		if (name == Attributes.GP) {
-			gold.setValue(value);
+		switch (name) {
+			case ATK:
+				attack.modifyValue(value);
+				break;
+			case SPD:
+				speed.modifyValue(value);
+				break;
+			case DEF:
+				defense.modifyValue(value);
+				break;
+			case HP:
+				int proposed = health.getValue() + value;
+				if (proposed > maxHP) {
+					health.setValue(maxHP);
+				} else {
+					health.modifyValue(value);
+				}
+				break;
+			case GP:
+				gold.modifyValue(value);
+				break;
+			default:
+				throw new IllegalArgumentException("Invalid attribute: " + name);
 		}
 	}
 
@@ -212,27 +256,32 @@ public class Adventurer {
 												// -Weapon
 												// -Shield
 												// -Accessory
-		return gear[slot];// Gear to report back.
+		return gear[slot];
 	
 	}
 
 	/// &&&&&END OF GET GEAR&&&&&//
-	public Item[] getGear() {// Get the following
-									// -Slot 0-7
-		
-
+	public Item[] getGear() {
 		return gear;
 
 	}
 
 	/// &&&&&END OF SET GEAR&&&&&//
-	public void setGear(int slot, Item newGear) {// Get the following
-																// -Helmet
-																// -Armor
-																// -Weapon
-																// -Shield
-																// -Accessory
+	public void setGear(int slot, Item newGear) {
+			
+		if (newGear != null) {
 			gear[slot] = newGear;
+			String[] stat = newGear.getStat();
+			int value = Integer.parseInt(stat[2]);
+			value = stat[1].equals("-") ? -value : value;
+			modifyStat(Attributes.valueOf(stat[0]), value);
+		} else {
+			String[] stat = gear[slot].getStat();
+			int value = -Integer.parseInt(stat[2]);
+			value = stat[1].equals("-") ? -value : value;
+			modifyStat(Attributes.valueOf(stat[0]), value);
+			gear[slot] = newGear;
+		}
 	}
 	/// &&&&&END OF SET GEAR&&&&&//
 
@@ -286,5 +335,16 @@ public class Adventurer {
 	}
 	public boolean isDead() {
 		return isDead;
+	}
+	
+	public void setDead(boolean value) {
+		isDead = value;
+	}
+	
+	public int getMaxHP() {
+		return maxHP;
+	}
+	public void getMaxHP(int maxHP) {
+		this.maxHP = maxHP;
 	}
 }
