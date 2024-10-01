@@ -20,10 +20,14 @@ public class CommandUnequip extends Command {
 		}
 		
 		for (Item item: loadout) {
-			if (item.getName().equalsIgnoreCase(target)) {
+			if (item == null) {
+				continue;
+			} else if (item.getName().equalsIgnoreCase(target)) {
 				targetItem = item;
 				targetSlot = targetItem.getType();
 				break;
+			} else {
+				continue;
 			}
 		}
 		

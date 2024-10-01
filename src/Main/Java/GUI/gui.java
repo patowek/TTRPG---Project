@@ -166,7 +166,7 @@ public class gui implements ActionListener {
  		equipmentButtons = new ArrayList<>();
  		for (int i = 0; i < 5; i++) {
  			JButton button = new JButton();
- 			button.setBounds(720 + i * 130, 310, 120, 30);
+ 			button.setBounds(725 + i * 130, 310, 120, 30);
  			panel.add(button);
  			equipmentButtons.add(button);
  			//button.addActionListener(this);
@@ -175,9 +175,17 @@ public class gui implements ActionListener {
  		
  		//Inventory buttons
  		inventoryButtons = new ArrayList<>();
- 		for (int i = 0; i < 8; i++) {
+ 		for (int i = 0; i < 4; i++) {
  			JButton button = new JButton();
- 			button.setBounds(720 + i * 80, 350, 70, 30);
+ 			button.setBounds(730 + i * 160, 360, 150, 30);
+ 			panel.add(button);
+ 			inventoryButtons.add(button);
+ 			//button.addActionListener(this);
+ 			//button.setActionCommand("inv");
+ 		}
+ 		for (int i = 0; i < 4; i++) {
+ 			JButton button = new JButton();
+ 			button.setBounds(730 + i * 160, 400, 150, 30);
  			panel.add(button);
  			inventoryButtons.add(button);
  			//button.addActionListener(this);
