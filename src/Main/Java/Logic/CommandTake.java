@@ -21,12 +21,12 @@ public class CommandTake extends Command {
 			
 		}
 		
-		if (freeSlot < 8) {
+		if (freeSlot > 8) {
 			System.out.println("No available space in inventory, please drop/use an item first.");
 		}
 		
 		for (Item item: items) {
-			if (item.getName() == target) {
+			if (item.getName().equalsIgnoreCase(target)) {
 				targetItem = item;
 			}
 		}

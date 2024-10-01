@@ -11,11 +11,11 @@ import Items.Item;
 public class Room {
 	private int name; // Room name or description
 	private String description; // More detailed description of the room
-	private Map<String, Integer> exits; // Available exits, mapping direction to Room
+	private Map<Directions, Integer> exits; // Available exits, mapping direction to Room
 	private Map<String, Item> items; // Items present in the room
 	private Map<String, Enemies> enemies; // Enemies present in the room
 	private boolean visited = false;
-
+	
 	// Constructor
 	public Room(int name, String description, char[] exits) {
 		this.name = name;
@@ -29,15 +29,16 @@ public class Room {
 
 	// Method to add an exit to the room
 	public void addExit(char[] exitArray) {
-		exits.put("north", Integer.parseInt(String.valueOf(exitArray[0])));
-		exits.put("east", Integer.parseInt(String.valueOf(exitArray[1])));
-		exits.put("south", Integer.parseInt(String.valueOf(exitArray[2])));
-		exits.put("west", Integer.parseInt(String.valueOf(exitArray[3])));
+		exits.put(Directions.NORTH, Integer.parseInt(String.valueOf(exitArray[0])));
+		exits.put(Directions.EAST, Integer.parseInt(String.valueOf(exitArray[1])));
+		exits.put(Directions.SOUTH, Integer.parseInt(String.valueOf(exitArray[2])));
+		exits.put(Directions.WEST, Integer.parseInt(String.valueOf(exitArray[3])));
 	}
 
 	// Method to get an exit based on direction
 	public Room getExit(String direction, Map<Integer, Room> map) {
-		return map.get(exits.get(direction));
+		Directions way = Directions.fromString(direction);		
+		return map.get(exits.get(way));
 	}
 
 	// Method to add an item to the room

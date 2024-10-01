@@ -20,7 +20,7 @@ public class CommandUnequip extends Command {
 		}
 		
 		for (Item item: loadout) {
-			if (item.getName() == target) {
+			if (item.getName().equalsIgnoreCase(target)) {
 				targetItem = item;
 				targetSlot = targetItem.getType();
 				break;

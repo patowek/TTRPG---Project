@@ -36,4 +36,8 @@ public class Item {
 	public int getType() {
 		return type;
 	}
+	
+	public String toString() {
+		return name + ": " + stat[0] + " " + stat[1] + stat[2];
+	}
 }

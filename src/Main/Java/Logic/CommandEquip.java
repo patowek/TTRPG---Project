@@ -13,7 +13,7 @@ public class CommandEquip extends Command {
 		int targetSlot = 5;
 		boolean equipmentSlotTaken = true;
 		for (Item item: inventory) {
-			if (item.getName() == target) {
+			if (item.getName().equalsIgnoreCase(target)) {
 				targetItem = item;
 				targetSlot = targetItem.getType();
 				break;

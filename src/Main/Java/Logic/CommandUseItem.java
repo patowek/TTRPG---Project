@@ -13,7 +13,7 @@ public class CommandUseItem extends Command {
 		int itemSlot = 0;
 		int itemType = 0;
 		for (Item item: inventory) {
-			if (item.getName() == target) {
+			if (item.getName().equalsIgnoreCase(target)) {
 				targetItem = item;
 				itemType = targetItem.getType();
 				break;

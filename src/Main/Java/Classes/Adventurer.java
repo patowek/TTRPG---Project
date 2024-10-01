@@ -40,13 +40,13 @@ public class Adventurer {
 	private Attributes health = Attributes.HP;
 	private String job;
 	private String race;
-	private Item[] inventory = new Item[7];//8 inv slots
+	private Item[] inventory = new Item[8];//8 inv slots
 	// Slot 0 - Head
 	// Slot 1 - Armor
 	// Slot 2 - Weapon
 	// Slot 3 - Shield
 	// Slot 4 - Accessory
-	private Item[] gear= new Item[4];//five gear slots
+	private Item[] gear= new Item[5];//five gear slots
 	private Room currentRoom;
 	
 	private boolean hasWon;

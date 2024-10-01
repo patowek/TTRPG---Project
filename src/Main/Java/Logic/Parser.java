@@ -15,7 +15,6 @@ public class Parser {
 		commands.put("examine", new CommandExamine());
 		commands.put("attack", new CommandAttack());
 		commands.put("help", new CommandHelp());
-		commands.put("skill", new CommandSkill());
 		commands.put("use", new CommandUseItem());
 		commands.put("exit", new CommandExit());
 		commands.put("drop", new CommandDrop());

@@ -3,6 +3,7 @@ package Logic;
 import java.util.List;
 
 import Classes.Adventurer;
+import Enemies.Enemies;
 import Items.Item;
 import Map.Room;
 
@@ -11,35 +12,51 @@ public class CommandExamine extends Command {
 	@Override
 	public void execute(Adventurer player, GameLogic game) {
 		Room currentRoom = player.getCurrentRoom();
-		Item item = findItem(currentRoom, player, target);
 		if (target.isBlank()) {
-			System.out.println(currentRoom.getDescription());
-		} else if (!item.equals(null)) {
-			System.out.println(item.toString());
+			StringBuilder situation = new StringBuilder("You see the following: \n");
+			List<Item> roomItems = currentRoom.getItems();
+			for (Item item: roomItems)
+				situation.append(item.getName() + "\n");
+			List<Enemies> roomEnemies = currentRoom.getEnemies();
+			for (Enemies enemy: roomEnemies)
+				situation.append(enemy.getName() + "\n");
+			System.out.println(situation);
 		} else {
-			System.out.println("No such item found. Try again.");
+			Item item = findItem(currentRoom, player, target);
+			if (!item.equals(null)) {
+				System.out.println(item.toString());
+			} else {
+				System.out.println("No such item found. Try again.");
+			}
 		}
-		
 	}
 	
-	private static Item findItem(Room currentRoom, Adventurer player, String target) {
-		Item result = null;
+	private Item findItem(Room currentRoom, Adventurer player, String target) {
+		if (target == null || target.isEmpty()) {
+	        return null; // Handle invalid target
+	    }
 		
-		List<Item> roomList = currentRoom.getItems();
-		for (Item item: roomList) {
-			if (item.getName().equals(target)) {
-				return item;		
-			}
-		}
+		// Look for the item in the room
+	    List<Item> roomList = currentRoom.getItems();
+	    if (roomList != null) {
+	        for (Item item : roomList) {
+	            if (item.getName().equalsIgnoreCase(target)) {
+	                return item;  // Return if found in the room
+	            }
+	        }
+	    }
 		
-		Item[] playerList = player.getItems();
-		
-		for (Item item: playerList) {
-			if (item.getName().equals(target)) {
-				return item;		
-			}
-		}
-		return result;
+	 // Look for the item in the player's inventory
+	    Item[] playerArray = player.getItems();
+	    if (playerArray != null) {
+	        for (Item item : playerArray) {
+	            if (item.getName().equalsIgnoreCase(target)) {
+	                return item;  // Return if found in player's inventory
+	            }
+	        }
+	    }
+	    
+		return null;
 
 	}
 

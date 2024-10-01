@@ -6,34 +6,38 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 import Classes.Adventurer;
 import Enemies.Enemies;
+import GUI.gui;
 import Items.Item;
 import Map.Room;
 
 public class GameLogic {
 	private Adventurer player;
 	private Map<Integer, Room> rooms;
-	private Map<String, Enemies> enemiesList = new HashMap<>();
-	private Map<String, Item> itemList = new HashMap<>();
+	private Map<String, Enemies> enemiesList;
+	private Map<String, Item> itemList;
 	private boolean isRunning;
 	private Parser parser;
+	private gui gameGUI;
 
-	public GameLogic() {
+	public GameLogic() throws FileNotFoundException {
 		this.isRunning = true;
-		this.parser = new Parser();
+		enemiesList = new HashMap<>();
+		itemList = new HashMap<>();
 		rooms = new HashMap<>();
+		gameGUI = new gui(this);
+		this.parser = new Parser();
 	}
 
-	public void startGame(GameLogic game) throws FileNotFoundException {
+	public void startGame() throws FileNotFoundException {
 	
 		// Initialize player, rooms, items, etc.
-		game.setupEnemies();
-		game.setupItems();
-		game.setupWorld();
-		game.setupPlayer();
+		setupEnemies();
+		setupItems();
+		setupWorld();
+		setupPlayer();
 	}
 
 	public void processInput(String input) {
@@ -46,12 +50,6 @@ public class GameLogic {
 		// Handle game updates like checking win/lose conditions
 		if (player.hasWon() || player.isDead()) {
 			isRunning = false;
-		}
-	}
-
-	private String getUserInput() {
-		try (Scanner scanner = new Scanner(System.in)) {
-			return scanner.nextLine();
 		}
 	}
 
@@ -114,18 +112,14 @@ public class GameLogic {
 	}
 	
 	private void setupPlayer() {
-		// Ask questions to create a character
-		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Welcome to the game! Let's create your character.");
-		System.out.print("Enter your character's name: ");
-		String name = scanner.nextLine();
+		String name = gameGUI.requestAnswer("Enter your character's name: ").join();
 
 		while (true) {
-			System.out.println("Choose a race:\n1. Dwarf\n2. Elf\n3. Human");
-			int characterRace = scanner.nextInt();
+			int intRace = Integer.parseInt(gameGUI.requestAnswer("Choose a race:\n1. Dwarf\n2. Elf\n3. Human").join());
 			String race;
-			switch(characterRace) {
+			switch(intRace) {
 				case 1:
 					race = "dwarf";
 					break;
@@ -140,11 +134,9 @@ public class GameLogic {
 			}
 			
 
-			System.out.println("Choose a Class:\n1. Fighter\n2. Mage\n3. Rogue");
-
-			int characterClass = scanner.nextInt();
+			int intClass = Integer.parseInt(gameGUI.requestAnswer("Choose a Class:\n1. Fighter\n2. Mage\n3. Rogue").join());
 			String job;
-			switch(characterClass) {
+			switch(intClass) {
 				case 1:
 					job = "fighter";
 					break;
@@ -159,23 +151,20 @@ public class GameLogic {
 			}
 
 			System.out.println("Allocate stats for your character...5 available points.");
-			System.out.print("How much Atk: ");
-			int characterAtk = scanner.nextInt();
-			System.out.print("How much Def: ");
-			int characterDef = scanner.nextInt();
-			System.out.print("How much Spd: ");
-			int characterSpd = scanner.nextInt();
+			int intAtk = Integer.parseInt(gameGUI.requestAnswer("How much Atk: ").join());
+			int intDef = Integer.parseInt(gameGUI.requestAnswer("How much Def: ").join());
+			int intSpd = Integer.parseInt(gameGUI.requestAnswer("How much Spd: ").join());
 			
-			player = new Adventurer(name, job, race, characterAtk, characterSpd, characterDef, 10, 50, 0);
+			player = new Adventurer(name, job, race, intAtk, intSpd, intDef, 10, 50, 0);
 			break; // Exit loop after valid choice
 		}
 
-		System.out.println("Character created! Welcome, " + name + " the " + player.getClass().getSimpleName() + ".");
+		System.out.println("Character created! Welcome, " + name + " the " + player.getRace() + player.getJob() + ".");
 
 		// Start game with the player in the initial room (e.g., "StartRoom")
 		player.setCurrentRoom(rooms.get(1));
 		System.out.println(player.getCurrentRoom().getDescription());
-		scanner.close();
+		gameGUI.update();
 }
 	
 	private void setupEnemies() throws FileNotFoundException{
@@ -242,8 +231,7 @@ public class GameLogic {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		GameLogic game = new GameLogic();
-		game.setupEnemies();
-		game.setupItems();
-		game.setupWorld();
+		game.startGame();
+
 	}
 }

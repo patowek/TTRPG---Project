@@ -16,7 +16,7 @@ public class CommandAttack extends Command {
 		Combat fight = null;
 		
 		for (Enemies enemy: enemies) {
-			if (enemy.getName() == target)
+			if (enemy.getName().equalsIgnoreCase(target))
 				targetEnemy = enemy;
 		}
 		

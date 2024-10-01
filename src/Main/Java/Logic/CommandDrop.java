@@ -13,7 +13,7 @@ public class CommandDrop extends Command {
 		Item[] inventory = player.getItems();
 		int itemSlot = 0;
 		for (Item item: inventory) {
-			if (item.getName() == target) {
+			if (item.getName().equalsIgnoreCase(target)) {
 				targetItem = item;
 				break;
 			}
