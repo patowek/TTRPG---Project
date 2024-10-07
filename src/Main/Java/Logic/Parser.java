@@ -10,16 +10,17 @@ public class Parser {
 		commands = new HashMap<>();
 
 		// List of supports Commands
-		commands.put("move", new CommandMove());
-		commands.put("take", new CommandTake());
-		commands.put("examine", new CommandExamine());
-		commands.put("attack", new CommandAttack());
+		commands.put("move", new CommandMove());//
+		commands.put("take", new CommandTake());//
+		commands.put("examine", new CommandExamine());//
+		commands.put("attack", new CommandAttack());//
 		commands.put("help", new CommandHelp());
-		commands.put("use", new CommandUseItem());
-		commands.put("exit", new CommandExit());
-		commands.put("drop", new CommandDrop());
-		commands.put("equip", new CommandEquip());
-		commands.put("unequip", new CommandUnequip());
+		commands.put("use", new CommandUseItem());//
+		commands.put("exit", new CommandExit());//
+		commands.put("drop", new CommandDrop());//
+		commands.put("equip", new CommandEquip());//
+		commands.put("unequip", new CommandUnequip());//
+		commands.put("flee", new CommandFlee());
 	}
 
 	public Command parseCommand(String input) {

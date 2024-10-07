@@ -6,6 +6,8 @@ package Logic;
 import Classes.Adventurer;
 import Classes.Attributes;
 import Enemies.Enemies;
+import Map.Room;
+
 import java.util.Random;
 /**
  *
@@ -13,25 +15,29 @@ import java.util.Random;
  */
 public class Combat {
     //Variables//
-    int enemyInitiative=0;//Enemy's initiative vs your own
-    int playerInitiative=0;//Player initiative
-    boolean playerFirst=false;
-    boolean playerTurn=false;
-  
-    boolean activeCombat=false;//Whether you are still fighting
-    boolean hasWon=false;//Won in battle
-    Enemies enemy;
+    private int enemyInitiative;//Enemy's initiative vs your own
+    private int playerInitiative;//Player initiative
+    private boolean playerTurn;
+    private static boolean activeCombat;//Whether you are still fighting
+    private boolean hasWon = false;//Won in battle
+    private Enemies enemy;
+    private Adventurer player;
+    private GameLogic game;
+    private Room room;
     //Variables//
     
     //Constructor
-    public Combat(Adventurer player, Enemies Target) {
-    	enemy = Target;
-    	rollInitiative(player);
+    public Combat(GameLogic game, Enemies Target) {
+    	this.enemy = Target;
+    	this.game = game;
+    	this.player = game.getPlayer();
+    	this.room = player.getCurrentRoom();
+    	rollInitiative();
     	turnOrder();
     }
     
     //Methods//
-	public int rollDice(int number, int nSides)
+	public int rollDice(String name, int number, int nSides)
     { 
 		int num = 0;
         int roll = 0;
@@ -41,7 +47,7 @@ public class Combat {
         	for(int i = 0; i < number; i++)
             { 
                 roll = r.nextInt(nSides)+1;
-                System.out.println("Roll is:  "+roll);
+                System.out.println(name + roll);
                 num = num + roll; 
             } 
         } 
@@ -51,27 +57,17 @@ public class Combat {
         } 
         return num;  
     } 
-    public int convStat(String inputtedStat)
-    {//Convert stats from string to int.
-    	int stat=Integer.parseInt(inputtedStat);
-        return stat;
-    }
    
-	public void rollInitiative(Adventurer player) {
+	public void rollInitiative() {
 		
 		//Roll initial initiative for player & enemy
-		enemyInitiative=rollDice(1,20)+enemy.getSpeed();
-		playerInitiative=rollDice(1,20) + player.getStatValue(Attributes.SPD);
+		enemyInitiative=rollDice("Enemy initiative roll is ",1,20)+enemy.getSpeed();
+		playerInitiative=rollDice("Player initiative roll is ",1,20) + player.getStatValue(Attributes.SPD);
         
 		//Designate player as first hitter.
 		if(playerInitiative>enemyInitiative) {
-			playerFirst=true;
 			playerTurn=true;
-        }
-		
-		//Designate player as first hitter.
-		if(playerInitiative<enemyInitiative) {
-            playerFirst=false;
+        } else {
             playerTurn=false;
         }
 		
@@ -81,28 +77,27 @@ public class Combat {
 	public void turnOrder() {
 		
 		//Perform turn order action
-		if(playerFirst==true) {
-			System.out.println("Choose your move");
-			playerTurn=true;
-		}
-		if(playerFirst==false) {
+		if(playerTurn==true) {
+			System.out.println("Your turn in combat...");
+		} else {
 			System.out.println("Enemy rallies an attack!");
-		}       
+			defAction();
+		}
 	}
 	
-	public void atkAction(Adventurer player, Enemies enemy) {
+	public void atkAction() {
 		//Roll attempt to attack
 
 		//Player's rolls
         int atkStat=player.getStatValue(Attributes.ATK);
-        int playerRoll=rollDice(1,20)+atkStat;
+        int playerRoll=rollDice("Player attack roll is ",1,20)+atkStat;
         
         //Enemy's rolls
         int enemyDefense=enemy.getArmor();
         
         //Attack lands
         if(playerRoll > enemyDefense) {
-        	int inDam = rollDice(1,6);//Damage Rolled
+        	int inDam = rollDice("You have landed an attack for ",1,6);//Damage Rolled
         	int curHP = enemy.getHitpoints()-inDam;//Damage removed from HP
         	enemy.setHitpoints(curHP);//Sustained Damage
         	playerTurn = false;
@@ -115,17 +110,19 @@ public class Combat {
         if(enemy.getHitpoints()<=0) {
         	hasWon = true;
         }
+        
+        turnOrder();
      }
 	
-     public void defAction(Adventurer player, Enemies enemy) {
+     public void defAction() {
     	 //Roll attempt to defend from enemy
     	 int playerDefense = player.getArmor();
-    	 int enemyRoll = rollDice(1,20)+enemy.getChallengeRating();//Enemy attempt
-    	 int playerRoll = rollDice(1,20)+ playerDefense;
+    	 int enemyRoll = rollDice("Enemy attack roll is ",1,20)+enemy.getChallengeRating();//Enemy attempt
+    	 int playerRoll = rollDice("Player defense roll is ",1,20)+ playerDefense;
     	 
     	 //Attack lands
     	 if(playerRoll < enemyRoll) {
-    		 int inDam=rollDice(1,6);//Damage Rolled
+    		 int inDam=rollDice("Enemy hits you for ",1,6);//Damage Rolled
     		 player.modifyStat(Attributes.HP,-inDam);//Sustained Damage
     		 playerTurn=true;
     	 } else {
@@ -138,12 +135,14 @@ public class Combat {
     		 System.out.println("You have lost against "+enemy.getName()+".");
     		 player.setDead(true);
     	 }
+    	 
+    	 game.update();
 	}
     
    //Action to flee from battle
-	public void fleeAction(Adventurer player,Enemies enemy) {
-		int playerFlee=rollDice(1,20)+player.getStatValue(Attributes.SPD);
-		int enemyCatch=rollDice(1,20)+enemy.getSpeed();
+	public void fleeAction() {
+		int playerFlee=rollDice("You attempt to flee...: ",1,20)+player.getStatValue(Attributes.SPD);
+		int enemyCatch=rollDice("The enemy attempts to catch you...: ",1,20)+enemy.getSpeed();
 		
 		//Player succeeds
 		if(playerFlee > enemyCatch) {
@@ -152,10 +151,12 @@ public class Combat {
 		} else {
 			System.out.println("Enemy caught up to you!");
 			playerTurn = false;
-		} 
+		}
+		
+		game.update();
 	}
 	
-	//Getter Methods for boolean values
+	//Getter Methods
 	public boolean isCombatActive() {
 		return activeCombat;
 	}
@@ -163,5 +164,13 @@ public class Combat {
 	public boolean hasWon() {
 		return hasWon;
                 
+	}
+
+	public Enemies getEnemy() {
+		return enemy;
+	}
+
+	public Room getRoom() {
+		return room;
 	}
 }

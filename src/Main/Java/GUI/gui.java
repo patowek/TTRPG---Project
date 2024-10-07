@@ -13,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -198,7 +197,7 @@ public class gui implements ActionListener {
  		layerPane.add(panel, JLayeredPane.PALETTE_LAYER);
  		
  		//background image set
- 		roomBackground = new JLabel("", null , JLabel.CENTER);
+ 		roomBackground = new JLabel("", new ImageIcon("src/Resources/images/StartRoom.png") , JLabel.CENTER);
  		roomBackground.setBounds(700,0,700,500);
  		layerPane.add(roomBackground, JLayeredPane.DEFAULT_LAYER);
      		
@@ -284,7 +283,6 @@ public class gui implements ActionListener {
 	        } else {
 	            // Normal processing mode
 	            game.processInput(userInput); // Continue with regular input processing
-	            update(); // Update the game state/UI
 	        }
 		}
 		

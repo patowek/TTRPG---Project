@@ -74,6 +74,10 @@ public class Room {
 		return new ArrayList<>(items.values());
 	}
 	
+	public List<Directions> getExits() {
+		return new ArrayList<>(exits.keySet());
+	}
+	
 	public Item getItem(String uid) {
 		return items.get(uid);
 	}

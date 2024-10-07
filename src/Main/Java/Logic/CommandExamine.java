@@ -5,6 +5,7 @@ import java.util.List;
 import Classes.Adventurer;
 import Enemies.Enemies;
 import Items.Item;
+import Map.Directions;
 import Map.Room;
 
 public class CommandExamine extends Command {
@@ -20,6 +21,13 @@ public class CommandExamine extends Command {
 			List<Enemies> roomEnemies = currentRoom.getEnemies();
 			for (Enemies enemy: roomEnemies)
 				situation.append(enemy.getName() + "\n");
+			System.out.println(situation);
+		} else if (target.equalsIgnoreCase("exits")) {
+			StringBuilder situation = new StringBuilder("You see the following exits: \n");
+			List<Directions> roomExits = currentRoom.getExits();
+			for (Directions dir : roomExits) {
+				situation.append(dir.getName() + "\n");
+			}
 			System.out.println(situation);
 		} else {
 			Item item = findItem(currentRoom, player, target);

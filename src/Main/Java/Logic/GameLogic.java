@@ -18,12 +18,11 @@ public class GameLogic {
 	private Map<Integer, Room> rooms;
 	private Map<String, Enemies> enemiesList;
 	private Map<String, Item> itemList;
-	private boolean isRunning;
 	private Parser parser;
 	private gui gameGUI;
+	private Combat fight;
 
 	public GameLogic() throws FileNotFoundException {
-		this.isRunning = true;
 		enemiesList = new HashMap<>();
 		itemList = new HashMap<>();
 		rooms = new HashMap<>();
@@ -46,15 +45,37 @@ public class GameLogic {
 		update();
 	}
 
-	private void update() {
+	public void update() {
 		// Handle game updates like checking win/lose conditions
 		if (player.hasWon() || player.isDead()) {
-			isRunning = false;
+			this.endGame();
 		}
+		if (fight != null) {
+			Enemies enemy = fight.getEnemy();
+			Room enemyRoom = fight.getRoom();
+			
+			if (fight.hasWon() == true) {
+				fight = null;
+				player.getCurrentRoom().removeEnemy(enemy);
+				System.out.println("You have slain " + enemy.getName());
+			} else if (player.getCurrentRoom() == enemyRoom) {
+				fight.turnOrder();
+			}
+		}
+		System.out.println("What would you like to do?");
+		gameGUI.update();
 	}
 
 	public void endGame() {
-		isRunning = false;
+		System.out.println("Thank you for playing. Please try again.");
+		try {
+			wait(2000);
+			System.exit(0);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void setupWorld() throws FileNotFoundException {
@@ -115,11 +136,12 @@ public class GameLogic {
 
 		System.out.println("Welcome to the game! Let's create your character.");
 		String name = gameGUI.requestAnswer("Enter your character's name: ").join();
-
-		while (true) {
-			int intRace = Integer.parseInt(gameGUI.requestAnswer("Choose a race:\n1. Dwarf\n2. Elf\n3. Human").join());
-			String race;
-			switch(intRace) {
+		String race = "";
+		String job = "";
+		while (race.isBlank()) {
+			try {
+				int intRace = Integer.parseInt(gameGUI.requestAnswer("Choose a race:\n1. Dwarf\n2. Elf\n3. Human").join());
+				switch(intRace) {
 				case 1:
 					race = "dwarf";
 					break;
@@ -130,41 +152,67 @@ public class GameLogic {
 					race = "human";
 					break;
 				default:
+					System.out.println("Invalid input. Please use 1, 2, or 3.");
 					continue;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid input. Please use 1, 2, or 3.");
+				continue;
 			}
 			
-
-			int intClass = Integer.parseInt(gameGUI.requestAnswer("Choose a Class:\n1. Fighter\n2. Mage\n3. Rogue").join());
-			String job;
-			switch(intClass) {
-				case 1:
-					job = "fighter";
-					break;
-				case 2:
-					job = "mage";
-					break;
-				case 3:
-					job = "rogue";
-					break;
-				default:
-					continue;
-			}
-
-			System.out.println("Allocate stats for your character...5 available points.");
-			int intAtk = Integer.parseInt(gameGUI.requestAnswer("How much Atk: ").join());
-			int intDef = Integer.parseInt(gameGUI.requestAnswer("How much Def: ").join());
-			int intSpd = Integer.parseInt(gameGUI.requestAnswer("How much Spd: ").join());
+			break;
+		}
 			
-			player = new Adventurer(name, job, race, intAtk, intSpd, intDef, 10, 50, 0);
-			break; // Exit loop after valid choice
+		while (job.isBlank()) {
+			try {
+				int intClass = Integer.parseInt(gameGUI.requestAnswer("Choose a Class:\n1. Fighter\n2. Mage\n3. Rogue").join());
+				switch(intClass) {
+					case 1:
+						job = "fighter";
+						break;
+					case 2:
+						job = "mage";
+						break;
+					case 3:
+						job = "rogue";
+						break;
+					default:
+						System.out.println("Invalid input. Please use 1, 2, or 3.");
+						continue;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid input. Please use 1, 2, or 3.");
+				continue;
+			}
+			break;
 		}
 
-		System.out.println("Character created! Welcome, " + name + " the " + player.getRace() + player.getJob() + ".");
+		while (true) {
+			System.out.println("Allocate stats for your character...5 available points.");
+			try {
+				int intAtk = Integer.parseInt(gameGUI.requestAnswer("How much Atk: ").join());
+				int intDef = Integer.parseInt(gameGUI.requestAnswer("How much Def: ").join());
+				int intSpd = Integer.parseInt(gameGUI.requestAnswer("How much Spd: ").join());
+				
+				if (intAtk + intDef + intSpd == 5) {
+					player = new Adventurer(name, job, race, intAtk, intSpd, intDef, 10, 50, 0);
+					break; // Exit loop after valid choice
+				} else {
+					System.out.println("You have 5 available points for distribution, no more no less.");
+					continue;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid input. Please use whole numbers only.");
+				continue;
+			}
+		}
+
+		System.out.println("Character created! Welcome, " + name + " the " + player.getRace() + " " + player.getJob() + ".");
 
 		// Start game with the player in the initial room (e.g., "StartRoom")
 		player.setCurrentRoom(rooms.get(1));
 		System.out.println(player.getCurrentRoom().getDescription());
-		gameGUI.update();
+		this.update();
 }
 	
 	private void setupEnemies() throws FileNotFoundException{
@@ -227,6 +275,14 @@ public class GameLogic {
 
 	public Adventurer getPlayer() {
 		return player;
+	}
+
+	public Combat getActiveCombat() {
+		return fight;
+	}
+
+	public void setActiveCombat(Combat activeCombat) {
+		this.fight = activeCombat;
 	}
 
 	public static void main(String[] args) throws FileNotFoundException {

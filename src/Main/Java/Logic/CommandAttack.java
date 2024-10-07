@@ -13,22 +13,26 @@ public class CommandAttack extends Command {
 		Room currentRoom = player.getCurrentRoom();
 		List<Enemies> enemies = currentRoom.getEnemies();
 		Enemies targetEnemy = null;
-		Combat fight = null;
+		Combat fight = game.getActiveCombat();
 		
 		for (Enemies enemy: enemies) {
 			if (enemy.getName().equalsIgnoreCase(target))
 				targetEnemy = enemy;
+				break;
 		}
 		
 		if (targetEnemy != null) {
-			fight = new Combat(player, targetEnemy);
+			// Initiate combat if needed
+			if (fight == null) {
+				fight = new Combat(game, targetEnemy);
+				game.setActiveCombat(fight);
+				
+			}
+			
+			fight.atkAction();
 		} else {
 			System.out.println("Invalid target. Try again.");
 		}
-		
-		if (fight.hasWon() == true)
-			currentRoom.removeEnemy(targetEnemy);
-			System.out.print("You have slain " + targetEnemy.getName());
 	}
 
 }
