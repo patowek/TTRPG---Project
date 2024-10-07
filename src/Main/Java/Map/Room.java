@@ -75,7 +75,15 @@ public class Room {
 	}
 	
 	public List<Directions> getExits() {
-		return new ArrayList<>(exits.keySet());
+		List<Directions> availableExits = new ArrayList<>();
+		
+		for (Map.Entry<Directions, Integer> entry : exits.entrySet()) {
+	        if (entry.getValue() > 0) {
+	            availableExits.add(entry.getKey());
+	        }
+	    }
+		
+		return availableExits;
 	}
 	
 	public Item getItem(String uid) {

@@ -33,7 +33,6 @@ public class Combat {
     	this.player = game.getPlayer();
     	this.room = player.getCurrentRoom();
     	rollInitiative();
-    	turnOrder();
     }
     
     //Methods//
@@ -59,6 +58,7 @@ public class Combat {
     } 
    
 	public void rollInitiative() {
+        activeCombat=true;
 		
 		//Roll initial initiative for player & enemy
 		enemyInitiative=rollDice("Enemy initiative roll is ",1,20)+enemy.getSpeed();
@@ -67,11 +67,11 @@ public class Combat {
 		//Designate player as first hitter.
 		if(playerInitiative>enemyInitiative) {
 			playerTurn=true;
+			atkAction();
         } else {
             playerTurn=false;
+            turnOrder();
         }
-		
-        activeCombat=true;
     }
 	
 	public void turnOrder() {
@@ -107,11 +107,11 @@ public class Combat {
         }
         
         //If the enemy's HP drops to 0
-        if(enemy.getHitpoints()<=0) {
+        if(enemy.getHitpoints() <= 0) {
         	hasWon = true;
+        } else {
+            turnOrder();
         }
-        
-        turnOrder();
      }
 	
      public void defAction() {
@@ -135,8 +135,6 @@ public class Combat {
     		 System.out.println("You have lost against "+enemy.getName()+".");
     		 player.setDead(true);
     	 }
-    	 
-    	 game.update();
 	}
     
    //Action to flee from battle

@@ -26,10 +26,9 @@ public class CommandAttack extends Command {
 			if (fight == null) {
 				fight = new Combat(game, targetEnemy);
 				game.setActiveCombat(fight);
-				
+			} else {
+				fight.atkAction();
 			}
-			
-			fight.atkAction();
 		} else {
 			System.out.println("Invalid target. Try again.");
 		}
