@@ -24,7 +24,7 @@ public class Parser {
 	}
 
 	public Command parseCommand(String input) {
-		String[] words = input.split(" ");
+		String[] words = input.split(" ", 2);
 		String action = getVerb(words);
 		String target = getTarget(words);
 
