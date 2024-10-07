@@ -34,11 +34,11 @@ public class CommandUnequip extends Command {
 		if (targetItem != null && freeSlot < 8) {			
 			player.setItems(freeSlot, targetItem);
 			player.setGear(targetSlot, null);
-			System.out.println("You unequip the " + target);
+			System.out.println("You unequip the " + target + "\n");
 		} else if (freeSlot > 7) {
-			System.out.println("No available space in inventory, please drop/use an item first.");
+			System.out.println("No available space in inventory, please drop/use an item first.\n");
 		} else {
-			System.out.println("There's no " + target + " in your inventory.");
+			System.out.println("There's no " + target + " in your inventory.\n");
 		}
 
 	}

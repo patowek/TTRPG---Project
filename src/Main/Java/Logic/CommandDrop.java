@@ -23,9 +23,9 @@ public class CommandDrop extends Command {
 		if (targetItem != null) {
 			player.setItems(itemSlot, null);
 			currentRoom.addItem(targetItem);
-			System.out.println("You drop the " + target);
+			System.out.println("You drop the " + target + "\n");
 		} else {
-			System.out.println("There's no " + target + " in your inventory.");
+			System.out.println("There's no " + target + " in your inventory.\n");
 		}
 
 	}

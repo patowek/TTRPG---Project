@@ -7,8 +7,8 @@ public class CommandHelp extends Command {
 	@Override
 	public void execute(Adventurer player, GameLogic game) {
 		if (target.isBlank()) {
-			System.out.println("List of Commands available:\nAttack\nExamine\nMove\nTake\n\nUse\nExit\n" +
-				"For More information on a command, type 'Help' and then the command you want more information on.");
+			System.out.println("List of Commands available:\nAttack\nFlee\nExamine\nMove\nTake\nDrop\nUse\nEquip\nUnequip\nExit\n" +
+				"For More information on a command, type 'Help' and then the command you want more information on.\n");
 		} else {
 			String text = "Invalid text. Please review the command and try again.";
 			switch (target.toLowerCase()) {
@@ -48,7 +48,7 @@ public class CommandHelp extends Command {
 					break;
 			} 
 			
-			System.out.println(text);
+			System.out.println(text + "\n");
 				
 		}
 

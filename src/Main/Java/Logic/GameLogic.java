@@ -72,7 +72,6 @@ public class GameLogic {
 			wait(2000);
 			System.exit(0);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -135,12 +134,12 @@ public class GameLogic {
 	private void setupPlayer() {
 
 		System.out.println("Welcome to the game! Let's create your character.");
-		String name = gameGUI.requestAnswer("Enter your character's name: ").join();
+		String name = gameGUI.requestAnswer("\nEnter your character's name: ").join();
 		String race = "";
 		String job = "";
 		while (race.isBlank()) {
 			try {
-				int intRace = Integer.parseInt(gameGUI.requestAnswer("Choose a race:\n1. Dwarf\n2. Elf\n3. Human").join());
+				int intRace = Integer.parseInt(gameGUI.requestAnswer("\nChoose a race:\n1. Dwarf\n2. Elf\n3. Human").join());
 				switch(intRace) {
 				case 1:
 					race = "dwarf";
@@ -165,7 +164,7 @@ public class GameLogic {
 			
 		while (job.isBlank()) {
 			try {
-				int intClass = Integer.parseInt(gameGUI.requestAnswer("Choose a Class:\n1. Fighter\n2. Mage\n3. Rogue").join());
+				int intClass = Integer.parseInt(gameGUI.requestAnswer("\nChoose a Class:\n1. Fighter\n2. Mage\n3. Rogue").join());
 				switch(intClass) {
 					case 1:
 						job = "fighter";
@@ -190,9 +189,9 @@ public class GameLogic {
 		while (true) {
 			System.out.println("Allocate stats for your character...5 available points.");
 			try {
-				int intAtk = Integer.parseInt(gameGUI.requestAnswer("How much Atk: ").join());
-				int intDef = Integer.parseInt(gameGUI.requestAnswer("How much Def: ").join());
-				int intSpd = Integer.parseInt(gameGUI.requestAnswer("How much Spd: ").join());
+				int intAtk = Integer.parseInt(gameGUI.requestAnswer("\nHow much Atk: ").join());
+				int intDef = Integer.parseInt(gameGUI.requestAnswer("\nHow much Def: ").join());
+				int intSpd = Integer.parseInt(gameGUI.requestAnswer("\nHow much Spd: ").join());
 				
 				if (intAtk + intDef + intSpd == 5) {
 					player = new Adventurer(name, job, race, intAtk, intSpd, intDef, 10, 50, 0);
@@ -211,7 +210,7 @@ public class GameLogic {
 
 		// Start game with the player in the initial room (e.g., "StartRoom")
 		player.setCurrentRoom(rooms.get(1));
-		System.out.println(player.getCurrentRoom().getDescription());
+		System.out.println(player.getCurrentRoom().getDescription() + "\n");
 		this.update();
 }
 	

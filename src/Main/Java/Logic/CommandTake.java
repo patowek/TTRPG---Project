@@ -22,7 +22,7 @@ public class CommandTake extends Command {
 		}
 		
 		if (freeSlot > 8) {
-			System.out.println("No available space in inventory, please drop/use an item first.");
+			System.out.println("No available space in inventory, please drop/use an item first.\n");
 		}
 		
 		for (Item item: items) {
@@ -34,9 +34,9 @@ public class CommandTake extends Command {
 		if (targetItem != null) {
 			player.setItems(freeSlot, targetItem);
 			currentRoom.removeItem(targetItem);
-			System.out.println("You take the " + target);
+			System.out.println("You take the " + target + "\n");
 		} else {
-			System.out.println("There's no " + target + " here.");
+			System.out.println("There's no " + target + " here.\n");
 		}
 	}
 }

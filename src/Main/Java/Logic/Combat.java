@@ -61,9 +61,9 @@ public class Combat {
         activeCombat=true;
 		
 		//Roll initial initiative for player & enemy
+        playerInitiative=rollDice("Player initiative roll is ",1,20) + player.getStatValue(Attributes.SPD);
 		enemyInitiative=rollDice("Enemy initiative roll is ",1,20)+enemy.getSpeed();
-		playerInitiative=rollDice("Player initiative roll is ",1,20) + player.getStatValue(Attributes.SPD);
-        
+		
 		//Designate player as first hitter.
 		if(playerInitiative>enemyInitiative) {
 			playerTurn=true;
@@ -78,9 +78,9 @@ public class Combat {
 		
 		//Perform turn order action
 		if(playerTurn==true) {
-			System.out.println("Your turn in combat...");
+			System.out.println("Your turn in combat...\n");
 		} else {
-			System.out.println("Enemy rallies an attack!");
+			System.out.println("Enemy rallies an attack!\n");
 			defAction();
 		}
 	}
@@ -97,12 +97,12 @@ public class Combat {
         
         //Attack lands
         if(playerRoll > enemyDefense) {
-        	int inDam = rollDice("You have landed an attack for ",1,6);//Damage Rolled
+        	int inDam = rollDice("\nYou have landed an attack for ",1,6);//Damage Rolled
         	int curHP = enemy.getHitpoints()-inDam;//Damage removed from HP
         	enemy.setHitpoints(curHP);//Sustained Damage
         	playerTurn = false;
         } else {
-        	System.out.println("You missed!");
+        	System.out.println("\nYou missed!");
         	playerTurn = false;
         }
         
@@ -122,17 +122,17 @@ public class Combat {
     	 
     	 //Attack lands
     	 if(playerRoll < enemyRoll) {
-    		 int inDam=rollDice("Enemy hits you for ",1,6);//Damage Rolled
+    		 int inDam=rollDice("\nEnemy hits you for ",1,6);//Damage Rolled
     		 player.modifyStat(Attributes.HP,-inDam);//Sustained Damage
     		 playerTurn=true;
     	 } else {
-    		 System.out.println("Enemy misses!");
+    		 System.out.println("\nEnemy misses!");
     		 playerTurn=true;
          }
          
     	 //If the player's HP drops to 0
     	 if(player.getStatValue(Attributes.HP) <= 0) {
-    		 System.out.println("You have lost against "+enemy.getName()+".");
+    		 System.out.println("\nYou have lost against "+enemy.getName()+".");
     		 player.setDead(true);
     	 }
 	}
@@ -144,10 +144,10 @@ public class Combat {
 		
 		//Player succeeds
 		if(playerFlee > enemyCatch) {
-			System.out.println("Player fled from Combat!");
+			System.out.println("\nPlayer fled from Combat!");
 			activeCombat = false;
 		} else {
-			System.out.println("Enemy caught up to you!");
+			System.out.println("\nEnemy caught up to you!");
 			playerTurn = false;
 		}
 		

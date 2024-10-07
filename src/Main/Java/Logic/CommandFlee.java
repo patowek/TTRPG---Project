@@ -12,7 +12,7 @@ public class CommandFlee extends Command {
 			
 			fight.fleeAction();
 		} else {
-			System.out.println("Player is not in combat.");
+			System.out.println("Player is not in combat.\n");
 		}
 	}
 

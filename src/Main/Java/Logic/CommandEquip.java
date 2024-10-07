@@ -27,13 +27,13 @@ public class CommandEquip extends Command {
 		if (targetItem != null && targetSlot < 5 && equipmentSlotTaken == false) {			
 			player.setItems(itemSlot, null);
 			player.setGear(targetSlot, targetItem);
-			System.out.println("You equip the " + target);
+			System.out.println("You equip the " + target + "\n");
 		} else if (targetSlot == 5) {
-			System.out.println("Invalid equipment type. Try again.");
+			System.out.println("Invalid equipment type. Try again.\n");
 		} else if (equipmentSlotTaken == true) {
-			System.out.println("Equipment slot taken. Please unequip first.");
+			System.out.println("Equipment slot taken. Please unequip first.\n");
 		} else {
-			System.out.println("There's no " + target + " in your inventory.");
+			System.out.println("There's no " + target + " in your inventory.\n");
 		}
 
 	}

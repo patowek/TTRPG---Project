@@ -14,19 +14,19 @@ public class CommandExamine extends Command {
 	public void execute(Adventurer player, GameLogic game) {
 		Room currentRoom = player.getCurrentRoom();
 		if (target.isBlank()) {
-			StringBuilder situation = new StringBuilder("You see the following: \n");
+			StringBuilder situation = new StringBuilder("You see the following: \n\n");
 			List<Item> roomItems = currentRoom.getItems();
 			for (Item item: roomItems)
-				situation.append(item.getName() + "\n");
+				situation.append("    " + item.getName() + "\n");
 			List<Enemies> roomEnemies = currentRoom.getEnemies();
 			for (Enemies enemy: roomEnemies)
-				situation.append(enemy.getName() + "\n");
+				situation.append("    " + enemy.getName() + "\n");
 			System.out.println(situation);
 		} else if (target.equalsIgnoreCase("exits")) {
-			StringBuilder situation = new StringBuilder("You see the following exits: \n");
+			StringBuilder situation = new StringBuilder("You see the following exits: \n\n");
 			List<Directions> roomExits = currentRoom.getExits();
 			for (Directions dir : roomExits) {
-				situation.append(dir.getName() + "\n");
+				situation.append("    " + dir.getName() + "\n");
 			}
 			System.out.println(situation);
 		} else {

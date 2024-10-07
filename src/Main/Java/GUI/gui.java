@@ -274,7 +274,7 @@ public class gui implements ActionListener {
 		//text response; currently placeholder
 		if (e.getActionCommand().equals("Sub")){
 			userInput = textBox.getText();
-			outputTxt.append(userInput + "\n");
+			outputTxt.append(">>" + userInput + "\n");
 			textBox.setText("");
 			if (inputCallback != null) {
 	            // We are in "question mode", process the answer
