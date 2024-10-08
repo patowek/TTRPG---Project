@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+
 import Classes.Adventurer;
 import Enemies.Enemies;
 import GUI.gui;
@@ -73,14 +76,15 @@ public class GameLogic {
 	}
 
 	public void endGame() {
-		System.out.println("Thank you for playing. Please try again.");
-		try {
-			wait(2000);
-			System.exit(0);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
+	    JOptionPane.showMessageDialog(null, "Thank you for playing!");
+
+	    // Create a timer that waits for 2 seconds (2000 ms) then exits
+	    Timer timer = new Timer(2000, e -> {
+	        System.exit(0);
+	    });
+	    
+	    timer.setRepeats(false);
+	    timer.start();
 	}
 
 	private void setupWorld() throws FileNotFoundException {
