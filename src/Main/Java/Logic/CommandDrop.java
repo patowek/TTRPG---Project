@@ -1,5 +1,7 @@
 package Logic;
 
+import java.util.List;
+
 import Classes.Adventurer;
 import Items.Item;
 import Map.Room;
@@ -10,18 +12,16 @@ public class CommandDrop extends Command {
 	public void execute(Adventurer player, GameLogic game) {
 		Room currentRoom = player.getCurrentRoom();
 		Item targetItem = null;
-		Item[] inventory = player.getItems();
-		int itemSlot = 0;
+		List<Item> inventory = player.getItems();
 		for (Item item: inventory) {
 			if (item.getName().equalsIgnoreCase(target)) {
 				targetItem = item;
 				break;
 			}
-			itemSlot++;
 		}
 		
 		if (targetItem != null) {
-			player.setItems(itemSlot, null);
+			player.removeItem(targetItem);
 			currentRoom.addItem(targetItem);
 			System.out.println("You drop the " + target + "\n");
 		} else {

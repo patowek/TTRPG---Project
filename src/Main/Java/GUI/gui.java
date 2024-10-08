@@ -248,10 +248,13 @@ public class gui implements ActionListener {
         	}
         }
         
-        Item[] inventoryList = player.getItems();
+        List<Item> inventoryList = player.getItems();
+        int size = inventoryList.size();
         for (int i = 0; i < 8; i++) {
-        	if (inventoryList[i] != null) {
-        		inventoryButtons.get(i).setText(inventoryList[i].getName());
+        	if (i >= size) {
+        		inventoryButtons.get(i).setText("Empty");
+        	} else if (inventoryList.get(i) != null) {
+        		inventoryButtons.get(i).setText(inventoryList.get(i).getName());
         	} else {
         		inventoryButtons.get(i).setText("Empty");
         	}

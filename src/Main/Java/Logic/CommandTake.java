@@ -12,14 +12,8 @@ public class CommandTake extends Command {
 		Room currentRoom = player.getCurrentRoom();
 		List<Item> items = currentRoom.getItems();
 		Item targetItem = null;
-		Item[] inventory = player.getItems();
-		int freeSlot = 0;
-		for (Item item: inventory) {
-			if (item != null)
-				freeSlot++;
-				continue;
-			
-		}
+		List<Item> inventory = player.getItems();
+		int freeSlot = inventory.size();
 		
 		if (freeSlot > 8) {
 			System.out.println("No available space in inventory, please drop/use an item first.\n");
@@ -32,7 +26,7 @@ public class CommandTake extends Command {
 		}
 		
 		if (targetItem != null) {
-			player.setItems(freeSlot, targetItem);
+			player.addItem(targetItem);
 			currentRoom.removeItem(targetItem);
 			System.out.println("You take the " + target + "\n");
 		} else {

@@ -1,5 +1,7 @@
 package Logic;
 
+import java.util.List;
+
 import Classes.Adventurer;
 import Items.Item;
 
@@ -10,14 +12,9 @@ public class CommandUnequip extends Command {
 		Item targetItem = null;
 		Item[] loadout = player.getGear();
 		int targetSlot = 5;
-		Item[] inventory = player.getItems();
-		int freeSlot = 0;
-		for (Item item: inventory) {
-			if (item != null)
-				freeSlot++;
-				continue;
-			
-		}
+		List<Item> inventory = player.getItems();
+		int freeSlot = inventory.size();
+
 		
 		for (Item item: loadout) {
 			if (item == null) {
@@ -32,7 +29,7 @@ public class CommandUnequip extends Command {
 		}
 		
 		if (targetItem != null && freeSlot < 8) {			
-			player.setItems(freeSlot, targetItem);
+			player.addItem(targetItem);
 			player.setGear(targetSlot, null);
 			System.out.println("You unequip the " + target + "\n");
 		} else if (freeSlot > 7) {

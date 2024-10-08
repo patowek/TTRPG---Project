@@ -14,6 +14,10 @@
 package Classes;
 
 import Map.Room;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import Items.Item;
 /***************************************************
  *** Name:Adventurer.java***************************
@@ -40,7 +44,8 @@ public class Adventurer {
 	private Attributes health = Attributes.HP;
 	private String job;
 	private String race;
-	private Item[] inventory = new Item[8];//8 inv slots
+	private List<Item> inventory = new ArrayList<>();
+	//private Item[] inventory = new Item[8];//8 inv slots
 	// Slot 0 - Head
 	// Slot 1 - Armor
 	// Slot 2 - Weapon
@@ -124,14 +129,12 @@ public class Adventurer {
 	// ^^^^^^^^^^^^^^^^^^^^^^^
 	// ^^^Methods^^^^^^^^^^^^^
 	// ^^^^^^^^^^^^^^^^^^^^^^^
-	public int findValue(Item[] values, Item query) {// Return where the value is found if the query is found.
-		for (int i = 0; i < values.length; i++) {
-			if (values[i] == query) {
-				System.out.println("Array contains" + query + "  at index " + i);
+	public int findValue(List<Item> inventory2, Item query) {// Return where the value is found if the query is found.
+		for (int i = 0; i < inventory2.size(); i++) {
+			if (inventory2.get(i) == query) {
 				return i;
 			}
 		}
-		System.out.println("Value not Found.");
 		return -1;
 	}
 	/**
@@ -286,7 +289,7 @@ public class Adventurer {
 	/// &&&&&END OF SET GEAR&&&&&//
 
 	/// &&&&&END OF SET ITEMS&&&&&//
-	public Item getItems(Item name) {// Get the following
+	public void removeItem(Item name) {// Get the following
 												// -Slot 0-7
 
 		int index = findValue(inventory, name);
@@ -294,12 +297,12 @@ public class Adventurer {
 		// If you find a value it will set it at the first instance 'none' slot
               
                 
-		return inventory[index];//Return name of item.
+		inventory.remove(index);//Return name of item.
 
 	}
 
 	/// &&&&&END OF SET Items&&&&&//
-	public Item[] getItems() {// Get the following
+	public List<Item> getItems() {// Get the following
 										// -Slot 0-7
 		
 		return inventory;//Return list of items.
@@ -308,11 +311,9 @@ public class Adventurer {
 
 	/// &&&&&END OF SET Items&&&&&//
 	/// &&&&&END OF SET ITEMS&&&&&//
-	public void setItems(int slot, Item newItem) {// Get the following
+	public void addItem(Item newItem) {// Get the following
 														// Slots 0-7
-			inventory[slot] = newItem;
-		
-
+			inventory.add(newItem);
 	}
 
 	/// &&&&&END OF SET Items&&&&&//
@@ -333,6 +334,11 @@ public class Adventurer {
 	public boolean hasWon() {
 		return hasWon;
 	}
+	
+	public void setWon(boolean value) {
+		this.hasWon = value;
+	}
+	
 	public boolean isDead() {
 		return isDead;
 	}

@@ -21,6 +21,7 @@ public class GameLogic {
 	private Parser parser;
 	private gui gameGUI;
 	private Combat fight;
+	private Room finalRoom;
 
 	public GameLogic() throws FileNotFoundException {
 		enemiesList = new HashMap<>();
@@ -37,6 +38,7 @@ public class GameLogic {
 		setupItems();
 		setupWorld();
 		setupPlayer();
+		finalRoom = rooms.get(rooms.size());
 	}
 
 	public void processInput(String input) {
@@ -46,6 +48,10 @@ public class GameLogic {
 	}
 
 	public void update() {
+		if (player.getCurrentRoom().equals(finalRoom) && finalRoom.getEnemies().isEmpty()) {
+			player.setWon(true);
+		}
+		
 		// Handle game updates like checking win/lose conditions
 		if (player.hasWon() || player.isDead()) {
 			this.endGame();

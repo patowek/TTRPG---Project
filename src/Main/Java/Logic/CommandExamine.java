@@ -55,7 +55,7 @@ public class CommandExamine extends Command {
 	    }
 		
 	 // Look for the item in the player's inventory
-	    Item[] playerArray = player.getItems();
+	    List<Item> playerArray = player.getItems();
 	    if (playerArray != null) {
 	        for (Item item : playerArray) {
 	            if (item.getName().equalsIgnoreCase(target)) {
